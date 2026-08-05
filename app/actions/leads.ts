@@ -1,26 +1,12 @@
 "use server";
 
 import { prisma } from "@/lib/db";
+import {
+  collectValues,
+  invalid,
+  type FormState,
+} from "@/lib/form-state";
 import { leadSchema, valuationSchema } from "@/lib/validators";
-
-export type FormState = {
-  ok: boolean;
-  message?: string;
-  errors?: Record<string, string>;
-};
-
-export const EMPTY_FORM_STATE: FormState = { ok: false };
-
-function collectErrors(error: {
-  issues: Array<{ path: PropertyKey[]; message: string }>;
-}): Record<string, string> {
-  const errors: Record<string, string> = {};
-  for (const issue of error.issues) {
-    const key = String(issue.path[0] ?? "form");
-    if (!errors[key]) errors[key] = issue.message;
-  }
-  return errors;
-}
 
 /** İletişim formu ve ilan sorusu — her ikisi de Lead kaydı oluşturur */
 export async function submitLead(
@@ -28,14 +14,7 @@ export async function submitLead(
   formData: FormData,
 ): Promise<FormState> {
   const parsed = leadSchema.safeParse(Object.fromEntries(formData));
-
-  if (!parsed.success) {
-    return {
-      ok: false,
-      message: "Lütfen işaretli alanları kontrol edin.",
-      errors: collectErrors(parsed.error),
-    };
-  }
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   const data = parsed.data;
 
@@ -57,6 +36,7 @@ export async function submitLead(
       ok: false,
       message:
         "Mesajınız gönderilemedi. Lütfen tekrar deneyin ya da doğrudan telefonla ulaşın.",
+      values: collectValues(formData),
     };
   }
 
@@ -73,14 +53,7 @@ export async function submitValuation(
   formData: FormData,
 ): Promise<FormState> {
   const parsed = valuationSchema.safeParse(Object.fromEntries(formData));
-
-  if (!parsed.success) {
-    return {
-      ok: false,
-      message: "Lütfen işaretli alanları kontrol edin.",
-      errors: collectErrors(parsed.error),
-    };
-  }
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   const { name, phone, email, message, kvkkConsent, source, ...valuation } =
     parsed.data;
@@ -103,6 +76,7 @@ export async function submitValuation(
       ok: false,
       message:
         "Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da doğrudan telefonla ulaşın.",
+      values: collectValues(formData),
     };
   }
 

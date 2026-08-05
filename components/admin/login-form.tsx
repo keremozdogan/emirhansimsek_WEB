@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { LogIn } from "lucide-react";
 
 import { loginAction } from "@/app/actions/admin";
-import { EMPTY_FORM_STATE } from "@/app/actions/leads";
+import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import { Button } from "@/components/ui/button";
 import { Field, FormMessage, Input } from "@/components/ui/form-fields";
 

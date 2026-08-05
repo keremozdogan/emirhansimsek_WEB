@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { Eye, PenLine, Save } from "lucide-react";
 
 import { saveBlogPost } from "@/app/actions/admin";
-import { EMPTY_FORM_STATE } from "@/app/actions/leads";
+import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import { SingleImagePicker } from "@/components/admin/single-image-picker";
 import { Button } from "@/components/ui/button";
 import {

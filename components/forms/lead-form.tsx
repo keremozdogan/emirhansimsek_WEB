@@ -4,7 +4,8 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { Send } from "lucide-react";
 
-import { EMPTY_FORM_STATE, submitLead } from "@/app/actions/leads";
+import { submitLead } from "@/app/actions/leads";
+import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import {
   Field,
   FormMessage,
@@ -42,6 +43,9 @@ export function LeadForm({
     return <FormMessage ok message={state.message} />;
   }
 
+  // Doğrulama hatasında React alanları sıfırladığı için önceki değerler geri konur
+  const previous = state.values ?? {};
+
   return (
     <form action={formAction} className="flex flex-col gap-5">
       <input type="hidden" name="type" value={type} />
@@ -54,7 +58,13 @@ export function LeadForm({
 
       <div className={compact ? "flex flex-col gap-5" : "grid gap-5 sm:grid-cols-2"}>
         <Field label="Adınız Soyadınız" required error={state.errors?.name}>
-          <Input name="name" autoComplete="name" placeholder="Adınız" required />
+          <Input
+            name="name"
+            autoComplete="name"
+            placeholder="Adınız"
+            defaultValue={previous.name}
+            required
+          />
         </Field>
 
         <Field label="Telefon" required error={state.errors?.phone}>
@@ -64,6 +74,7 @@ export function LeadForm({
             inputMode="tel"
             autoComplete="tel"
             placeholder="0532 123 45 67"
+            defaultValue={previous.phone}
             required
           />
         </Field>
@@ -75,6 +86,7 @@ export function LeadForm({
           type="email"
           autoComplete="email"
           placeholder="ornek@eposta.com"
+          defaultValue={previous.email}
         />
       </Field>
 
@@ -82,12 +94,15 @@ export function LeadForm({
         <Textarea
           name="message"
           rows={compact ? 3 : 5}
-          defaultValue={defaultMessage}
+          defaultValue={previous.message ?? defaultMessage}
           placeholder="Nasıl yardımcı olabilirim?"
         />
       </Field>
 
-      <KvkkConsent error={state.errors?.kvkkConsent} />
+      <KvkkConsent
+        error={state.errors?.kvkkConsent}
+        defaultChecked={Boolean(previous.kvkkConsent)}
+      />
 
       <SubmitButton label={submitLabel} />
     </form>

@@ -101,11 +101,18 @@ export function Checkbox({
 }
 
 /** KVKK onay kutusu — tüm genel formlarda zorunlu */
-export function KvkkConsent({ error }: { error?: string }) {
+export function KvkkConsent({
+  error,
+  defaultChecked,
+}: {
+  error?: string;
+  defaultChecked?: boolean;
+}) {
   return (
     <Checkbox
       name="kvkkConsent"
       error={error}
+      defaultChecked={defaultChecked}
       label={
         <>
           Kişisel verilerimin{" "}

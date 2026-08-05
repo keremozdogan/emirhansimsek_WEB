@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { Save } from "lucide-react";
 
 import { saveTestimonial } from "@/app/actions/admin";
-import { EMPTY_FORM_STATE } from "@/app/actions/leads";
+import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import { Button } from "@/components/ui/button";
 import {
   Checkbox,

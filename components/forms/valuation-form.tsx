@@ -3,7 +3,8 @@
 import { useActionState } from "react";
 import { Home, Ruler, User } from "lucide-react";
 
-import { EMPTY_FORM_STATE, submitValuation } from "@/app/actions/leads";
+import { submitValuation } from "@/app/actions/leads";
+import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import { SubmitButton } from "@/components/forms/lead-form";
 import {
   Field,
@@ -34,6 +35,9 @@ export function ValuationForm() {
     return <FormMessage ok message={state.message} />;
   }
 
+  // Doğrulama hatasında React alanları sıfırladığı için önceki değerler geri konur
+  const previous = state.values ?? {};
+
   return (
     <form action={formAction} className="flex flex-col gap-10">
       <input type="hidden" name="source" value="/degerleme" />
@@ -45,16 +49,29 @@ export function ValuationForm() {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="İl" required error={state.errors?.city}>
-            <Input name="city" defaultValue="İstanbul" required />
+            <Input name="city" defaultValue={previous.city ?? "İstanbul"} required />
           </Field>
           <Field label="İlçe" required error={state.errors?.district}>
-            <Input name="district" placeholder="Örn. Ataşehir" required />
+            <Input
+              name="district"
+              placeholder="Örn. Ataşehir"
+              defaultValue={previous.district}
+              required
+            />
           </Field>
           <Field label="Mahalle" error={state.errors?.neighborhood}>
-            <Input name="neighborhood" placeholder="Örn. Barbaros" />
+            <Input
+              name="neighborhood"
+              placeholder="Örn. Barbaros"
+              defaultValue={previous.neighborhood}
+            />
           </Field>
           <Field label="Konut tipi" required error={state.errors?.category}>
-            <Select name="category" defaultValue="APARTMENT" required>
+            <Select
+              name="category"
+              defaultValue={previous.category ?? "APARTMENT"}
+              required
+            >
               {PROPERTY_CATEGORIES.map((category) => (
                 <option key={category} value={category}>
                   {PROPERTY_CATEGORY_LABELS[category]}
@@ -80,11 +97,12 @@ export function ValuationForm() {
               type="number"
               inputMode="numeric"
               placeholder="120"
+              defaultValue={previous.grossArea}
               required
             />
           </Field>
           <Field label="Oda sayısı" error={state.errors?.rooms}>
-            <Select name="rooms" defaultValue="">
+            <Select name="rooms" defaultValue={previous.rooms ?? ""}>
               <option value="">Seçin</option>
               {ROOM_OPTIONS.map((room) => (
                 <option key={room} value={room.trim()}>
@@ -94,7 +112,7 @@ export function ValuationForm() {
             </Select>
           </Field>
           <Field label="Bina yaşı" error={state.errors?.buildingAge}>
-            <Select name="buildingAge" defaultValue="">
+            <Select name="buildingAge" defaultValue={previous.buildingAge ?? ""}>
               <option value="">Seçin</option>
               {BUILDING_AGE_OPTIONS.map((age) => (
                 <option key={age} value={age}>
@@ -104,12 +122,12 @@ export function ValuationForm() {
             </Select>
           </Field>
           <Field label="Bulunduğu kat" error={state.errors?.floor}>
-            <Input name="floor" placeholder="Örn. 3" />
+            <Input name="floor" placeholder="Örn. 3" defaultValue={previous.floor} />
           </Field>
         </div>
 
         <Field label="Amacınız" error={state.errors?.purpose}>
-          <Select name="purpose" defaultValue="LEARN">
+          <Select name="purpose" defaultValue={previous.purpose ?? "LEARN"}>
             {PURPOSES.map((purpose) => (
               <option key={purpose.value} value={purpose.value}>
                 {purpose.label}
@@ -125,7 +143,12 @@ export function ValuationForm() {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Adınız Soyadınız" required error={state.errors?.name}>
-            <Input name="name" autoComplete="name" required />
+            <Input
+              name="name"
+              autoComplete="name"
+              defaultValue={previous.name}
+              required
+            />
           </Field>
           <Field label="Telefon" required error={state.errors?.phone}>
             <Input
@@ -134,13 +157,19 @@ export function ValuationForm() {
               inputMode="tel"
               autoComplete="tel"
               placeholder="0532 123 45 67"
+              defaultValue={previous.phone}
               required
             />
           </Field>
         </div>
 
         <Field label="E-posta" error={state.errors?.email} hint="İsteğe bağlı">
-          <Input name="email" type="email" autoComplete="email" />
+          <Input
+            name="email"
+            type="email"
+            autoComplete="email"
+            defaultValue={previous.email}
+          />
         </Field>
 
         <Field
@@ -151,11 +180,15 @@ export function ValuationForm() {
           <Textarea
             name="message"
             rows={4}
+            defaultValue={previous.message}
             placeholder="Örn. 2022'de mutfak ve banyo yenilendi, güney cepheli, kapalı otoparkı var."
           />
         </Field>
 
-        <KvkkConsent error={state.errors?.kvkkConsent} />
+        <KvkkConsent
+          error={state.errors?.kvkkConsent}
+          defaultChecked={Boolean(previous.kvkkConsent)}
+        />
         <SubmitButton label="Ücretsiz Değerleme İste" />
       </fieldset>
     </form>

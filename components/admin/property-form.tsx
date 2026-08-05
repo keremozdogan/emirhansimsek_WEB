@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ExternalLink, Plus, Save, X } from "lucide-react";
 
 import { saveProperty } from "@/app/actions/admin";
-import { EMPTY_FORM_STATE } from "@/app/actions/leads";
+import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import {
   ImageManager,
   type ManagedImage,

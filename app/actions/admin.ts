@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { login, logout, requireSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { invalid, type FormState } from "@/lib/form-state";
 import { deleteImage } from "@/lib/storage";
 import { slugify } from "@/lib/utils";
 import {
@@ -18,21 +19,6 @@ import {
   regionSchema,
   testimonialSchema,
 } from "@/lib/validators";
-import type { FormState } from "@/app/actions/leads";
-
-export type { FormState };
-
-function fail(
-  error: { issues: Array<{ path: PropertyKey[]; message: string }> },
-  message = "Lütfen işaretli alanları kontrol edin.",
-): FormState {
-  const errors: Record<string, string> = {};
-  for (const issue of error.issues) {
-    const key = String(issue.path[0] ?? "form");
-    if (!errors[key]) errors[key] = issue.message;
-  }
-  return { ok: false, message, errors };
-}
 
 type SlugModel = "property" | "region" | "blogPost";
 
@@ -78,7 +64,7 @@ export async function loginAction(
   formData: FormData,
 ): Promise<FormState> {
   const parsed = loginSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return fail(parsed.error);
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   const user = await login(parsed.data.email, parsed.data.password);
   if (!user) {
@@ -106,7 +92,7 @@ export async function saveProperty(
 
   const id = String(formData.get("id") ?? "") || undefined;
   const parsed = propertySchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return fail(parsed.error);
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   const { features, images, slug, closedAt, ...data } = parsed.data;
 
@@ -253,7 +239,7 @@ export async function saveRegion(
 
   const id = String(formData.get("id") ?? "") || undefined;
   const parsed = regionSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return fail(parsed.error);
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   const { slug, highlights, ...data } = parsed.data;
   const finalSlug = await uniqueSlug(slug ?? data.name, "region", id);
@@ -310,7 +296,7 @@ export async function saveTestimonial(
 
   const id = String(formData.get("id") ?? "") || undefined;
   const parsed = testimonialSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return fail(parsed.error);
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   try {
     if (id) {
@@ -352,7 +338,7 @@ export async function saveBlogPost(
 
   const id = String(formData.get("id") ?? "") || undefined;
   const parsed = blogPostSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return fail(parsed.error);
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   const { slug, tags, ...data } = parsed.data;
   const finalSlug = await uniqueSlug(slug ?? data.title, "blogPost", id);
@@ -425,7 +411,7 @@ export async function saveProfile(
   await requireSession();
 
   const parsed = profileSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return fail(parsed.error);
+  if (!parsed.success) return invalid(parsed.error, formData);
 
   try {
     await prisma.profile.upsert({

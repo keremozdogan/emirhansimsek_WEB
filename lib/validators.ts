@@ -25,6 +25,22 @@ const optionalEmail = z
   .optional()
   .transform((value) => (value ? value : undefined));
 
+/**
+ * KVKK onay kutusu.
+ *
+ * İşaretlenmemiş bir onay kutusu form verisine hiç eklenmediği için alan
+ * `.optional()` olmalı; aksi halde zod "eksik alan" tipi hatası üretir ve
+ * kullanıcıya anlamsız bir mesaj gösterilir.
+ */
+const consentSchema = z
+  .union([z.boolean(), z.literal("on"), z.literal("true"), z.literal("false")])
+  .optional()
+  .transform((value) => value === true || value === "on" || value === "true")
+  .refine(
+    (value) => value,
+    "Devam etmek için aydınlatma metnini onaylamalısınız",
+  );
+
 /** Genel iletişim ve ilan sorusu formu */
 export const leadSchema = z.object({
   type: z.enum(LEAD_TYPES).default("CONTACT"),
@@ -39,10 +55,7 @@ export const leadSchema = z.object({
     .transform((value) => (value ? value : undefined)),
   propertyId: z.string().optional(),
   source: z.string().optional(),
-  kvkkConsent: z
-    .union([z.boolean(), z.literal("on"), z.literal("true")])
-    .transform((value) => value === true || value === "on" || value === "true")
-    .refine((value) => value, "Devam etmek için aydınlatma metnini onaylamalısınız"),
+  kvkkConsent: consentSchema,
 });
 
 export type LeadInput = z.input<typeof leadSchema>;
