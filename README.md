@@ -6,17 +6,34 @@ bölge, referans ve blog içerikleri kod yazmadan güncellenebilir.
 
 ## Hızlı başlangıç
 
+Depoyu yeni klonladıysanız üç komut yeterli:
+
 ```bash
-npm install          # bağımlılıklar (Prisma istemcisi otomatik üretilir)
-npm run db:reset     # veritabanını kurar ve demo içeriği yükler
+npm install
+npm run setup        # .env oluşturur, veritabanını kurar, içeriği yükler
 npm run dev          # http://localhost:3000
 ```
 
-Yönetim paneli: **http://localhost:3000/admin**
+`npm run setup` bittiğinde panel giriş bilgilerini ekrana yazar.
 
-Giriş bilgileri `.env` dosyasındaki `ADMIN_EMAIL` ve `ADMIN_PASSWORD`
-değerleridir. Şifreyi değiştirdikten sonra `npm run db:seed -- --keep`
-çalıştırmanız yeterli (içeriğe dokunmaz, yalnızca kullanıcıyı günceller).
+| | |
+| --- | --- |
+| Site | http://localhost:3000 |
+| Yönetim paneli | http://localhost:3000/admin |
+| Giriş bilgileri | `.env` içindeki `ADMIN_EMAIL` ve `ADMIN_PASSWORD` |
+
+**Gereksinimler:** Node.js 20+ (18.18+ çalışır). Başka bir şey kurmanıza gerek
+yok — veritabanı SQLite, tek dosya olarak proje içinde oluşturuluyor.
+
+### Neden `.env` depoda yok?
+
+`.env` gizli oturum anahtarı ve panel şifresi içerdiği için depoya dahil
+edilmez; `npm run setup` bu dosyayı `.env.example`'dan üretir ve `AUTH_SECRET`
+değerini rastgele oluşturur. Veritabanı dosyası (`dev.db`) da depoda değildir,
+`setup` sırasında içerikle birlikte sıfırdan oluşturulur.
+
+Şifreyi değiştirdikten sonra `npm run db:seed -- --keep` çalıştırmanız yeterli
+(içeriğe dokunmaz, yalnızca panel kullanıcısını günceller).
 
 ## Komutlar
 
