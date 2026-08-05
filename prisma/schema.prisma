@@ -1,0 +1,304 @@
+// Emirhan Şimşek — Gayrimenkul Danışmanı sitesi veri modeli
+//
+// Not: SQLite `enum` ve `String[]` desteklemediği için tüm enum alanlar `String`
+// olarak tutulur ve `lib/constants.ts` içindeki zod union'ları ile doğrulanır.
+// Bu aynı zamanda ileride Postgres'e geçişi sorunsuz kılar.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ---------------------------------------------------------------------------
+// Yönetim
+// ---------------------------------------------------------------------------
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// Emirhan'ın kendi bilgileri. Tek kayıt tutulur (id = "singleton").
+model Profile {
+  id         String @id @default("singleton")
+  fullName   String
+  title      String
+  officeName String
+  tagline    String
+  shortBio   String
+  bio        String
+
+  phone       String
+  whatsapp    String
+  email       String
+  address     String
+  officePhone String?
+
+  instagramUrl String?
+  linkedinUrl  String?
+  youtubeUrl   String?
+  facebookUrl  String?
+  tiktokUrl    String?
+  remaxUrl     String?
+
+  portraitUrl   String?
+  coverUrl      String?
+  heroVideoUrl  String?
+  heroPosterUrl String?
+
+  /// Taşınmaz Ticareti Yetki Belgesi No (mevzuat gereği sitede yer almalı)
+  licenseNo String?
+
+  yearsExperience Int @default(0)
+  soldCount       Int @default(0)
+  rentedCount     Int @default(0)
+  happyClients    Int @default(0)
+
+  /// RE/MAX profilindeki değerlendirme sayısı ve ortalama puan
+  reviewCount Int    @default(0)
+  rating      Float?
+
+  updatedAt DateTime @updatedAt
+}
+
+/// Kariyer zaman çizelgesi (Hakkımda sayfasındaki animasyonlu akış)
+model Milestone {
+  id          String   @id @default(cuid())
+  year        String
+  title       String
+  description String
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+/// Sertifika / eğitim / ödül
+model Certificate {
+  id        String   @id @default(cuid())
+  title     String
+  issuer    String?
+  year      String?
+  imageUrl  String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Portföy
+// ---------------------------------------------------------------------------
+
+model Region {
+  id          String  @id @default(cuid())
+  slug        String  @unique
+  name        String
+  city        String
+  district    String
+  /// Kısa tanıtım (kartlarda görünür)
+  description String
+  /// Emirhan'ın bölge yorumu — markdown
+  expertNote  String  @default("")
+  coverUrl    String?
+
+  avgPricePerSqm Int?
+  avgRent        Int?
+  /// JSON: ["Metroya 5 dk", "Aile profili yoğun", ...]
+  highlights     String @default("[]")
+
+  lat Float?
+  lng Float?
+
+  sortOrder  Int        @default(0)
+  published  Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  properties Property[]
+}
+
+model Property {
+  id    String @id @default(cuid())
+  slug  String @unique
+  title String
+
+  /// SALE | RENT
+  listingType String
+  /// ACTIVE | RESERVED | SOLD | RENTED
+  status      String @default("ACTIVE")
+  /// APARTMENT | VILLA | OFFICE | SHOP | LAND | BUILDING
+  category    String
+
+  price    Int
+  currency String @default("TRY")
+
+  grossArea      Int?
+  netArea        Int?
+  rooms          String?
+  bathrooms      Int?
+  buildingAge    String?
+  floor          String?
+  totalFloors    Int?
+  heating        String?
+  dues           Int?
+  furnished      Boolean @default(false)
+  creditEligible Boolean @default(true)
+  deedStatus     String?
+  balcony        Boolean @default(false)
+  parking        Boolean @default(false)
+  facade         String?
+
+  city         String
+  district     String
+  neighborhood String?
+  lat          Float?
+  lng          Float?
+
+  /// Kart ve liste görünümünde kullanılan kısa özet
+  summary     String @default("")
+  description String
+
+  listingNo String?
+  remaxUrl  String?
+  /// Doldurulursa ev turu videoyla başlar, boşsa fotoğraflardan sinematik sekans üretilir
+  videoUrl  String?
+  tourUrl   String?
+
+  featured    Boolean   @default(false)
+  published   Boolean   @default(true)
+  publishedAt DateTime  @default(now())
+  /// Satıldığı / kiralandığı tarih
+  closedAt    DateTime?
+  /// Kaç günde satıldı — referanslar sayfasındaki başarı rakamı
+  daysOnMarket       Int?
+  /// Liste fiyatının yüzde kaçına kapandı (ör. 98)
+  closedPricePercent Int?
+
+  seoTitle       String?
+  seoDescription String?
+
+  regionId String?
+  region   Region? @relation(fields: [regionId], references: [id], onDelete: SetNull)
+
+  images       PropertyImage[]
+  features     PropertyFeature[]
+  testimonials Testimonial[]
+  leads        Lead[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([listingType, status])
+  @@index([regionId])
+}
+
+/// Ev turunun kaynağı: her fotoğrafın oda adı ve anlatım metni vardır.
+model PropertyImage {
+  id         String @id @default(cuid())
+  propertyId String
+
+  url         String
+  width       Int?
+  height      Int?
+  blurDataUrl String?
+  alt         String  @default("")
+
+  /// "Salon", "Mutfak", "Ebeveyn Banyosu" — turda büyük başlık olarak görünür
+  roomName String?
+  /// "32 m², güney cepheli, gün boyu güneş alıyor" — turda anlatım metni
+  caption  String?
+
+  sortOrder Int     @default(0)
+  isCover   Boolean @default(false)
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId, sortOrder])
+}
+
+model PropertyFeature {
+  id         String @id @default(cuid())
+  propertyId String
+  label      String
+  /// INTERIOR | EXTERIOR | ENVIRONMENT | TRANSPORT
+  group      String @default("INTERIOR")
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+}
+
+// ---------------------------------------------------------------------------
+// İçerik
+// ---------------------------------------------------------------------------
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  authorName  String
+  authorTitle String?
+  text        String
+  rating      Int      @default(5)
+  avatarUrl   String?
+  date        DateTime @default(now())
+  published   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+
+  propertyId String?
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id              String  @id @default(cuid())
+  slug            String  @unique
+  title           String
+  excerpt         String
+  contentMarkdown String
+  coverUrl        String?
+  /// JSON: ["Yatırım", "İlk Ev"]
+  tags            String  @default("[]")
+  readingMinutes  Int     @default(4)
+
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Talepler
+// ---------------------------------------------------------------------------
+
+model Lead {
+  id String @id @default(cuid())
+  /// CONTACT | VALUATION | APPOINTMENT | PROPERTY_INQUIRY
+  type String
+
+  name    String
+  phone   String
+  email   String?
+  message String?
+
+  /// NEW | CONTACTED | CLOSED
+  status String @default("NEW")
+
+  /// Değerleme formunun ek alanları (JSON)
+  valuationData String?
+
+  kvkkConsent Boolean @default(false)
+  source      String?
+
+  propertyId String?
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status, createdAt])
+}

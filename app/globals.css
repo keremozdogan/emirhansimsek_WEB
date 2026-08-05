@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Tasarım sistemi — koyu sinematik
+   Siyah zemin, RE/MAX kırmızısı vurgu, serif başlık + sans gövde.
+   ========================================================================== */
+
+@theme {
+  /* Zemin ve yüzeyler */
+  --color-ink-950: #08080a;
+  --color-ink-900: #0a0a0c;
+  --color-ink-850: #101013;
+  --color-ink-800: #141417;
+  --color-ink-700: #1c1c21;
+  --color-ink-600: #26262c;
+  --color-ink-500: #35353d;
+
+  /* Metin */
+  --color-cream-50: #f7f6f4;
+  --color-cream-200: #d9d7d2;
+  --color-cream-400: #9d9b97;
+  --color-cream-500: #74726e;
+
+  /* RE/MAX vurgu renkleri */
+  --color-brand-400: #ef3547;
+  --color-brand-500: #dc1c2e;
+  --color-brand-600: #b41425;
+  --color-navy-500: #003da5;
+
+  /* Altın — ödül/istatistik vurguları */
+  --color-gold-400: #c8a86b;
+
+  --font-display: var(--font-display), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1rem;
+
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-shimmer: shimmer 2.5s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 2s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+:root {
+  color-scheme: dark;
+  --header-height: 4.5rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-ink-600);
+  }
+
+  html {
+    background-color: var(--color-ink-900);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Lenis yumuşak kaydırmayı devraldığı için native smooth scroll kapalı */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--color-ink-900);
+    color: var(--color-cream-50);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-500);
+    color: #fff;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Koyu tema kaydırma çubuğu */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-900);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-600);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-500);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Bölüm etiketleri: ── PORTFÖY */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-cream-400);
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: var(--color-brand-500);
+  }
+
+  /* Cam yüzey — üst menü ve yüzen barlar */
+  .surface-glass {
+    background: color-mix(in srgb, var(--color-ink-900) 82%, transparent);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  /* Fotoğrafların üstündeki metinleri okunur kılan karartmalar */
+  .scrim-bottom {
+    background: linear-gradient(
+      to top,
+      rgb(8 8 10 / 0.92) 0%,
+      rgb(8 8 10 / 0.55) 35%,
+      rgb(8 8 10 / 0) 75%
+    );
+  }
+
+  .scrim-full {
+    background: linear-gradient(
+      to top,
+      rgb(8 8 10 / 0.95) 0%,
+      rgb(8 8 10 / 0.35) 50%,
+      rgb(8 8 10 / 0.7) 100%
+    );
+  }
+
+  /* Kaydırmalı sayısal girişler (kredi hesaplayıcı) */
+  .range-input {
+    width: 100%;
+    height: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 999px;
+    background: var(--color-ink-600);
+    cursor: pointer;
+  }
+
+  .range-input::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--color-brand-500);
+    border: 3px solid var(--color-ink-900);
+    box-shadow: 0 0 0 1px var(--color-brand-500);
+  }
+
+  .range-input::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: var(--color-brand-500);
+    border: 3px solid var(--color-ink-900);
+  }
+
+  /* Leaflet'in açık temalı varsayılanlarını koyu zemine uyarla */
+  .leaflet-container {
+    background: var(--color-ink-850);
+    font-family: var(--font-sans);
+  }
+
+  .leaflet-control-attribution {
+    background: rgb(10 10 12 / 0.75) !important;
+    color: var(--color-cream-500) !important;
+    font-size: 10px !important;
+  }
+
+  .leaflet-control-attribution a {
+    color: var(--color-cream-400) !important;
+  }
+
+  .leaflet-bar a {
+    background: var(--color-ink-800) !important;
+    color: var(--color-cream-200) !important;
+    border-color: var(--color-ink-600) !important;
+  }
+
+  .leaflet-bar a:hover {
+    background: var(--color-ink-700) !important;
+  }
+
+  /* Grenli doku — düz siyahın dijital görünmesini engeller */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-edges-y {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+
+  /* Ken Burns — fotoğrafı yavaşça yakınlaştırır, videosu olmayan turlarda kullanılır */
+  .ken-burns {
+    animation: ken-burns 18s ease-out both;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+
+/* Hareket azaltma tercihine tam saygı */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ken-burns {
+    animation: none !important;
+    transform: none !important;
+  }
+}
