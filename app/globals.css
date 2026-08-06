@@ -1,6 +1,54 @@
 @import "tailwindcss";
 
 /* ==========================================================================
+   Lenis — KATMANSIZ (unlayered) OLMAK ZORUNDA
+
+   Bu kurallar bilerek `@layer base` dışında duruyor. Tailwind v4'te katman
+   sırası theme < base < components < utilities olduğu için, `@layer base`
+   içine konulan `html.lenis { height: auto }` kuralını `h-full` gibi bir
+   utility (`height: 100%`) sessizce eziyor — seçici özgüllüğünden bağımsız
+   olarak. Katmansız CSS ise her katmanı yendiği için kural burada güvende.
+
+   Bu neden kritik: `html` sabit yükseklik alırsa kutusu hiç değişmez, Lenis'in
+   `document.documentElement` üzerindeki ResizeObserver'ı bir daha tetiklenmez
+   ve `limit` (= scrollHeight - innerHeight) ilk ölçümde donar. Sonuç: tekerlek
+   olayı preventDefault ediliyor ama sayfa kımıldamıyor; kaydırma çubuğu ise
+   Lenis'i baypas ettiği için çalışmaya devam ediyor.
+
+   Kaynak: node_modules/lenis/dist/lenis.css
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
+/* ==========================================================================
    Tasarım sistemi — koyu sinematik
    Siyah zemin, RE/MAX kırmızısı vurgu, serif başlık + sans gövde.
    ========================================================================== */
@@ -88,20 +136,6 @@
   html {
     background-color: var(--color-ink-900);
     -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Lenis yumuşak kaydırmayı devraldığı için native smooth scroll kapalı */
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-
-  .lenis.lenis-stopped {
-    overflow: hidden;
   }
 
   body {

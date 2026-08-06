@@ -32,13 +32,19 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
+/**
+ * `html`/`body` üzerinde `h-full`/`min-h-full` bilerek YOK.
+ *
+ * `html`'e sabit yükseklik vermek Lenis'i bozuyor: kutusu bir daha değişmediği
+ * için Lenis'in ResizeObserver'ı tetiklenmiyor, sayfa yüksekliği ilk ölçümde
+ * donuyor ve tekerlekle kaydırma çalışmaz hale geliyor (ayrıntı: globals.css).
+ *
+ * Zemine kadar uzayan düzeni zaten alt layout'lardaki `min-h-screen` sağlıyor.
+ */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="tr"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
-    >
-      <body className="min-h-full">{children}</body>
+    <html lang="tr" className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body>{children}</body>
     </html>
   );
 }
