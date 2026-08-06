@@ -19,13 +19,15 @@ import {
   PROPERTY_CATEGORIES,
   PROPERTY_CATEGORY_LABELS,
   ROOM_OPTIONS,
+  VALUATION_PURPOSE_LABELS,
+  VALUATION_PURPOSES,
 } from "@/lib/constants";
 
-const PURPOSES = [
-  { value: "SELL", label: "Satmak istiyorum" },
-  { value: "RENT", label: "Kiraya vermek istiyorum" },
-  { value: "LEARN", label: "Sadece değerini merak ediyorum" },
-];
+// Etiketler lib/constants'ta: bildirim e-postası/WhatsApp'ı da aynı metni kullanıyor
+const PURPOSES = VALUATION_PURPOSES.map((value) => ({
+  value,
+  label: VALUATION_PURPOSE_LABELS[value],
+}));
 
 /** "Evimin değerini öğren" formu — üç bölümde toplanır, tek adımda gönderilir. */
 export function ValuationForm() {

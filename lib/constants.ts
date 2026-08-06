@@ -86,6 +86,16 @@ export const LEAD_STATUS_LABELS: Record<LeadStatus, string> = {
   CLOSED: "Kapandı",
 };
 
+/** Değerleme formundaki "ne yapmak istiyorsunuz" seçenekleri */
+export const VALUATION_PURPOSES = ["SELL", "RENT", "LEARN"] as const;
+export type ValuationPurpose = (typeof VALUATION_PURPOSES)[number];
+
+export const VALUATION_PURPOSE_LABELS: Record<ValuationPurpose, string> = {
+  SELL: "Satmak istiyorum",
+  RENT: "Kiraya vermek istiyorum",
+  LEARN: "Sadece değerini merak ediyorum",
+};
+
 /** İlan formundaki hazır seçenekler */
 export const ROOM_OPTIONS = [
   "1+0",

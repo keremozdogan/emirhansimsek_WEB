@@ -97,7 +97,10 @@ export function whatsAppLink(phone: string, message?: string) {
 
 /** "0532 123 45 67" görünümüne çevirir */
 export function formatPhone(phone: string) {
-  const d = phone.replace(/\D/g, "").replace(/^90/, "");
+  // Hem "905321234567" hem de "0532 123 45 67" biçimini 10 haneye indirger.
+  // Baştaki 0 kırpılmazsa 11 hane kalıyor ve fonksiyon sessizce girdiyi
+  // olduğu gibi geri döndürüyordu — yani en yaygın yazım hiç biçimlenmiyordu.
+  const d = phone.replace(/\D/g, "").replace(/^90/, "").replace(/^0/, "");
   if (d.length !== 10) return phone;
   return `0${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6, 8)} ${d.slice(8, 10)}`;
 }
