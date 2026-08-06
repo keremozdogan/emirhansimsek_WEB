@@ -42,6 +42,7 @@ export function CinematicHero({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
+  const dimRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
 
@@ -49,8 +50,9 @@ export function CinematicHero({
     if (reduced) return;
     const section = sectionRef.current;
     const media = mediaRef.current;
+    const dim = dimRef.current;
     const content = contentRef.current;
-    if (!section || !media || !content) return;
+    if (!section || !media || !dim || !content) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -64,8 +66,21 @@ export function CinematicHero({
         },
       });
 
+      /**
+       * Kararma `filter: brightness()` ile DEĞİL, siyah bir katmanın opaklığıyla
+       * yapılıyor — sonuç matematiksel olarak birebir aynı:
+       *   brightness(b)      → 0.35 · c
+       *   siyah katman (a)   → (1 - a) · c   ⇒  a = 0.65 için 0.35 · c
+       *
+       * Fark performansta: `filter` bileşik (composited) bir özellik değil,
+       * her karede tüm katmanın yeniden rasterize edilmesini zorluyor. Burada
+       * katman tam ekran (100svh) bir fotoğraf/video olduğu için scrub boyunca
+       * saniyede 60 kez tam ekran repaint anlamına geliyordu. `opacity` ve
+       * `transform` ise doğrudan GPU'da bileşikleniyor, bedeli neredeyse sıfır.
+       */
       timeline
-        .to(media, { scale: 1.18, filter: "brightness(0.35)", ease: "none" }, 0)
+        .to(media, { scale: 1.18, ease: "none" }, 0)
+        .to(dim, { opacity: 0.65, ease: "none" }, 0)
         .to(content, { y: -90, opacity: 0, ease: "none" }, 0);
     }, section);
 
@@ -105,6 +120,13 @@ export function CinematicHero({
           <div className="size-full bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950" />
         )}
       </div>
+
+      {/* Scroll ile koyulaşan karartma — `filter: brightness()` yerine (bkz. yukarı) */}
+      <div
+        ref={dimRef}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-ink-950 opacity-0 will-change-[opacity]"
+      />
 
       <div className="scrim-full absolute inset-0" />
 

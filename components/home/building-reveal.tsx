@@ -62,6 +62,7 @@ const BUILDING_W = 208;
 export function BuildingReveal() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const activeStepRef = useRef(0);
   const [isDesktop, setIsDesktop] = useState(false);
   const reduced = usePrefersReducedMotion();
 
@@ -95,11 +96,16 @@ export function BuildingReveal() {
           scrub: 0.7,
           pin: true,
           anticipatePin: 1,
+          // `onUpdate` scrub boyunca HER karede çalışıyor. Aktif adım ancak kat
+          // sınırlarında değişiyor; ref ile karşılaştırmazsak saniyede 60 kez
+          // React dispatch'i tetikleyip kaydırmayı gereksiz yere kasıyoruz.
           onUpdate: (self) => {
             const index = Math.min(
               FLOOR_COUNT - 1,
               Math.floor(self.progress * FLOOR_COUNT),
             );
+            if (index === activeStepRef.current) return;
+            activeStepRef.current = index;
             setActiveStep(index);
           },
         },

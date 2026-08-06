@@ -81,6 +81,7 @@ function DesktopTour({
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -106,11 +107,15 @@ function DesktopTour({
           scrub: 0.75,
           pin: true,
           anticipatePin: 1,
+          // Her karede değil, yalnızca aktif kare gerçekten değiştiğinde
+          // React'e dokun — aksi halde scrub boyunca 60 dispatch/sn.
           onUpdate: (self) => {
             const index = Math.min(
               images.length - 1,
               Math.round(self.progress * (images.length - 1)),
             );
+            if (index === activeRef.current) return;
+            activeRef.current = index;
             setActive(index);
           },
         },

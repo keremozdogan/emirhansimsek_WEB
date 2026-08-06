@@ -282,7 +282,16 @@ html.lenis body {
     background: var(--color-ink-700) !important;
   }
 
-  /* Grenli doku — düz siyahın dijital görünmesini engeller */
+  /* Grenli doku — düz siyahın dijital görünmesini engeller.
+
+     `background-size` şart: onsuz 200×200'lük SVG tüm elemana esnetiliyor,
+     yani `feTurbulence` (fractalNoise, 3 oktav — en pahalı SVG filtrelerinden)
+     100svh'lik hero'da tam ekran çözünürlükte rasterize ediliyordu. Sabit bir
+     karo verince tarayıcı 200×200'ü bir kez üretip döşüyor. Yan fayda: doku
+     artık gerçekten "gren" gibi ince duruyor, esnetilmiş bulanık lekeler değil.
+
+     `translateZ(0)` katmanı ayırıyor; altındaki medya her karede değişse bile
+     gren yeniden boyanmıyor. */
   .grain::after {
     content: "";
     position: absolute;
@@ -290,6 +299,8 @@ html.lenis body {
     pointer-events: none;
     opacity: 0.035;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    transform: translateZ(0);
   }
 }
 
