@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef, type ReactNode } from "react";
 import { motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +10,7 @@ import { Magnetic } from "@/components/animation/magnetic";
 import { usePrefersReducedMotion } from "@/components/animation/use-reduced-motion";
 import { ButtonLink } from "@/components/ui/button";
 import { Counter } from "@/components/animation/counter";
+import { HERO_BLUR } from "@/components/home/hero-media";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -19,9 +19,13 @@ type HeroStat = { value: number; suffix?: string; label: string };
 /**
  * Tam ekran sinematik açılış.
  *
- * Video varsa arka planda oynar; yoksa poster fotoğrafı Ken Burns efektiyle
- * yavaşça yakınlaşarak "video gibi" bir his verir. Aşağı kaydırdıkça sahne
- * küçülüp kararır — bir sonraki bölüme sinematik bir kesme yapılmış olur.
+ * Video varsa arka planda oynar; yoksa `media` ile verilen fotoğraf Ken Burns
+ * efektiyle yavaşça yakınlaşarak "video gibi" bir his verir. Aşağı kaydırdıkça
+ * sahne küçülüp kararır — bir sonraki bölüme sinematik bir kesme yapılmış olur.
+ *
+ * Fotoğrafın kendisi sunucu tarafında (`HeroMedia`) üretiliyor; burası yalnızca
+ * animasyon kabuğu. Böylece hem sanat yönetimi `<picture>` ile yapılabiliyor
+ * hem de görsel optimizasyonu istemci paketine sızmıyor.
  */
 export function CinematicHero({
   fullName,
@@ -30,6 +34,7 @@ export function CinematicHero({
   tagline,
   videoUrl,
   posterUrl,
+  media,
   stats,
 }: {
   fullName: string;
@@ -38,6 +43,7 @@ export function CinematicHero({
   tagline: string;
   videoUrl?: string | null;
   posterUrl?: string | null;
+  media?: ReactNode;
   stats: HeroStat[];
 }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -63,6 +69,24 @@ export function CinematicHero({
           start: "top top",
           end: "bottom top",
           scrub: 0.6,
+          // Pencere yeniden ölçüldüğünde başlangıç değerleri de yeniden alınsın;
+          // aksi halde 100svh değişen mobil tarayıcılarda konumlar eskide kalıyor.
+          invalidateOnRefresh: true,
+          /**
+           * `will-change` yalnızca bölüm görünürken veriliyor.
+           *
+           * Daha önce iki tam ekran katmanda (fotoğraf ve karartma) kalıcı
+           * olarak duruyordu. Kalıcı `will-change`, katmanı sürekli ayrı bir GPU
+           * dokusunda tutar; ekrandan çıkınca tarayıcı o dokuyu geri kazanmak
+           * için atar, geri dönüldüğünde ise yeniden rasterize edene kadar
+           * altındaki zemin görünür. Hero'da bu, yukarı kaydırınca birkaç
+           * saniyelik siyah ekran demekti.
+           */
+          onToggle: (self) => {
+            const value = self.isActive ? "transform, opacity" : "auto";
+            media.style.willChange = value;
+            dim.style.willChange = value;
+          },
         },
       });
 
@@ -79,12 +103,20 @@ export function CinematicHero({
        * `transform` ise doğrudan GPU'da bileşikleniyor, bedeli neredeyse sıfır.
        */
       timeline
-        .to(media, { scale: 1.18, ease: "none" }, 0)
+        // 1.18 idi. CSS'teki ken-burns de büyüttüğü için toplam ölçek 1.35'e
+        // çıkıyor, yani tam ekran dokunun her karede %35 fazla piksel hâlinde
+        // rasterize edilmesi demekti. Görsel etkisi neredeyse aynı kalırken
+        // maliyeti belirgin düşüyor.
+        .to(media, { scale: 1.1, ease: "none" }, 0)
         .to(dim, { opacity: 0.65, ease: "none" }, 0)
         .to(content, { y: -90, opacity: 0, ease: "none" }, 0);
     }, section);
 
-    return () => context.revert();
+    return () => {
+      context.revert();
+      media.style.willChange = "auto";
+      dim.style.willChange = "auto";
+    };
   }, [reduced]);
 
   const [firstName, ...lastName] = fullName.split(" ");
@@ -94,8 +126,18 @@ export function CinematicHero({
       ref={sectionRef}
       className="grain relative flex h-[100svh] min-h-[640px] items-end overflow-hidden"
     >
-      {/* Arka plan: video ya da Ken Burns'lü fotoğraf */}
-      <div ref={mediaRef} className="absolute inset-0 will-change-transform">
+      {/*
+        Arka plan: video ya da Ken Burns'lü fotoğraf.
+
+        Zemindeki `backgroundImage`, görselin 16 piksellik hâli. Fotoğraf
+        yüklenene kadar ve tarayıcı katmanı yeniden rasterize ederken boşluğa
+        siyah yerine fotoğrafın kendi tonları düşsün diye kalıcı olarak duruyor.
+      */}
+      <div
+        ref={mediaRef}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url("${HERO_BLUR}")` }}
+      >
         {videoUrl ? (
           <video
             className="size-full object-cover"
@@ -107,15 +149,10 @@ export function CinematicHero({
             playsInline
             preload="metadata"
           />
-        ) : posterUrl ? (
-          <Image
-            src={posterUrl}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className={reduced ? "object-cover" : "ken-burns object-cover"}
-          />
+        ) : media ? (
+          <div className={reduced ? "size-full" : "ken-burns size-full"}>
+            {media}
+          </div>
         ) : (
           <div className="size-full bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950" />
         )}
@@ -125,7 +162,7 @@ export function CinematicHero({
       <div
         ref={dimRef}
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-ink-950 opacity-0 will-change-[opacity]"
+        className="pointer-events-none absolute inset-0 bg-ink-950 opacity-0"
       />
 
       <div className="scrim-full absolute inset-0" />

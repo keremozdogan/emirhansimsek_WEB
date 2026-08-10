@@ -87,9 +87,14 @@ export const PROFILE = {
   tiktokUrl: null,
   remaxUrl: "https://remax.com.tr/tr/danisman/41906-11/emirhan-simsek",
   portraitUrl: "/uploads/profil/emirhan.webp",
-  /** Ana sayfa kapağı: Çekmeköy dubleksin teras manzarası */
-  heroPosterUrl: "/uploads/ilan/P28481717/44.webp",
-  coverUrl: "/uploads/ilan/P28481717/44.webp",
+  /**
+   * Ana sayfa kapağı: İstanbul silüeti (Wikimedia Commons, künyesi
+   * content/media-credits.json içinde). Önceden bir ilan fotoğrafı
+   * kullanılıyordu — hem konuyla alakasızdı hem de 1024x768 olduğu için tam
+   * ekranda geriliyordu.
+   */
+  heroPosterUrl: "/uploads/site/hero-istanbul.webp",
+  coverUrl: "/uploads/site/hero-istanbul.webp",
   heroVideoUrl: null,
   /**
    * RE/MAX profilindeki "Profesyonel Sertifika No: 3400794-097" bilgisi, mevzuatın

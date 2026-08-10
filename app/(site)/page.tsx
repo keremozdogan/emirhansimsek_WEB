@@ -2,8 +2,13 @@ import Image from "next/image";
 import { ArrowRight, ShieldCheck, Star, TrendingUp, Users } from "lucide-react";
 
 import { Reveal } from "@/components/animation/reveal";
-import { BuildingReveal } from "@/components/home/building-reveal";
+import { ProcessStrip } from "@/components/home/process-strip";
 import { CinematicHero } from "@/components/home/cinematic-hero";
+import {
+  DEFAULT_HERO,
+  DEFAULT_HERO_PORTRAIT,
+  HeroMedia,
+} from "@/components/home/hero-media";
 import { RegionGrid } from "@/components/home/region-grid";
 import { TestimonialSlider } from "@/components/home/testimonial-slider";
 import { PropertyCard } from "@/components/property/property-card";
@@ -52,6 +57,8 @@ export default async function HomePage() {
     getSiteStats(),
   ]);
 
+  const heroPoster = profile.heroPosterUrl || profile.coverUrl || DEFAULT_HERO;
+
   return (
     <>
       <CinematicHero
@@ -61,6 +68,16 @@ export default async function HomePage() {
         tagline={profile.tagline}
         videoUrl={profile.heroVideoUrl}
         posterUrl={profile.heroPosterUrl ?? profile.coverUrl}
+        media={
+          <HeroMedia
+            src={heroPoster}
+            // Dikey kadraj yalnızca varsayılan İstanbul karesi için var;
+            // panelden başka bir görsel seçilirse tek kadrajla devam eder.
+            portraitSrc={
+              heroPoster === DEFAULT_HERO ? DEFAULT_HERO_PORTRAIT : null
+            }
+          />
+        }
         // Yalnızca doğrulanabilen rakamlar gösterilir; 0 olanlar elenir
         stats={[
           { value: stats.active, label: "Aktif İlan" },
@@ -105,8 +122,8 @@ export default async function HomePage() {
         </Container>
       </Section>
 
-      {/* Scroll'a bağlı bina animasyonu — satış süreci */}
-      <BuildingReveal />
+      {/* Kaydırmaya bağlı yatay süreç şeridi */}
+      <ProcessStrip />
 
       {/* Hakkımda özeti */}
       <Section>

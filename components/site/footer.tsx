@@ -16,6 +16,9 @@ import { formatPhone } from "@/lib/utils";
 const LEGAL_LINKS = [
   { href: "/kvkk", label: "KVKK Aydınlatma Metni" },
   { href: "/cerez-politikasi", label: "Çerez Politikası" },
+  // Serbest lisanslı görsellerin bir kısmı atıf zorunlu (CC BY / CC BY-SA);
+  // künye sayfasının siteden erişilebilir olması lisansın şartı.
+  { href: "/telif", label: "Görsel Telifleri" },
 ];
 
 type SocialLink = {

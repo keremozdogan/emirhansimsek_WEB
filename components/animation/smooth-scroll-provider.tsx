@@ -52,7 +52,7 @@ export function SmoothScrollProvider({
 
     /**
      * Lenis kaydırma sınırını `document.documentElement.scrollHeight` üzerinden
-     * hesaplıyor. `pin: true` kullanan ScrollTrigger'lar (building-reveal,
+     * hesaplıyor. `pin: true` kullanan ScrollTrigger'lar (process-strip,
      * property-tour) sayfa yüksekliğini Lenis ölçtükten SONRA pin-spacer ekleyip
      * çıkararak değiştiriyor. Her refresh sonrası yeniden ölçmezsek sınır eskide
      * kalır ve tekerlekle kaydırma o bölgede takılır.

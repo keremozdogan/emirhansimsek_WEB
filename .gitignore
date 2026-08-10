@@ -67,3 +67,7 @@ next-env.d.ts
 !/public/uploads/ilan/**
 !/public/uploads/profil/
 !/public/uploads/profil/**
+# Site geneli görseller (hero vb.) de içeriğin parçası; künyeleri
+# content/media-credits.json ile birlikte depoda tutulur.
+!/public/uploads/site/
+!/public/uploads/site/**

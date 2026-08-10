@@ -333,12 +333,16 @@ html.lenis body {
   }
 }
 
+/*
+ * Ölçek 1.14'ten 1.08'e çekildi. Hero'da GSAP de ayrıca büyütüyor; ikisi
+ * çarpıldığında tam ekran doku gereğinden çok daha büyük rasterize ediliyordu.
+ */
 @keyframes ken-burns {
   from {
     transform: scale(1.02) translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1.14) translate3d(-1.5%, -1.5%, 0);
+    transform: scale(1.08) translate3d(-1.2%, -1.2%, 0);
   }
 }
 
