@@ -1,4 +1,5 @@
 import { SmoothScrollProvider } from "@/components/animation/smooth-scroll-provider";
+import { ChatWidget } from "@/components/site/chat-widget";
 import { CookieNotice } from "@/components/site/cookie-notice";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
@@ -48,6 +49,7 @@ export default async function SiteLayout({
         <main className="flex-1">{children}</main>
         <Footer profile={profile} />
         <MobileActionBar phone={profile.phone} whatsapp={profile.whatsapp} />
+        <ChatWidget whatsapp={profile.whatsapp} />
         <CookieNotice />
       </div>
     </SmoothScrollProvider>

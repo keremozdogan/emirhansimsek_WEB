@@ -241,11 +241,21 @@ export const ROOM_NAME_SUGGESTIONS = [
 ] as const;
 
 /** Kredi hesaplayıcı varsayılanları */
+/**
+ * Kredi hesaplayıcının başlangıç değerleri.
+ *
+ * `monthlyRatePercent` yalnızca YEDEKTİR. Çalışma zamanında `MORTGAGE_MONTHLY_RATE`
+ * ortam değişkeni okunur (bkz. lib/mortgage-rate.ts); buradaki sayı o değişken
+ * tanımlı değilse ya da bozuksa devreye girer. Oranı güncellemek için burayı
+ * değil, .env dosyasını düzenleyin — kod değişikliği gerekmez.
+ */
 export const MORTGAGE_DEFAULTS = {
   downPaymentRatio: 0.3,
   termMonths: 120,
   annualRatePercent: 3.19 * 12, // aylık %3.19 → yıllık gösterim
   monthlyRatePercent: 3.19,
+  /** Yedek oranın hangi tarihe ait olduğu */
+  rateUpdatedAt: "Ağustos 2026",
   termOptions: [12, 24, 36, 48, 60, 72, 84, 96, 108, 120] as const,
 };
 

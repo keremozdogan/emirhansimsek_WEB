@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, Phone, X } from "lucide-react";
 
 import { NAV_LINKS } from "@/components/site/nav-links";
-import { ButtonLink, ExternalButtonLink } from "@/components/ui/button";
+import { ExternalButtonLink } from "@/components/ui/button";
 import { cn, formatPhone, whatsAppLink } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -79,7 +79,9 @@ export function Header({
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-sm transition-colors",
+                    // Menü 8 bağlantıya çıktığı için yatay boşluk daraltıldı;
+                    // px-4 ile satır xl altında taşıyordu.
+                    "relative whitespace-nowrap rounded-full px-3 py-2 text-sm transition-colors",
                     active
                       ? "text-cream-50"
                       : "text-cream-400 hover:text-cream-50",
@@ -108,10 +110,6 @@ export function Header({
               <Phone className="size-4" />
               {formatPhone(phone)}
             </ExternalButtonLink>
-
-            <ButtonLink href="/degerleme" size="sm" className="hidden sm:inline-flex">
-              Ücretsiz Değerleme
-            </ButtonLink>
 
             <button
               type="button"
@@ -177,13 +175,12 @@ export function Header({
                   },
                 }}
               >
-                <ButtonLink
-                  href="/degerleme"
-                  size="lg"
-                  onClick={() => setOpen(false)}
-                >
-                  Ücretsiz Değerleme Al
-                </ButtonLink>
+                {/*
+                  Değerleme düğmesi kaldırıldı: artık menü listesinde kendi
+                  bağlantısı var, aynı sayfayı iki kez göstermek gereksiz.
+                  Burada kalan tek eylem WhatsApp — mobilde dönüşümü getiren
+                  kanal o.
+                */}
                 <ExternalButtonLink
                   href={whatsAppLink(whatsapp, "Merhaba, bilgi almak istiyorum.")}
                   target="_blank"

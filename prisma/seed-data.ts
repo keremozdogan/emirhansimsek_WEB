@@ -857,152 +857,273 @@ export const BLOG_POSTS = [
     coverUrl: "/uploads/blog/ev-alirken.webp",
     tags: ["İlk Ev", "Rehber"],
     published: true,
-    content: `Ev almak çoğu insan için hayatının en büyük finansal kararı. Buna rağmen bu kararın büyük kısmı duyguyla veriliyor. Aşağıdaki 12 başlık, sahada en sık karşılaştığım ve sonradan sorun çıkaran konuların özeti.
+    content: `Ev almak çoğu insan için hayatının en büyük finansal kararı. Buna rağmen bu kararın büyük kısmı duyguyla veriliyor: bir daireye girip "burası benim evim" hissine kapılmak, sonraki bütün kontrolleri gevşetiyor. Aşağıdaki 12 başlık, sahada en sık karşılaştığım ve sonradan sorun çıkaran konuların özeti.
+
+Tavsiyem: bu listeyi telefonunuza kaydedin ve her gezdiğiniz evde tek tek geçin. Duygunun karar verdiği anda elinizde bir kontrol listesi olması, düşündüğünüzden çok daha koruyucudur.
 
 ## 1. Tapu kaydını mutlaka kontrol edin
 
-Tapu üzerinde ipotek, haciz veya şerh olup olmadığını Tapu Müdürlüğü'nden ya da e-Devlet üzerinden kontrol edin. "Sorun yok" beyanı yeterli değildir.
+Tapu üzerinde ipotek, haciz veya şerh olup olmadığını e-Devlet üzerinden ya da Tapu Müdürlüğü'nden kontrol edin. Satıcının "sorun yok" beyanı yeterli değildir — çoğu zaman satıcı da durumdan habersizdir, çünkü şerhler malikin haberi olmadan da işlenebilir.
+
+Özellikle bakılacaklar: ipotek kaydı, haciz, aile konutu şerhi, intifa hakkı ve satış vaadi sözleşmesi. Bunlardan herhangi biri varsa devir öncesinde nasıl kaldırılacağı yazılı olarak netleşmeli.
 
 ## 2. Kat mülkiyeti mi, kat irtifakı mı?
 
-Kat irtifaklı bir dairede iskan alınmamış olabilir. Bu durum hem kredi kullanımını hem de ileride satışı zorlaştırır.
+Kat irtifakı, bina henüz tamamlanmadan kurulan geçici bir haktır. Kat irtifaklı bir dairede iskan alınmamış olabilir; bu durum hem kredi kullanımını hem de ileride satışı zorlaştırır.
+
+Kat mülkiyetine geçilmiş bir daire her zaman daha likittir. Kat irtifaklı bir daire alıyorsanız, kat mülkiyetine ne zaman geçileceğini ve engelin ne olduğunu mutlaka sorun.
 
 ## 3. İskan (yapı kullanma izni) belgesi
 
-İskanı olmayan yapıda elektrik ve su abonelikleri kalıcı olarak alınamaz, emlak vergisi daha yüksek hesaplanır.
+İskanı olmayan yapıda elektrik ve su abonelikleri kalıcı olarak alınamaz, emlak vergisi daha yüksek hesaplanır ve bankaların çoğu kredi vermez.
+
+"İskan alınacak" ifadesi bir taahhüt değildir. Belge varsa fotokopisini isteyin; yoksa hangi eksik yüzünden alınamadığını öğrenin. Bazı eksikler birkaç ayda kapanır, bazıları yıllardır kapanmamıştır.
 
 ## 4. Bina yaşı ve deprem yönetmeliği
 
-1999 öncesi yapılarda mutlaka güçlendirme durumunu sorun. 2018 yönetmeliği sonrası yapılar en güncel standarttadır.
+İstanbul'da bina yaşı, tek başına en belirleyici teknik başlıktır. 2000 öncesi yapılar farklı bir yönetmeliğe göre inşa edildi; 2018 sonrası yapılar en güncel yönetmeliğe tabi.
 
-## 5. Aidat gerçekten ne kadar?
+Yaşı ileri bir binada mutlaka sorun: güçlendirme yapıldı mı, yapıldıysa belgesi var mı? Kentsel dönüşüm gündemi var mı, varsa hangi aşamada? Bu iki sorunun cevabı fiyatı doğrudan etkiler.
 
-Site aidatı, özellikle sosyal tesisi geniş projelerde, kira getirisinin önemli bir kısmını götürebilir. Son 12 ayın aidat dökümünü isteyin.
+## 5. Kolon ve taşıyıcı sistemde değişiklik
 
-## 6. Net ve brüt metrekare farkı
+Dükkâna çevrilmiş zemin katlar, birleştirilmiş daireler, kaldırılmış duvarlar. Taşıyıcı sisteme müdahale edilmiş bir binada dairenin kendisi kusursuz olsa bile risk binanın tamamındadır.
 
-İlanda yazan brüt alan, ortak alan paylarını içerir. Yaşayacağınız alan net metrekaredir; aradaki fark %15–25 arasında değişir.
+Şüpheniz varsa bir inşaat mühendisine binayı gezdirmek, ödeyeceğiniz en ucuz sigortadır.
 
-## 7. Cephe ve ışık
+## 6. Aidat ve site giderleri
 
-Güney cepheli daireler gün boyu ışık alır. Kuzey cepheli daireler yazın serin ama kışın rutubete daha açıktır. Daireyi mümkünse gün ortasında gezin.
+Aylık aidat, uzun vadede toplam maliyetin küçümsenen kalemidir. Yüksek aidatlı bir sitede 10 yılda ödenen tutar, dairenin fiyatının kayda değer bir oranına ulaşabilir.
 
-## 8. Isıtma sistemi ve yalıtım
+Sorulacaklar: aidat neleri kapsıyor, son bir yılda kaç kez arttı, binada ödemeyen daire oranı ne (yüksekse yük ödeyenlere biner), ve yakın zamanda planlanan büyük gider var mı (asansör yenileme, dış cephe, çatı).
 
-Isı yalıtımı olmayan bir binada ısıtma masrafı, iyi yalıtılmış bir binanın iki katına çıkabilir. Yerden ısıtmalı dairelerde ısı dağılımı daha dengelidir.
+## 7. Isıtma sistemi ve yalıtım
 
-## 9. Otopark durumu
+Doğalgaz kombi, merkezi sistem, yerden ısıtma veya soba. Isıtma tipi hem aylık gideri hem de konforu belirler.
 
-Otoparkın tapuda dairenin eklentisi olup olmadığını kontrol edin. "Kullanım hakkı" ile "mülkiyet" farklı şeylerdir.
+Dış cephe yalıtımı olmayan bir binada ısıtma gideri belirgin şekilde yükselir. Kışın gezme şansınız varsa değerlendirin; olmuyorsa komşulara faturalarını sorun — çoğu memnuniyetle söyler.
 
-## 10. Kredi uygunluğu
+## 8. Cephe ve gün ışığı
 
-Bankalar her konuta kredi vermez. Yapının yaşı, iskan durumu ve ekspertiz değeri kredi tutarını doğrudan belirler.
+Güney cephe kışın ısıtma giderini düşürür, kuzey cephe yazın serin tutar. Batı cephe öğleden sonra aşırı ısınabilir.
 
-## 11. Ekspertiz değeri
+Daireyi mümkünse gün içinde iki farklı saatte görün. Sabah aydınlık görünen bir salon, öğleden sonra karşı binanın gölgesinde kalıyor olabilir.
 
-Bankanın belirlediği ekspertiz değeri, satış fiyatının altında kalabilir. Bu durumda aradaki farkı peşin ödemeniz gerekir.
+## 9. Gürültü
 
-## 12. Çevreyi farklı saatlerde görün
+Ana cadde, okul, cami, gece işleyen işletmeler ve toplu taşıma durakları. Gürültü, taşındıktan sonra en çok pişmanlık yaratan ve düzeltilmesi en zor sorundur.
 
-Bir mahalleyi tanımak için sabah, akşam ve hafta sonu ayrı ayrı gezin. Gündüz sakin görünen bir sokak akşam bambaşka olabilir.
+Evi hafta içi bir akşam ve hafta sonu bir öğleden sonra olmak üzere iki kez ziyaret edin. Boş bir dairede pencereyi kapatıp bir dakika sessizce durmak yeterlidir.
+
+## 10. Otopark
+
+Kapalı otopark, açık park yeri veya sokak. İstanbul'un birçok bölgesinde otoparkın varlığı dairenin değerini doğrudan etkiler.
+
+Otopark varsa sorun: daireye tahsisli mi, yoksa ortak kullanım mı? Tapuda eklenti olarak görünüyor mu? Sözlü tahsisler el değiştirince tartışma çıkarır.
+
+## 11. Bölgenin gelecek planı
+
+Yakında açılacak metro hattı, yeni okul, hastane veya alışveriş merkezi bölgenin değerini yükseltir. Buna karşılık planlanan bir sanayi alanı, viyadük veya yüksek yoğunluklu inşaat düşürebilir.
+
+Belediyenin imar planlarına bakın. "Metro geliyor" vaadiyle ödenen fiyat farkı, hat açılmadığı her yıl size maliyettir.
+
+## 12. Satıcının aciliyeti
+
+Satıcının neden sattığını öğrenmek pazarlık gücünüzü belirler. Taşınma zorunluluğu olan bir satıcı ile "iyi fiyat gelirse satarım" diyen bir satıcı aynı masada oturmaz.
+
+Bu bilgiyi doğrudan sormak kabalık değildir; sahada en normal sorulardan biridir.
+
+## Kontrol listesini yanınızda taşıyın
+
+| Başlık | Durum |
+| --- | --- |
+| Tapu kaydı temiz mi | |
+| Kat mülkiyeti var mı | |
+| İskan belgesi var mı | |
+| Bina yaşı / güçlendirme | |
+| Aidat ve planlanan giderler | |
+| Isıtma ve yalıtım | |
+| Cephe ve gün ışığı | |
+| Gürültü (iki farklı saatte) | |
+| Otopark tapuda mı | |
+| Bölge imar planı | |
 
 ---
 
-Bu başlıkların hepsini müşterilerimle birlikte tek tek geçiyorum. Sorularınız için bana ulaşabilirsiniz.`,
+Bu listeyi gezdiğiniz bir ev için birlikte geçmek isterseniz [bana ulaşın](/iletisim). Bütçenizi netleştirmek için önce [kredi hesaplayıcıya](/kredi-hesaplama) bakabilir, uygun ilanlar için [portföyü](/portfoy) inceleyebilirsiniz.
+`,
   },
   {
     slug: "kira-getirisi-hesabi-nasil-yapilir",
     title: "Kira Getirisi Hesabı Nasıl Yapılır?",
     excerpt:
-      "Brüt getiri herkesin baktığı rakam, net getiri ise gerçeği söyleyen rakam. Aradaki farkı örnekle açıklıyorum.",
+      "Brüt getiri yanıltıcıdır. Net getiriyi, geri ödeme süresini ve likiditeyi hesaba katmadan yatırım kararı vermeyin.",
     coverUrl: "/uploads/blog/kira-getirisi.webp",
     tags: ["Yatırım", "Rehber"],
     published: true,
-    content: `Yatırım amaçlı konut alırken en çok yapılan hata, sadece brüt kira getirisine bakmaktır.
+    content: `Yatırım amaçlı konut alırken en çok yapılan hata, sadece brüt kira getirisine bakmaktır. "Yüzde 7 getiriyor" cümlesi kulağa iyi gelir ama o rakamın içinden çıkacak kalemler hesaba katılmadığında, gerçek getiri çoğu zaman anlatılanın belirgin şekilde altındadır.
+
+Bu yazıda hesabı adım adım yapacağız. Kendi değerlendirdiğiniz daire için rakamları yerine koyup takip edin.
 
 ## Brüt getiri
 
-**Brüt getiri = (Yıllık kira × 100) / Konut bedeli**
+**Brüt getiri = (Yıllık kira x 100) / Konut bedeli**
 
 Örnek: 4.000.000 TL'ye aldığınız bir daireyi aylık 22.000 TL'ye kiraya verdiniz.
 
-Yıllık kira: 22.000 × 12 = 264.000 TL
-Brüt getiri: (264.000 × 100) / 4.000.000 = **%6,6**
+- Yıllık kira: 22.000 x 12 = 264.000 TL
+- Brüt getiri: (264.000 x 100) / 4.000.000 = **%6,6**
 
-## Net getiri
+Bu rakam ilanlarda ve sohbetlerde konuşulan rakamdır. Karar vermek için yeterli değildir.
+
+## Net getiri — düşülecek kalemler
 
 Brüt rakamdan şu kalemleri düşmeniz gerekir:
 
-- **Aidat** (kiracı ödemiyorsa)
-- **Emlak vergisi** (yıllık)
-- **DASK ve konut sigortası**
-- **Gelir vergisi** (istisna tutarı üzerindeki kira geliri için)
-- **Boşta kalma süresi** (yılda ortalama 0,5–1 ay)
-- **Bakım ve onarım** (yıllık kiranın yaklaşık %5'i)
+- **Aidat** — kiracı ödemiyorsa doğrudan sizin gideriniz
+- **Emlak vergisi** — yıllık, belediyeye
+- **DASK ve konut sigortası** — DASK zorunlu, konut sigortası isteğe bağlı ama önerilir
+- **Gelir vergisi** — kira gelirinin istisna tutarını aşan kısmı için; istisna tutarı her yıl güncellenir, beyan döneminde güncel rakamı teyit edin
+- **Boşta kalma süresi** — yılda ortalama yarım ila bir ay; kiracı değişimlerinde kaçınılmaz
+- **Bakım ve onarım** — yıllık kiranın yaklaşık yüzde beşi; kombi, boya, beyaz eşya
+- **Yönetim gideri** — kendiniz ilgilenmiyorsanız
 
 Aynı örnekte bu kalemler yılda toplam 55.000 TL tutsun:
 
-Net kira: 264.000 − 55.000 = 209.000 TL
-Net getiri: (209.000 × 100) / 4.000.000 = **%5,2**
+- Net kira: 264.000 - 55.000 = 209.000 TL
+- Net getiri: (209.000 x 100) / 4.000.000 = **%5,2**
+
+Aradaki 1,4 puanlık fark, "yüzde 7 getiriyor" cümlesiyle gerçeğin arasındaki mesafedir.
+
+## Geri ödeme süresi
+
+Yatırımın kendini kaç yılda amorti ettiğini görmek için:
+
+**Geri ödeme süresi = Konut bedeli / Yıllık net kira**
+
+Örneğimizde: 4.000.000 / 209.000 = yaklaşık **19 yıl**.
+
+Bu rakam tek başına iyi ya da kötü değildir; karşılaştırma için anlamlıdır. İki daire arasında karar verirken ikisinin de geri ödeme süresini hesaplayın.
 
 ## Değer artışını unutmayın
 
-Konut yatırımının getirisi yalnızca kiradan gelmez. Bölgenin değer artış hızı, çoğu zaman kira getirisinden daha belirleyicidir. Bu yüzden "yüksek kira getirisi" vaat eden ama değer artışı zayıf bölgeler, uzun vadede geride kalabilir.
+Konut yatırımının getirisi yalnızca kiradan gelmez. Bölgenin değer artış hızı, çoğu zaman kira getirisinden daha belirleyicidir.
 
-## Likidite
+Bu yüzden yüksek kira getirisi vaat eden ama değer artışı zayıf bölgeler uzun vadede geride kalabilir. Tersine, kira getirisi mütevazı görünen merkezi bir bölge, değer artışıyla toplam getiriyi öne çıkarabilir.
 
-Son olarak: satmak istediğinizde ne kadar sürede alıcı bulacaksınız? 1+1 ve 2+1 daireler genellikle en likit ürünlerdir. Çok büyük veya çok özel dairelerde alıcı havuzu daralır.
+Değer artışını tahmin etmenin en somut yolu bölgedeki altyapı yatırımlarını takip etmektir: raylı sistem, okul, hastane, yeni imar planı.
+
+## Likidite — satmak istediğinizde ne olacak?
+
+Son olarak, çoğu yatırımcının sonradan fark ettiği başlık: satmak istediğinizde ne kadar sürede alıcı bulacaksınız?
+
+1+1 ve 2+1 daireler genellikle en likit ürünlerdir; alıcı havuzu geniştir. Çok büyük, çok özel ya da çok pahalı dairelerde havuz daralır ve satış süresi uzar. Acil nakit ihtiyacı doğduğunda likidite, getiri kadar önemli hâle gelir.
+
+## Karşılaştırma tablosu
+
+İki yatırım seçeneğini yan yana koyun:
+
+| Ölçüt | A dairesi | B dairesi |
+| --- | --- | --- |
+| Konut bedeli | | |
+| Aylık kira | | |
+| Brüt getiri | | |
+| Yıllık giderler | | |
+| Net getiri | | |
+| Geri ödeme süresi | | |
+| Bölgede değer artışı | | |
+| Likidite (oda tipi) | | |
 
 ---
 
-Değerlendirdiğiniz bir yatırım için bu hesabı birlikte yapmak isterseniz bana ulaşın.`,
+Değerlendirdiğiniz bir yatırım için bu hesabı birlikte yapmak isterseniz [bana ulaşın](/iletisim). Krediyle alacaksanız taksit yükünü [kredi hesaplayıcıdan](/kredi-hesaplama) görebilir, güncel seçenekler için [portföye](/portfoy) bakabilirsiniz.`,
   },
   {
     slug: "ticari-dukkan-yatiriminda-nelere-bakilir",
     title: "Ticari Dükkân Yatırımında Nelere Bakılır?",
     excerpt:
-      "Dükkân yatırımında konum tek başına yeterli değil. Cephe genişliği, kolon düzeni ve ruhsat durumu getirinin tamamını belirliyor.",
+      "Ticaride tek soru vardır: burada bir işletme para kazanabilir mi? Cepheden ruhsata, sirkülasyondan sözleşmeye sekiz başlık.",
     coverUrl: "/uploads/blog/ticari-dukkan.webp",
     tags: ["Yatırım", "Ticari"],
     published: true,
-    content: `Konut yatırımını herkes bir şekilde değerlendirebilir; ticari mülkte ise doğru soruları sormadan alınan karar, yıllarca boş kalan bir dükkâna dönüşebilir.
+    content: `Ticari gayrimenkul, konuttan tamamen farklı bir mantıkla değerlenir. Konutta "burada yaşamak güzel olur mu" sorusunu sorarsınız; ticaride tek soru vardır: **burada bir işletme para kazanabilir mi?** Kazanamıyorsa dükkân boş kalır ve boş dükkânın getirisi sıfırdır.
 
-## 1. Cephe genişliği, metrekareden önemlidir
+Aşağıdaki başlıklar, ticari mülk değerlendirirken sahada gerçekten fark yaratan konular.
 
-Perakendede fiyatı belirleyen ilk unsur cephe genişliğidir. 100 m² ama 12 metre cepheli bir dükkân, 150 m² ama 5 metre cepheli bir dükkândan daha yüksek kira getirir. Marka görünürlüğü doğrudan cepheyle ilgilidir.
+## 1. Yaya sirkülasyonu — tahmin değil, sayım
 
-## 2. Kolon düzeni
+Ticari mülkün değerini belirleyen tek en önemli unsur, önünden geçen insan sayısıdır.
 
-Ortada duran bir kolon, mekânın kullanılabilir alanını gerçekte yazandan çok daha fazla düşürür. Kolonsuz veya geniş kolon aralıklı alanlar, kiracı bulmayı belirgin şekilde kolaylaştırır.
+Bunu tahmin etmeyin, sayın. Farklı günlerde ve saatlerde dükkânın önünde durup on dakika boyunca geçen kişi sayısını not edin: hafta içi sabah, hafta içi akşam, cumartesi öğleden sonra. Üç ölçümün ortalaması size gerçek bir fikir verir.
 
-## 3. Tavan yüksekliği
+Aynı caddenin iki yakası bile çok farklı sirkülasyona sahip olabilir. Güneş alan taraf, yokuş aşağı taraf, durağa yakın taraf genelde daha yoğundur.
 
-Market, showroom ve spor salonu gibi kullanımlar minimum tavan yüksekliği ister. Düşük tavanlı bir dükkân, kiracı havuzunuzu baştan daraltır.
+## 2. Cephe genişliği
 
-## 4. Ruhsat ve kullanım izni
+Ticari mülkte cephe, metrekareden daha belirleyicidir. 40 metrekarelik geniş cepheli bir dükkân, 60 metrekarelik dar cepheli bir dükkândan daha kolay kiralanır ve daha yüksek kira getirir.
 
-İşyeri açma ve çalışma ruhsatının hangi kullanımlara verilebildiğini önceden öğrenin. Havalandırma bacası olmayan bir mekâna yeme-içme ruhsatı alınamaz — bu tek başına kiracı havuzunuzun yarısını eler.
+Sebep basit: vitrin görünürlüğü. Geçen kişinin dükkânı fark etmesi için gereken saniye, cephe genişliğiyle doğru orantılı.
 
-## 5. Depo ve arka alan
+## 3. Kullanım amacı ve ruhsat
 
-Perakende işletmelerinin neredeyse tamamı stok alanı ister. Bağlantılı bir deposu olan dükkân, satış alanını daraltmadan bu ihtiyacı karşılar ve kirasını yükseltir.
+Her dükkân her işe uygun değildir. Gıda üretimi, kafe, eczane, kreş gibi kullanımların kendine özgü ruhsat şartları vardır.
 
-## 6. Yaya trafiği — gerçek sayılarla
+Sorulacaklar: mevcut ruhsat hangi kullanım için? Baca var mı (kafe ve restoran için belirleyici)? Havalandırma çıkışı mümkün mü? Yönetim planı ticari kullanıma izin veriyor mu?
 
-"İşlek cadde" ifadesi özneldir. Dükkânın önünde farklı gün ve saatlerde durup yaya sayın. Hafta içi öğlen ile cumartesi akşamı arasındaki fark, kullanım türünü belirler.
+Bir dükkânı kafe olur diye alıp bacasının olmadığını sonradan fark etmek, sahada sık gördüğüm bir hatadır.
 
-## 7. Çevredeki konut yoğunluğu
+## 4. Kat ve giriş
 
-Bir dükkânın müşterisi çoğunlukla yürüme mesafesindeki konutlardan gelir. Yeni tamamlanan konut projelerinin çevresindeki ticari alanlar, dolulukla birlikte değer kazanır.
+Zemin kat, bodrum ve asma kattan belirgin şekilde değerlidir. Bodrum katlar genellikle depo olarak değerlenir ve kira beklentisi buna göre düşer.
 
-## 8. Kiracı profili ve sözleşme
+Girişte basamak olması bazı işletmeler için ciddi dezavantajdır: engelli erişimi, bebek arabası, yük taşıma. Küçük görünen bir detay, kiracı havuzunu daraltır.
 
-Kurumsal bir kiracı, bireysel kiracıya göre daha düşük kira ödeyebilir; buna karşılık tahsilat riski ve boşta kalma süresi çok daha düşüktür. Uzun vadede net getiriyi bu ikisi belirler.
+## 5. Otopark ve yükleme
+
+Müşterinin kısa süreli park edebilmesi, birçok işletme için doğrudan ciro anlamına gelir. Aynı şekilde mal kabulü yapan bir işletme için yükleme yapılabilecek bir alan gerekir.
+
+Cadde üzerinde park yasağı varsa bunu hesaba katın.
+
+## 6. Komşu esnaf dokusu
+
+Bir dükkânın değeri, çevresindeki işletmelerin niteliğiyle birlikte yükselir veya düşer. Aynı sokakta birbirini besleyen işletmeler (kafe, kuaför, market) sirkülasyonu artırır.
+
+Çevrede uzun süredir boş duran dükkân sayısı önemli bir uyarı işaretidir. Boş dükkânları sayın; sokakta boşluk oranı yüksekse sebebini araştırın.
+
+## 7. Mevcut kiracı ve sözleşme
+
+Kiracılı bir dükkân alıyorsanız sözleşmeyi baştan sona okuyun:
+
+- Kalan süre ne kadar?
+- Kira artış maddesi nasıl yazılmış?
+- Depozito var mı, kimde?
+- Tahliye taahhüdü var mı?
+- Kiracı geçmiş ödemelerini düzenli yapmış mı?
+
+Kiracılı satın alma, hazır getiri anlamına gelir; ama kötü yazılmış bir sözleşme yıllarca sizi bağlar.
+
+## 8. Kurumsal kiracı mı, bireysel kiracı mı?
+
+Kurumsal bir kiracı (zincir marka, banka şubesi), bireysel kiracıya göre daha düşük kira ödeyebilir. Buna karşılık tahsilat riski ve boşta kalma süresi çok daha düşüktür; sözleşmeler uzun vadelidir.
+
+Uzun vadede net getiriyi bu ikisi belirler. Yüksek kira ödeyen ama altı ayda bir değişen bir kiracı, düşük kira ödeyen ama beş yıl kalan bir kiracıdan daha az kazandırabilir.
+
+## Değerlendirme tablosu
+
+| Ölçüt | Notunuz (1-5) |
+| --- | --- |
+| Yaya sirkülasyonu (sayım sonucu) | |
+| Cephe genişliği | |
+| Ruhsat / kullanım uygunluğu | |
+| Kat ve giriş kolaylığı | |
+| Otopark ve yükleme | |
+| Komşu esnaf dokusu | |
+| Sözleşme kalitesi | |
+| Kiracı niteliği | |
 
 ---
 
-Ticari mülk değerlendiriyorsanız, bu başlıkları birlikte tek tek geçebiliriz.`,
+Ticari mülk değerlendiriyorsanız bu başlıkları birlikte tek tek geçebiliriz — [bana yazın](/iletisim). Güncel ticari ilanlar için [portföye](/portfoy) göz atın.`,
   },
   {
     slug: "anadolu-yakasi-mi-avrupa-yakasi-mi",
@@ -1012,19 +1133,27 @@ Ticari mülk değerlendiriyorsanız, bu başlıkları birlikte tek tek geçebili
     coverUrl: "/uploads/blog/iki-yaka.webp",
     tags: ["İlk Ev", "Rehber"],
     published: true,
-    content: `İstanbul'da ev ararken en çok tartışılan konu bu. Oysa "hangi yaka daha iyi" sorusunun herkes için geçerli tek bir cevabı yok; doğru soru "benim hayatım hangi yakada daha kolay işler" olmalı.
+    content: `İstanbul'da ev ararken en çok tartışılan konu bu. Oysa "hangi yaka daha iyi" sorusunun herkes için geçerli tek bir cevabı yok; doğru soru **"benim hayatım hangi yakada daha kolay işler"** olmalı.
+
+Yaka seçimi bir aidiyet meselesine dönüştüğünde karar duygusallaşıyor ve insanlar günlük hayatlarını zorlaştıran seçimler yapıyor. Aşağıdaki dört başlık, tartışmayı somut zemine indirmek için.
 
 ## 1. İşe gidiş süresi — köprüyü hesaba katın
 
 Yaka kararının en somut maliyeti zamandır. İşiniz karşı yakadaysa, günde iki kez köprü veya tünel geçmek yılda yüzlerce saate mal olur.
 
-Şunu yapın: ev bakmadan önce, işe gitme saatinizde gerçek bir deneme yolculuğu yapın. Harita uygulamasının "22 dakika" tahmini ile salı sabahı 08:15'teki gerçek süre çoğu zaman aynı değildir.
+Basit bir hesap: günde tek yön 20 dakika fazla yol, gidiş-dönüş 40 dakika eder. Ayda 22 iş günü üzerinden yaklaşık 15 saat, yılda **180 saatin üzerinde** zaman demektir. Bu, yılda bir haftadan fazla uyanık zamandır.
+
+Şunu yapın: ev bakmadan önce, işe gitme saatinizde gerçek bir deneme yolculuğu yapın. Harita uygulamasının "22 dakika" tahmini ile salı sabahı 08:15'teki gerçek süre çoğu zaman aynı değildir. Bir de dönüş yönünü, akşam 18:00'de deneyin.
+
+Geçiş ücretlerini de yıllık toplamıyla hesaplayın; aylık bakınca küçük görünen kalem, yıllıkta belirgin hâle gelir.
 
 ## 2. Raylı sisteme mesafe
 
 İstanbul'da bir konutun uzun vadeli değerini en çok etkileyen tek unsur raylı sistem erişimidir. Metro veya Marmaray istasyonuna yürüme mesafesi (yaklaşık 800 metre ve altı), hem kiracı bulmayı hem de satışta alıcı havuzunu belirgin şekilde genişletir.
 
-Yapım aşamasındaki hatlara dikkat edin: açılış tarihleri sık ertelenir. "Metro geliyor" vaadiyle ödenen fiyat farkı, hattın açılmadığı her yıl size maliyettir.
+Ölçerken kuş uçuşu mesafeye değil, **yürüme mesafesine** bakın. Arada geçilmesi zor bir ana cadde, dik bir yokuş veya kapalı bir geçit varsa 600 metre pratikte 15 dakikaya çıkabilir.
+
+Yapım aşamasındaki hatlara dikkat edin: açılış tarihleri sık ertelenir. "Metro geliyor" vaadiyle ödenen fiyat farkı, hattın açılmadığı her yıl size maliyettir. Hat açıldıktan sonra almak, çoğu zaman erken alıp beklemekten daha akıllıcadır.
 
 ## 3. Konut dokusu ve metrekare beklentisi
 
@@ -1032,24 +1161,33 @@ Yapım aşamasındaki hatlara dikkat edin: açılış tarihleri sık ertelenir. 
 
 Karar vermeden önce bütçenizi sabitleyip her iki yakada da üçer daire gezin. Rakam üzerinden konuşmak, yaka tartışmasını hızla bitirir.
 
+Şuna dikkat edin: aynı bütçeyle daha büyük daire almak her zaman doğru karar değil. Fazladan 20 metrekare için işe gidişinizi 25 dakika uzatıyorsanız, o metrekareyi haftanın kaç saatinde kullandığınızı düşünün.
+
 ## 4. Okul, sağlık ve sosyal çevre
 
-Çocuklu aileler için okul; ileri yaşta ebeveyni olanlar için hastane erişimi, yaka kararını tek başına belirleyebilir. Bu başlık kişiye özeldir ve genel bir tavsiyesi yoktur — ama listeye yazılmazsa sonradan en çok pişmanlık yaratan başlıktır.
+Çocuklu aileler için okul; ileri yaşta ebeveyni olanlar için hastane erişimi, yaka kararını tek başına belirleyebilir.
+
+Bu başlık kişiye özeldir ve genel bir tavsiyesi yoktur. Ama listeye yazılmazsa sonradan en çok pişmanlık yaratan başlıktır. Okul seçimi yapıyorsanız kayıt bölgesi kurallarını taşınmadan önce öğrenin; birçok aile taşındıktan sonra istedikleri okula kayıt yaptıramadığını fark ediyor.
+
+Sosyal çevre de somut bir kalemdir: yakın aile ve arkadaş çevresinden uzaklaşmak, hafta sonu planlarını ve acil durumlarda destek ağını değiştirir.
 
 ## Karşılaştırma tablosu yapın
 
-Bu dört başlığı bir kâğıda yazın, iki yaka için ayrı ayrı puanlayın. Karar çoğu zaman kendini gösterir.
+Bu dört başlığı bir kâğıda yazın, iki yaka için ayrı ayrı 1-5 arası puanlayın. Ağırlıkları da siz belirleyin: işe gidiş sizin için hayati ise ona iki kat ağırlık verin.
 
-| Başlık | Anadolu | Avrupa |
-| --- | --- | --- |
-| İşe gidiş süresi | | |
-| Raylı sisteme mesafe | | |
-| Bütçeyle ulaşılan m² | | |
-| Okul / sağlık erişimi | | |
+| Başlık | Ağırlık | Anadolu | Avrupa |
+| --- | --- | --- | --- |
+| İşe gidiş süresi | | | |
+| Raylı sisteme mesafe | | | |
+| Bütçeyle ulaşılan m2 | | | |
+| Okul / sağlık erişimi | | | |
+| Sosyal çevre yakınlığı | | | |
+
+Karar çoğu zaman kendini gösterir. Göstermiyorsa iki yaka da sizin için uygundur demektir; o hâlde fiyat ve daire kalitesine bakarak seçin.
 
 ---
 
-İki yakada da çalışıyorum; hangi yakanın sizin için daha mantıklı olduğunu birlikte konuşalım.`,
+İki yakada da çalışıyorum; hangi yakanın sizin için daha mantıklı olduğunu birlikte konuşalım — [bana yazın](/iletisim). Bölgeleri tanımak için [bölge rehberlerine](/bolgeler), güncel ilanlar için [portföye](/portfoy) bakabilirsiniz.`,
   },
   {
     slug: "konut-kredisiyle-ev-alma-sureci",
@@ -1059,30 +1197,42 @@ Bu dört başlığı bir kâğıda yazın, iki yaka için ayrı ayrı puanlayın
     coverUrl: "/uploads/blog/konut-kredisi.webp",
     tags: ["İlk Ev", "Rehber"],
     published: true,
-    content: `Krediyle ev alırken en çok yaşanan sorun, sürecin sırasını bilmemekten kaynaklanır. Aşağıdaki sıra, sahada işlerin gerçekte nasıl yürüdüğünü anlatıyor.
+    content: `Krediyle ev alırken en çok yaşanan sorun, sürecin sırasını bilmemekten kaynaklanır. İnsanlar önce eve âşık olup sonra krediyi araştırıyor; oysa doğru sıra tam tersi.
+
+Aşağıdaki sıra, sahada işlerin gerçekte nasıl yürüdüğünü anlatıyor. Her adımda ne kadar bekleyeceğinizi ve hangi belgenin kimden isteneceğini de ekledim.
 
 ## 1. Önce ön onay alın, sonra ev bakın
 
 En sık yapılan hata: beğenilen ev bulunduktan sonra kredi araştırmasına başlamak. Bankadan ön onay almadan pazarlık masasına oturmak, hem sizi hem satıcıyı belirsizlikte bırakır.
 
-Ön onay, ne kadar kredi kullanabileceğinizi ve dolayısıyla gerçek bütçenizi netleştirir.
+Ön onay, ne kadar kredi kullanabileceğinizi ve dolayısıyla gerçek bütçenizi netleştirir. Ayrıca satıcı gözünde ciddiyetinizi artırır — iki alıcı arasında kalan bir satıcı, ön onaylı olanı tercih eder.
+
+Ön onay genellikle birkaç iş günü sürer ve sizi bağlamaz. Birden fazla bankadan almanız da mümkündür.
 
 ## 2. Kredi tutarını belirleyen iki sınır
 
-- **Gelir sınırı:** Aylık taksit, belgelenen gelirinizin belirli bir oranını aşamaz.
+Bankanın vereceği tutarı iki ayrı tavan belirler ve **hangisi düşükse o geçerlidir**:
+
+- **Gelir sınırı:** Aylık taksit, belgelenen gelirinizin belirli bir oranını aşamaz. Mevcut kredi ve kredi kartı borçlarınız da bu hesaba girer.
 - **Değer sınırı:** Banka, konutun ekspertiz değerinin tamamını değil, mevzuatla belirlenen oranını kredilendirir. Kalanı peşinat olarak sizden beklenir.
 
 Bu oranlar mevzuatla değişir; işleme başlamadan bankadan güncel oranı yazılı olarak isteyin.
+
+Taksitin bütçenize oturup oturmadığını görmek için [kredi hesaplayıcıyı](/kredi-hesaplama) kullanabilirsiniz — peşinat oranını ve vadeyi değiştirerek farklı senaryoları karşılaştırın.
 
 ## 3. Ekspertiz raporu
 
 Banka, bağımsız bir eksper atar. Eksperin belirlediği değer, satış bedelinden düşük çıkabilir — bu durumda aradaki farkı nakit tamamlamanız gerekir.
 
+Bu, sürecin en sık tıkandığı noktadır. 5.000.000 TL'ye anlaştığınız bir daireye eksper 4.600.000 TL değer biçtiyse, banka kredisini 4.600.000 üzerinden hesaplar; aradaki 400.000 TL tamamen sizin cebinizden çıkar.
+
 Ekspertiz genellikle birkaç iş günü sürer. Raporda iskan, kat mülkiyeti ve yapı kayıt durumu da incelenir; sorunlu bir tapu bu aşamada ortaya çıkar.
 
 ## 4. Zorunlu ve isteğe bağlı sigortalar
 
-DASK (Zorunlu Deprem Sigortası) kredi kullanımı için zorunludur. Bunun dışında bankalar konut sigortası ve hayat sigortası önerir; bunların zorunlu olup olmadığını ve maliyetini ayrıca sorun.
+DASK (Zorunlu Deprem Sigortası) kredi kullanımı için zorunludur. Bunun dışında bankalar konut sigortası ve hayat sigortası önerir.
+
+Şunu net sorun: hangisi zorunlu, hangisi isteğe bağlı, ve yıllık maliyeti ne? Bu kalemler kredinin efektif maliyetini yükseltir ve teklifleri karşılaştırırken sık atlanır. İki bankanın faiz oranı aynıyken sigorta paketleri yüzünden toplam maliyet farklı çıkabilir.
 
 ## 5. Tapu randevusu ve devir
 
@@ -1093,19 +1243,33 @@ Kredi onayı çıktıktan sonra Tapu Müdürlüğü'nden randevu alınır. Devir
 - Banka, kredi tutarını satıcının hesabına aktarır
 - Tapu alıcı adına tescil edilir, ipotek işlenir
 
-Tapu harcı oranı resmî olarak belirlenir ve dönem dönem değişir; işlem gününden önce güncel oranı teyit edin.
+Tapu harcı oranı resmî olarak belirlenir ve dönem dönem değişir; işlem gününden önce güncel oranı teyit edin. Harcın taraflar arasında nasıl paylaşılacağı pazarlık konusudur — sözleşmede yazılı olsun.
+
+**Önemli:** Tapuda beyan edilen değeri gerçek satış bedelinin altında göstermek yasal değildir ve alıcı aleyhine sonuç doğurur; ileride satarken değer artış kazancı vergisi yüksek hesaplanır.
 
 ## 6. Devirden sonra unutulanlar
 
 - Elektrik, su, doğalgaz aboneliklerinin devri
 - Emlak vergisi bildiriminin belediyeye yapılması
 - Aidat kaydının yönetime bildirilmesi
+- DASK poliçesinin kendi adınıza güncellenmesi
 
-Bu üç adım atlanınca ilk faturalar eski malik adına gelir ve düzeltmesi zaman alır.
+Bu adımlar atlanınca ilk faturalar eski malik adına gelir ve düzeltmesi zaman alır.
+
+## Süreç ne kadar sürer?
+
+Ön onaydan tapu devrine kadar, her şey yolunda giderse genellikle iki ila dört hafta. Tapuda şerh, eksik iskan veya ekspertiz farkı gibi bir sorun çıkarsa bu süre uzar.
+
+| Adım | Tahmini süre |
+| --- | --- |
+| Ön onay | 1-3 iş günü |
+| Ekspertiz | 2-5 iş günü |
+| Kredi onayı | 2-5 iş günü |
+| Tapu randevusu | Randevu yoğunluğuna göre |
 
 ---
 
-Süreçte hangi adımda olduğunuzu kaybettiğinizi düşünüyorsanız arayın; birlikte bakalım.`,
+Süreçte hangi adımda olduğunuzu kaybettiğinizi düşünüyorsanız [arayın](/iletisim); birlikte bakalım. Bütçenizi netleştirmek için [kredi hesaplayıcıya](/kredi-hesaplama), uygun ilanlar için [portföye](/portfoy) bakabilirsiniz.`,
   },
   {
     slug: "evinizi-satisa-hazirlarken",
@@ -1117,40 +1281,77 @@ Süreçte hangi adımda olduğunuzu kaybettiğinizi düşünüyorsanız arayın;
     published: true,
     content: `Bir ev ne kadar sürede satılır sorusunun cevabı çoğu zaman fiyatta değil, hazırlıkta saklı. Aynı daire, hazırlıklı ve hazırlıksız hâliyle iki farklı ürün gibi davranır.
 
+Sahada gördüğüm şu: hazırlıksız çıkan ilanlar ilk haftalarda ilgi görmez, sonra fiyat indirilir, indirim de "bu evde bir sorun var" algısı yaratır. Oysa aynı eve çıkmadan önce birkaç gün ayırmak, hem süreyi hem de indirim ihtiyacını ortadan kaldırabilir.
+
 ## 1. Belgeleri önce toplayın
 
-Tapu fotokopisi, iskan belgesi, DASK poliçesi, aidat borcu yoktur yazısı ve varsa yapı kayıt belgesi. Alıcı ciddi olduğunda bu belgeleri günler içinde bulmaya çalışmak, pazarlık gücünüzü düşürür.
+Tapu fotokopisi, iskan belgesi, DASK poliçesi, aidat borcu yoktur yazısı, varsa yapı kayıt belgesi ve enerji kimlik belgesi.
+
+Alıcı ciddi olduğunda bu belgeleri günler içinde bulmaya çalışmak, pazarlık gücünüzü düşürür. Hazır bir dosya, alıcıda "bu satıcı işini biliyor" izlenimi yaratır ve süreci hızlandırır.
 
 ## 2. Küçük kusurları kapatın
 
-Akan musluk, çalışmayan priz, kapanmayan dolap kapağı. Bunların maliyeti düşüktür ama alıcıda "bakımsız" algısı yaratır ve bu algı doğrudan fiyata yansır.
+Akan musluk, çalışmayan priz, kapanmayan dolap kapağı, çatlak fayans, gıcırdayan kapı.
+
+Bunların maliyeti düşüktür ama alıcıda "bakımsız" algısı yaratır ve bu algı doğrudan fiyata yansır. Alıcı gördüğü her küçük kusuru zihninde büyütür: "Bunu bile yapmamışsa, görmediğim neler var?"
+
+Bir günlük tamirat, çoğu zaman pazarlık masasında talep edilecek indirimin kat kat altındadır.
 
 ## 3. Eşyayı azaltın
 
 Dolu bir ev, olduğundan küçük görünür. Fazla mobilyayı ve kişisel eşyayı azaltmak, dairenin gerçek metrekaresini ortaya çıkarır.
 
+Özellikle şunları kaldırın: aile fotoğrafları, dolap üstlerindeki eşyalar, banyodaki kişisel bakım ürünleri, buzdolabı magnetleri. Alıcının kendini o evde hayal edebilmesi için evin biraz "nötr" olması gerekir.
+
 ## 4. Duvarları boyayın — nötr renkte
 
-Bir dairede yapılabilecek en yüksek getirili tek işlem genellikle boyadır. Renk seçiminde kendi zevkinizi değil, en geniş alıcı kitlesini düşünün: kırık beyaz ve açık gri tonları her mobilyaya uyar.
+Bir dairede yapılabilecek en yüksek getirili tek işlem genellikle boyadır.
+
+Renk seçiminde kendi zevkinizi değil, en geniş alıcı kitlesini düşünün: kırık beyaz ve açık gri tonları her mobilyaya uyar ve mekânı büyük gösterir. Koyu ya da iddialı renkler alıcının aklında "boyamam gerekecek" maliyeti oluşturur.
 
 ## 5. Temizlik, özellikle mutfak ve banyo
 
 Alıcıların bu iki alana verdiği tepki, tüm evi değerlendirme biçimlerini etkiler. Derinlemesine temizlik, boyadan sonraki en yüksek getirili adımdır.
 
+Ayrıntılar: fayans deriz, duş kabini kireci, fırın içi, dolap içleri (alıcılar açar), pencere camları. Koku da önemlidir — evi gezme öncesi havalandırın; ağır koku giderici kullanmak yerine kaynağı ortadan kaldırın.
+
 ## 6. Fotoğraf çekimi için gün ışığını bekleyin
 
-Perdeleri açın, tüm lambaları yakın, çekimi günün en aydınlık saatinde yapın. İnternette ilk elemeyi fotoğraf yapar; kötü fotoğraf, iyi bir daireyi hiç gösterilmeden eler.
+Perdeleri açın, tüm lambaları yakın, çekimi günün en aydınlık saatinde yapın.
+
+İnternette ilk elemeyi fotoğraf yapar; kötü fotoğraf, iyi bir daireyi hiç gösterilmeden eler. Alıcıların büyük çoğunluğu ilanı telefonundan görüyor ve karar birkaç saniyede veriliyor.
+
+İlk fotoğraf en güçlü kare olmalı — genellikle salon ya da manzara. Karanlık, dağınık veya eğri çekilmiş bir ilk fotoğraf, ilanın geri kalanını kimseye izletmez.
 
 ## 7. Fiyatı bölge verisiyle belirleyin
 
-Komşunun anlattığı rakam veya "şu kadar bekliyorum" duygusu değil; son üç ayda o bölgede gerçekten satılmış benzer dairelerin verisi. Yüksek başlayıp indirmek, ilanın "uzun süredir satılık" görünmesine yol açar ve pazarlık gücünüzü kalıcı olarak azaltır.
+Komşunun anlattığı rakam veya "şu kadar bekliyorum" duygusu değil; son üç ayda o bölgede gerçekten **satılmış** benzer dairelerin verisi.
+
+Dikkat: ilanlardaki isteme fiyatları ile gerçekleşen satış fiyatları aynı değildir. Karşılaştırmayı satılanlar üzerinden yapın.
+
+Yüksek başlayıp indirmek, ilanın "uzun süredir satılık" görünmesine yol açar ve pazarlık gücünüzü kalıcı olarak azaltır. Portallarda ilan yaşı görünür; alıcılar eski ilanlara daha düşük teklif verir.
 
 ## 8. Gezme saatlerini belirleyin
 
-Alıcının rahat gezebildiği, evde kalabalık olmayan saatler seçin. Ev sahibinin sürekli konuştuğu gezmeler, alıcının evi kendi hayatına yerleştirmesini zorlaştırır.
+Alıcının rahat gezebildiği, evde kalabalık olmayan saatler seçin. Mümkünse evi aydınlık saatlerde gösterin.
+
+Ev sahibinin sürekli konuştuğu gezmeler, alıcının evi kendi hayatına yerleştirmesini zorlaştırır. Soruları yanıtlayın ama alıcıya sessiz dolaşma alanı bırakın.
+
+## Hazırlık kontrol listesi
+
+| Adım | Tamam mı |
+| --- | --- |
+| Belgeler dosyalandı | |
+| Küçük tamiratlar yapıldı | |
+| Fazla eşya kaldırıldı | |
+| Duvarlar boyandı | |
+| Derin temizlik yapıldı | |
+| Fotoğraflar gün ışığında çekildi | |
+| Fiyat satılan emsallerle belirlendi | |
+| Gezme saatleri planlandı | |
 
 ---
 
-Evinizi satışa çıkarmadan önce bu listeyi birlikte geçmek isterseniz bana ulaşın.`,
+Evinizi satışa çıkarmadan önce bu listeyi birlikte geçmek isterseniz [bana ulaşın](/iletisim). Gerçekçi bir fiyat aralığı için [ücretsiz değerleme](/degerleme) alabilirsiniz.`,
   },
 ];

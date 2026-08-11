@@ -15,17 +15,24 @@ import { calculateMortgage, formatPrice } from "@/lib/utils";
 export function MortgageCalculator({
   price,
   className,
+  /**
+   * Başlangıç faiz oranı ve ait olduğu tarih. Sunucudan geçilir
+   * (bkz. lib/mortgage-rate.ts) — koda gömülü kalırsa güncellenmiyor.
+   */
+  rate,
 }: {
   price: number;
   className?: string;
+  rate?: { monthlyPercent: number; updatedAt: string };
 }) {
+  const initialRate = rate?.monthlyPercent ?? MORTGAGE_DEFAULTS.monthlyRatePercent;
+  const rateUpdatedAt = rate?.updatedAt ?? MORTGAGE_DEFAULTS.rateUpdatedAt;
+
   const [downPaymentRatio, setDownPaymentRatio] = useState(
     MORTGAGE_DEFAULTS.downPaymentRatio,
   );
   const [termMonths, setTermMonths] = useState(MORTGAGE_DEFAULTS.termMonths);
-  const [monthlyRate, setMonthlyRate] = useState(
-    MORTGAGE_DEFAULTS.monthlyRatePercent,
-  );
+  const [monthlyRate, setMonthlyRate] = useState(initialRate);
 
   const downPayment = Math.round(price * downPaymentRatio);
   const principal = price - downPayment;
@@ -100,6 +107,16 @@ export function MortgageCalculator({
             className="range-input"
             aria-label="Aylık faiz oranı"
           />
+          {/*
+            Oranın nereden geldiğini yazmak şart: ziyaretçi bunu kendisine
+            teklif edilecek oran sanmamalı. Bankalar arası ortalama ile
+            kişiye çıkan teklif kampanyaya ve müşteri profiline göre ayrışır.
+          */}
+          <p className="mt-2.5 text-[11px] leading-relaxed text-cream-500">
+            Başlangıç değeri piyasa ortalamasıdır ({rateUpdatedAt}) ve size
+            teklif edilecek oran değildir. Bankanızdan aldığınız oranı yazarak
+            hesabı kendinize göre yapın.
+          </p>
         </Field>
       </div>
 

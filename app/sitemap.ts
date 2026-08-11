@@ -29,6 +29,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/referanslar`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/hakkimda`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/degerleme`, changeFrequency: "monthly", priority: 0.8 },
+    {
+      url: `${BASE_URL}/kredi-hesaplama`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     { url: `${BASE_URL}/blog`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${BASE_URL}/iletisim`, changeFrequency: "monthly", priority: 0.6 },
     /*

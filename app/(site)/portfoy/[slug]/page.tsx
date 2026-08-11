@@ -17,6 +17,7 @@ import { CompareButton } from "@/components/property/compare-button";
 import { FavoriteButton } from "@/components/property/favorite-button";
 import { MapPanel } from "@/components/property/map-panel";
 import { MortgageCalculator } from "@/components/property/mortgage-calculator";
+import { getMortgageRate } from "@/lib/mortgage-rate";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import {
@@ -375,7 +376,10 @@ export default async function PropertyDetailPage({
               </div>
 
               {!isRent && !isClosed ? (
-                <MortgageCalculator price={property.price} />
+                <MortgageCalculator
+                  price={property.price}
+                  rate={getMortgageRate()}
+                />
               ) : null}
             </aside>
           </div>

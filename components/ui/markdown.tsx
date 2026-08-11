@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -39,14 +40,43 @@ export function Markdown({
           strong: ({ children }) => (
             <strong className="font-medium text-cream-50">{children}</strong>
           ),
-          a: ({ children, href }) => (
-            <a
-              href={href}
-              className="text-brand-400 underline underline-offset-2 transition-colors hover:text-brand-500"
-            >
-              {children}
-            </a>
-          ),
+          /**
+           * Site içi bağlantılar `next/link` ile veriliyor.
+           *
+           * Düz `<a href>` tam sayfa yüklemesi tetikliyor; React ağacı
+           * baştan kuruluyor ve istemcide tutulan her şey siliniyor. Sohbet
+           * asistanı için bu, botun verdiği ilan bağlantısına tıklayan
+           * ziyaretçinin konuşmasını tamamen kaybetmesi demekti. Blog ve bölge
+           * metinlerinde de gezinme gereksiz yere yavaştı.
+           *
+           * Dış bağlantılar (wa.me, remax.com.tr ...) yeni sekmede açılıyor;
+           * `rel` olmadan `target="_blank"` güvenlik açığı yaratır.
+           */
+          a: ({ children, href }) => {
+            const url = href ?? "";
+            const isInternal = url.startsWith("/") || url.startsWith("#");
+            const className =
+              "text-brand-400 underline underline-offset-2 transition-colors hover:text-brand-500";
+
+            if (isInternal) {
+              return (
+                <Link href={url} className={className}>
+                  {children}
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+              >
+                {children}
+              </a>
+            );
+          },
           ul: ({ children }) => (
             <ul className="flex flex-col gap-2.5 pl-1">{children}</ul>
           ),

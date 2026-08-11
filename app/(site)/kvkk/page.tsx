@@ -31,6 +31,7 @@ Site üzerindeki formlar aracılığıyla aşağıdaki veriler işlenmektedir:
 
 - **Kimlik bilgisi:** ad, soyad
 - **İletişim bilgisi:** telefon numarası, e-posta adresi
+- **Sohbet asistanı içeriği:** sitedeki sohbet asistanına yazdığınız mesajlar
 - **Talep bilgisi:** mesaj içeriği, ilgilendiğiniz ilan, değerleme formunda paylaştığınız taşınmaz bilgileri (il, ilçe, mahalle, konut tipi, alan, bina yaşı, kat)
 - **İşlem güvenliği bilgisi:** form gönderim tarihi ve talebin geldiği sayfa adresi
 
@@ -51,6 +52,8 @@ Kişisel verileriniz KVKK'nın 5. maddesinde belirtilen **açık rızanız** ile
 ## 5. Verilerin Aktarılması
 
 Kişisel verileriniz, yalnızca yukarıda belirtilen amaçların gerçekleştirilmesi için gerekli olduğu ölçüde; ilgili mevzuat gereği yetkili kamu kurum ve kuruluşlarına, hizmet aldığımız bilişim altyapısı sağlayıcılarına ve bağlı bulunulan ofise aktarılabilir. Verileriniz pazarlama amacıyla üçüncü kişilerle paylaşılmaz veya satılmaz.
+
+**Sohbet asistanı hakkında özel bilgilendirme:** Sitedeki sohbet asistanına yazdığınız mesajlar, yanıt üretilebilmesi için **Google LLC** tarafından sağlanan Gemini yapay zekâ servisine yurt dışına aktarılır. Servisin hâlihazırda kullanılan ücretsiz sürümünde, gönderilen içerik Google tarafından kendi ürünlerini geliştirmek amacıyla kullanılabilmektedir. Bu nedenle sohbet asistanına **kimlik numarası, adres, sağlık ya da finansal bilgi gibi hassas kişisel verilerinizi yazmamanızı** öneririz; bu tür bilgileri paylaşmanız gereken durumlarda lütfen doğrudan telefon veya e-posta ile iletişime geçin.
 
 ## 6. Verilerin Saklanma Süresi
 
