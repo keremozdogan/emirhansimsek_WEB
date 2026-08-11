@@ -124,7 +124,14 @@ export function CinematicHero({
   return (
     <section
       ref={sectionRef}
-      className="grain relative flex h-[100svh] min-h-[640px] items-end overflow-hidden"
+      /**
+       * Yükseklik SABİT değil taban: `h-[100svh]` iken içerik viewport'tan uzun
+       * olduğunda `items-end` fazlalığı yukarı taşırıyordu ve başlık, akış dışı
+       * (`fixed`) header'ın altına giriyordu. Alçak ekranlarda bölüm artık
+       * içerikle birlikte büyüyor. İki ayrı `min-h-*` sınıfı aynı özelliğe
+       * yazacağı için tek `max()` ifadesinde birleştirildi.
+       */
+      className="grain relative flex min-h-[max(100svh,640px)] items-end overflow-hidden"
     >
       {/*
         Arka plan: video ya da Ken Burns'lü fotoğraf.
@@ -170,7 +177,8 @@ export function CinematicHero({
       {/* İçerik */}
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-24 sm:px-8 sm:pb-28 lg:pb-32"
+        /* Üstteki `pt-28`, akış dışı header'ın (97px) kapladığı şeridi boş bırakır */
+        className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-24 pt-28 sm:px-8 sm:pb-28 lg:pb-32"
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
