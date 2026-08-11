@@ -78,9 +78,16 @@ export const PROFILE = {
    * yoğunlaşmayı ise shortBio'nun ikinci cümlesi; böylece hem doğru hem de
    * kendini kısıtlamayan bir konumlandırma çıkıyor.
    */
-  tagline: "İstanbul'un iki yakasında satılık, kiralık konut ve ticari portföy.",
+  tagline: "İstanbul genelinde satılık, kiralık konut ve ticari portföy.",
+  /**
+   * Hakkımda sayfasının giriş metni. Bilerek ilçe adı geçmiyor: burası
+   * Emirhan'ın hizmet alanını anlatır, portföyün o an nerede yoğunlaştığını
+   * değil. İlçe bilgisi zaten /portfoy ve /bolgeler sayfalarında, güncel
+   * veriyle görünüyor; buraya yazılırsa yeni bölgede ilan çıktığında
+   * metin eskiyor ve kimse fark etmiyor.
+   */
   shortBio:
-    "RE/MAX Eksen çatısı altında İstanbul'un iki yakasında gayrimenkul danışmanlığı yapıyorum. Portföyüm şu an ağırlıklı olarak Sancaktepe ve Çekmeköy'de yoğunlaşıyor; konutun yanında ticari mülklerle de ilgileniyorum.",
+    "RE/MAX Eksen çatısı altında İstanbul genelinde gayrimenkul danışmanlığı yapıyorum. Alım, satım ve kiralama süreçlerinin tamamını kendim yürütüyorum; konutun yanında ticari mülklerle de ilgileniyorum.",
   /** Emirhan kendisi yazacak — uydurulmadı */
   bio: "",
   phone: "0551 024 41 27",
@@ -149,7 +156,7 @@ export const MILESTONES = [
     year: "2025",
     title: "Danışman Gelişim Programı",
     description:
-      "RE/MAX Danışman Gelişim Programı'nı tamamladım; portföyümü Sancaktepe ve Çekmeköy'de derinleştirdim.",
+      "RE/MAX Danışman Gelişim Programı'nı tamamladım; portföyümü İstanbul genelinde genişlettim.",
     sortOrder: 2,
   },
 ];
