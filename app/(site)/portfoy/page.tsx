@@ -5,6 +5,7 @@ import { Reveal } from "@/components/animation/reveal";
 import { CompareBar } from "@/components/property/compare-bar";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertyFilters } from "@/components/property/property-filters";
+import { SearchAssistant } from "@/components/property/search-assistant";
 import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { prisma } from "@/lib/db";
 import { propertyCardSelect } from "@/lib/queries";
@@ -12,7 +13,7 @@ import { propertyCardSelect } from "@/lib/queries";
 export const metadata: Metadata = {
   title: "Portföy — Satılık ve Kiralık İlanlar",
   description:
-    "Ataşehir, Kadıköy, Ümraniye ve Üsküdar'da satılık ve kiralık daire, villa, ofis ve arsa ilanları. Her ilan yerinde görülmüş ve fotoğraflanmıştır.",
+    "İstanbul'un iki yakasında satılık ve kiralık daire, villa, ofis ve arsa ilanları. Her ilan yerinde görülmüş ve fotoğraflanmıştır.",
   alternates: { canonical: "/portfoy" },
 };
 
@@ -120,7 +121,17 @@ export default async function PortfolioPage({
             description="Portföyümdeki hiçbir ilanı görmeden yayına almam. Açıklamalarda okuduğunuz her ayrıntı, o evde geçirdiğim zamandan çıktı."
           />
 
+          {/*
+            Asistan filtrelerin ÜSTÜNDE duruyor: cümleyle arama, filtreleri tek
+            tek açmaya göre daha hızlı bir giriş yolu. Filtreler kaldırılmadı —
+            asistan aynı sorgu parametrelerini ürettiği için ikisi aynı sonucu
+            verir, kullanıcı hangisini isterse onu kullanır.
+          */}
           <div className="mt-12">
+            <SearchAssistant />
+          </div>
+
+          <div className="mt-8">
             <PropertyFilters
               options={{
                 regions,
