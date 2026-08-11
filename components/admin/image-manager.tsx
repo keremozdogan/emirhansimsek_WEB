@@ -281,7 +281,7 @@ export function ImageManager({
                   <label className="flex flex-col gap-1.5">
                     <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-cream-500">
                       Alternatif metin{" "}
-                      <span className="normal-case tracking-normal text-cream-600">
+                      <span className="normal-case tracking-normal text-cream-400">
                         (görme engelliler ve arama motorları için)
                       </span>
                     </span>

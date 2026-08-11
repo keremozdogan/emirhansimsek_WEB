@@ -164,7 +164,7 @@ export default async function AdminPropertiesPage({
                   {property.published ? null : (
                     <StatusPill tone="gray">Taslak</StatusPill>
                   )}
-                  <span className="text-[11px] text-cream-600">
+                  <span className="text-[11px] text-cream-400">
                     {formatDateShort(property.updatedAt)}
                   </span>
                 </div>

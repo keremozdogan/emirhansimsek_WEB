@@ -56,11 +56,17 @@ export function Header({
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
           <Link href="/" className="group flex items-baseline gap-2">
-            <span className="font-display text-lg tracking-tight sm:text-xl">
+            {/*
+              `whitespace-nowrap` + `shrink-0`: yan taraftaki ünvan etiketi
+              geniş harf aralığı yüzünden yer kaplayıp ismi sıkıştırıyor ve
+              "Emirhan / Şimşek" iki satıra bölünüyordu. İsim asla bölünmemeli;
+              daralan alanda kısalması gereken ünvandır.
+            */}
+            <span className="shrink-0 whitespace-nowrap font-display text-lg tracking-tight sm:text-xl">
               {first}{" "}
               <span className="text-brand-500">{rest.join(" ")}</span>
             </span>
-            <span className="hidden text-[10px] uppercase tracking-[0.24em] text-cream-500 lg:inline">
+            <span className="hidden truncate text-[10px] uppercase tracking-[0.24em] text-cream-500 lg:inline">
               {title}
             </span>
           </Link>

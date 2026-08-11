@@ -63,13 +63,34 @@ html.lenis body {
   --color-ink-600: #26262c;
   --color-ink-500: #35353d;
 
-  /* Metin */
+  /*
+    Metin
+
+    100 / 300 / 600 basamakları eksikti ama kodda kullanılıyordu (48 yerde,
+    markdown gövde metni dahil). Tailwind v4'te tanımsız token için sınıf HİÇ
+    üretilmez — hata da vermez; o metinler sessizce üst öğenin rengini alıyordu.
+    Basamaklar mevcut rampanın ara değerleriyle dolduruldu.
+  */
   --color-cream-50: #f7f6f4;
+  --color-cream-100: #e8e7e3;
   --color-cream-200: #d9d7d2;
+  --color-cream-300: #bbb9b5;
   --color-cream-400: #9d9b97;
-  --color-cream-500: #74726e;
+  /*
+    #74726e idi — koyu zeminde 4.12:1 veriyordu, yani küçük metin için WCAG AA
+    eşiğinin (4.5:1) altında. Site genelinde ikincil metin rengi olduğu için
+    eşiği geçen en yakın tona çekildi: ink-900'de 5.01:1, ink-850'de 4.81:1.
+  */
+  --color-cream-500: #82807b;
+  /*
+    DEKORATİF — metin için kullanmayın. Koyu zeminde 2.2:1 verir; bu rampada
+    cream-500'ün altında okunabilir bir metin tonu yoktur. Ayraç, ince çerçeve
+    ve devre dışı ikon gibi yerler için.
+  */
+  --color-cream-600: #4b4945;
 
   /* RE/MAX vurgu renkleri */
+  --color-brand-200: #f79aa4;
   --color-brand-400: #ef3547;
   --color-brand-500: #dc1c2e;
   --color-brand-600: #b41425;
@@ -203,8 +224,16 @@ html.lenis body {
   /* Cam yüzey — üst menü ve yüzen barlar */
   .surface-glass {
     background: color-mix(in srgb, var(--color-ink-900) 82%, transparent);
+    /*
+      Yalnızca ÖNEKSİZ bildirim yazılır; `-webkit-` önekini derleyici hedef
+      tarayıcılara göre kendisi ekler.
+
+      Daha önce ikisi birlikte yazılıydı ve Lightning CSS bunları tekilleştirip
+      geriye yalnızca `-webkit-backdrop-filter` bırakıyordu. Sonuç: menü hiç
+      bulanıklaşmıyor, %82 opak zeminin altından sayfa metni okunuyordu —
+      kaydırırken başlıkların menünün içinden geçmesinin sebebi buydu.
+    */
     backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
   }
 
   /* Fotoğrafların üstündeki metinleri okunur kılan karartmalar */
