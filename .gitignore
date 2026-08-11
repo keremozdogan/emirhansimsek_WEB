@@ -71,3 +71,9 @@ next-env.d.ts
 # content/media-credits.json ile birlikte depoda tutulur.
 !/public/uploads/site/
 !/public/uploads/site/**
+# Rehber yazılarının kapakları da öyle. Bu istisna olmadan kapaklar depoya
+# girmez; yayında yalnızca kırık görsel görünür — üstelik künyeleri
+# content/media-credits.json ile birlikte commit'lendiği için /telif sayfası
+# var olmayan dosyalara atıf yapmış olurdu.
+!/public/uploads/blog/
+!/public/uploads/blog/**

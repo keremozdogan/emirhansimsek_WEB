@@ -69,9 +69,18 @@ export const PROFILE = {
   fullName: "Emirhan Şimşek",
   title: "Gayrimenkul Danışmanı",
   officeName: "RE/MAX Eksen",
-  tagline: "Sancaktepe ve Çekmeköy'de satılık, kiralık konut ve ticari portföy.",
+  /**
+   * Hizmet alanı ile portföyün yoğunlaştığı yer AYRI iki bilgidir.
+   *
+   * Önceki metin "Sancaktepe ve Çekmeköy'de ..." diyordu; vitrindeki ilanların
+   * o iki ilçede olması Emirhan'ın yalnızca oraya baktığı anlamına gelmiyor —
+   * İstanbul'un her iki yakasında da çalışıyor. Kapsamı tagline taşıyor,
+   * yoğunlaşmayı ise shortBio'nun ikinci cümlesi; böylece hem doğru hem de
+   * kendini kısıtlamayan bir konumlandırma çıkıyor.
+   */
+  tagline: "İstanbul'un iki yakasında satılık, kiralık konut ve ticari portföy.",
   shortBio:
-    "RE/MAX Eksen çatısı altında İstanbul Anadolu yakasında gayrimenkul danışmanlığı yapıyorum. Portföyüm ağırlıklı olarak Sancaktepe ve Çekmeköy'de yoğunlaşıyor; konutun yanında ticari mülklerle de ilgileniyorum.",
+    "RE/MAX Eksen çatısı altında İstanbul'un iki yakasında gayrimenkul danışmanlığı yapıyorum. Portföyüm şu an ağırlıklı olarak Sancaktepe ve Çekmeköy'de yoğunlaşıyor; konutun yanında ticari mülklerle de ilgileniyorum.",
   /** Emirhan kendisi yazacak — uydurulmadı */
   bio: "",
   phone: "0551 024 41 27",
@@ -169,6 +178,7 @@ export const REGIONS = [
     name: "Sancaktepe",
     city: "İstanbul",
     district: "Sancaktepe",
+    side: "ANADOLU",
     description:
       "Portföyümün ağırlık merkezi. Osmangazi Mahallesi ve Atayolu Caddesi hattında yeni tamamlanan projeler, konut ve ticari mülkte birlikte hareket eden bir pazar oluşturuyor.",
     /** Emirhan kendi bölge yorumunu panelden yazacak */
@@ -190,6 +200,7 @@ export const REGIONS = [
     name: "Çekmeköy",
     city: "İstanbul",
     district: "Çekmeköy",
+    side: "ANADOLU",
     description:
       "Ofisimizin de bulunduğu ilçe. Mimar Sinan Mahallesi çevresinde vadi ve şehir manzaralı, düşük yoğunluklu yapılaşma öne çıkıyor.",
     expertNote: "",
@@ -843,7 +854,7 @@ export const BLOG_POSTS = [
     title: "Ev Alırken Dikkat Edilmesi Gereken 12 Madde",
     excerpt:
       "Tapudan iskana, kredi uygunluğundan bina yaşına kadar; alıcıların en sık atladığı ve sonradan en çok pişman olduğu başlıklar.",
-    coverUrl: "/uploads/ilan/P20587627/14.webp",
+    coverUrl: "/uploads/blog/ev-alirken.webp",
     tags: ["İlk Ev", "Rehber"],
     published: true,
     content: `Ev almak çoğu insan için hayatının en büyük finansal kararı. Buna rağmen bu kararın büyük kısmı duyguyla veriliyor. Aşağıdaki 12 başlık, sahada en sık karşılaştığım ve sonradan sorun çıkaran konuların özeti.
@@ -905,7 +916,7 @@ Bu başlıkların hepsini müşterilerimle birlikte tek tek geçiyorum. Sorular�
     title: "Kira Getirisi Hesabı Nasıl Yapılır?",
     excerpt:
       "Brüt getiri herkesin baktığı rakam, net getiri ise gerçeği söyleyen rakam. Aradaki farkı örnekle açıklıyorum.",
-    coverUrl: "/uploads/ilan/P83437783/15.webp",
+    coverUrl: "/uploads/blog/kira-getirisi.webp",
     tags: ["Yatırım", "Rehber"],
     published: true,
     content: `Yatırım amaçlı konut alırken en çok yapılan hata, sadece brüt kira getirisine bakmaktır.
@@ -952,7 +963,7 @@ Değerlendirdiğiniz bir yatırım için bu hesabı birlikte yapmak isterseniz b
     title: "Ticari Dükkân Yatırımında Nelere Bakılır?",
     excerpt:
       "Dükkân yatırımında konum tek başına yeterli değil. Cephe genişliği, kolon düzeni ve ruhsat durumu getirinin tamamını belirliyor.",
-    coverUrl: "/uploads/ilan/P52506737/01.webp",
+    coverUrl: "/uploads/blog/ticari-dukkan.webp",
     tags: ["Yatırım", "Ticari"],
     published: true,
     content: `Konut yatırımını herkes bir şekilde değerlendirebilir; ticari mülkte ise doğru soruları sormadan alınan karar, yıllarca boş kalan bir dükkâna dönüşebilir.
@@ -992,5 +1003,154 @@ Kurumsal bir kiracı, bireysel kiracıya göre daha düşük kira ödeyebilir; b
 ---
 
 Ticari mülk değerlendiriyorsanız, bu başlıkları birlikte tek tek geçebiliriz.`,
+  },
+  {
+    slug: "anadolu-yakasi-mi-avrupa-yakasi-mi",
+    title: "Anadolu Yakası mı, Avrupa Yakası mı?",
+    excerpt:
+      "Yaka seçimi bir aidiyet tartışması değil, günlük hayatınıza dair bir hesap. Kararı duyguyla değil, dört somut başlıkla verin.",
+    coverUrl: "/uploads/blog/iki-yaka.webp",
+    tags: ["İlk Ev", "Rehber"],
+    published: true,
+    content: `İstanbul'da ev ararken en çok tartışılan konu bu. Oysa "hangi yaka daha iyi" sorusunun herkes için geçerli tek bir cevabı yok; doğru soru "benim hayatım hangi yakada daha kolay işler" olmalı.
+
+## 1. İşe gidiş süresi — köprüyü hesaba katın
+
+Yaka kararının en somut maliyeti zamandır. İşiniz karşı yakadaysa, günde iki kez köprü veya tünel geçmek yılda yüzlerce saate mal olur.
+
+Şunu yapın: ev bakmadan önce, işe gitme saatinizde gerçek bir deneme yolculuğu yapın. Harita uygulamasının "22 dakika" tahmini ile salı sabahı 08:15'teki gerçek süre çoğu zaman aynı değildir.
+
+## 2. Raylı sisteme mesafe
+
+İstanbul'da bir konutun uzun vadeli değerini en çok etkileyen tek unsur raylı sistem erişimidir. Metro veya Marmaray istasyonuna yürüme mesafesi (yaklaşık 800 metre ve altı), hem kiracı bulmayı hem de satışta alıcı havuzunu belirgin şekilde genişletir.
+
+Yapım aşamasındaki hatlara dikkat edin: açılış tarihleri sık ertelenir. "Metro geliyor" vaadiyle ödenen fiyat farkı, hattın açılmadığı her yıl size maliyettir.
+
+## 3. Konut dokusu ve metrekare beklentisi
+
+İki yakanın konut stoğu farklı dönemlerde oluştu. Aynı bütçeyle bir yakada daha geniş ve daha yeni, diğerinde daha merkezi ama daha küçük bir daireye ulaşabilirsiniz.
+
+Karar vermeden önce bütçenizi sabitleyip her iki yakada da üçer daire gezin. Rakam üzerinden konuşmak, yaka tartışmasını hızla bitirir.
+
+## 4. Okul, sağlık ve sosyal çevre
+
+Çocuklu aileler için okul; ileri yaşta ebeveyni olanlar için hastane erişimi, yaka kararını tek başına belirleyebilir. Bu başlık kişiye özeldir ve genel bir tavsiyesi yoktur — ama listeye yazılmazsa sonradan en çok pişmanlık yaratan başlıktır.
+
+## Karşılaştırma tablosu yapın
+
+Bu dört başlığı bir kâğıda yazın, iki yaka için ayrı ayrı puanlayın. Karar çoğu zaman kendini gösterir.
+
+| Başlık | Anadolu | Avrupa |
+| --- | --- | --- |
+| İşe gidiş süresi | | |
+| Raylı sisteme mesafe | | |
+| Bütçeyle ulaşılan m² | | |
+| Okul / sağlık erişimi | | |
+
+---
+
+İki yakada da çalışıyorum; hangi yakanın sizin için daha mantıklı olduğunu birlikte konuşalım.`,
+  },
+  {
+    slug: "konut-kredisiyle-ev-alma-sureci",
+    title: "Konut Kredisiyle Ev Alma Süreci Adım Adım",
+    excerpt:
+      "Ön onaydan tapu devrine kadar sürecin tamamı. Hangi adımda ne kadar beklersiniz, hangi belge kimden istenir?",
+    coverUrl: "/uploads/blog/konut-kredisi.webp",
+    tags: ["İlk Ev", "Rehber"],
+    published: true,
+    content: `Krediyle ev alırken en çok yaşanan sorun, sürecin sırasını bilmemekten kaynaklanır. Aşağıdaki sıra, sahada işlerin gerçekte nasıl yürüdüğünü anlatıyor.
+
+## 1. Önce ön onay alın, sonra ev bakın
+
+En sık yapılan hata: beğenilen ev bulunduktan sonra kredi araştırmasına başlamak. Bankadan ön onay almadan pazarlık masasına oturmak, hem sizi hem satıcıyı belirsizlikte bırakır.
+
+Ön onay, ne kadar kredi kullanabileceğinizi ve dolayısıyla gerçek bütçenizi netleştirir.
+
+## 2. Kredi tutarını belirleyen iki sınır
+
+- **Gelir sınırı:** Aylık taksit, belgelenen gelirinizin belirli bir oranını aşamaz.
+- **Değer sınırı:** Banka, konutun ekspertiz değerinin tamamını değil, mevzuatla belirlenen oranını kredilendirir. Kalanı peşinat olarak sizden beklenir.
+
+Bu oranlar mevzuatla değişir; işleme başlamadan bankadan güncel oranı yazılı olarak isteyin.
+
+## 3. Ekspertiz raporu
+
+Banka, bağımsız bir eksper atar. Eksperin belirlediği değer, satış bedelinden düşük çıkabilir — bu durumda aradaki farkı nakit tamamlamanız gerekir.
+
+Ekspertiz genellikle birkaç iş günü sürer. Raporda iskan, kat mülkiyeti ve yapı kayıt durumu da incelenir; sorunlu bir tapu bu aşamada ortaya çıkar.
+
+## 4. Zorunlu ve isteğe bağlı sigortalar
+
+DASK (Zorunlu Deprem Sigortası) kredi kullanımı için zorunludur. Bunun dışında bankalar konut sigortası ve hayat sigortası önerir; bunların zorunlu olup olmadığını ve maliyetini ayrıca sorun.
+
+## 5. Tapu randevusu ve devir
+
+Kredi onayı çıktıktan sonra Tapu Müdürlüğü'nden randevu alınır. Devir günü:
+
+- Alıcı ve satıcı (veya vekilleri) hazır bulunur
+- Tapu harcı yatırılır
+- Banka, kredi tutarını satıcının hesabına aktarır
+- Tapu alıcı adına tescil edilir, ipotek işlenir
+
+Tapu harcı oranı resmî olarak belirlenir ve dönem dönem değişir; işlem gününden önce güncel oranı teyit edin.
+
+## 6. Devirden sonra unutulanlar
+
+- Elektrik, su, doğalgaz aboneliklerinin devri
+- Emlak vergisi bildiriminin belediyeye yapılması
+- Aidat kaydının yönetime bildirilmesi
+
+Bu üç adım atlanınca ilk faturalar eski malik adına gelir ve düzeltmesi zaman alır.
+
+---
+
+Süreçte hangi adımda olduğunuzu kaybettiğinizi düşünüyorsanız arayın; birlikte bakalım.`,
+  },
+  {
+    slug: "evinizi-satisa-hazirlarken",
+    title: "Evinizi Satışa Hazırlarken Yapılacaklar",
+    excerpt:
+      "Satış süresini kısaltan şey fiyat indirimi değil, hazırlıktır. Fotoğraf çekiminden önce yapılması gereken sekiz iş.",
+    coverUrl: "/uploads/blog/satisa-hazirlik.webp",
+    tags: ["Satış", "Rehber"],
+    published: true,
+    content: `Bir ev ne kadar sürede satılır sorusunun cevabı çoğu zaman fiyatta değil, hazırlıkta saklı. Aynı daire, hazırlıklı ve hazırlıksız hâliyle iki farklı ürün gibi davranır.
+
+## 1. Belgeleri önce toplayın
+
+Tapu fotokopisi, iskan belgesi, DASK poliçesi, aidat borcu yoktur yazısı ve varsa yapı kayıt belgesi. Alıcı ciddi olduğunda bu belgeleri günler içinde bulmaya çalışmak, pazarlık gücünüzü düşürür.
+
+## 2. Küçük kusurları kapatın
+
+Akan musluk, çalışmayan priz, kapanmayan dolap kapağı. Bunların maliyeti düşüktür ama alıcıda "bakımsız" algısı yaratır ve bu algı doğrudan fiyata yansır.
+
+## 3. Eşyayı azaltın
+
+Dolu bir ev, olduğundan küçük görünür. Fazla mobilyayı ve kişisel eşyayı azaltmak, dairenin gerçek metrekaresini ortaya çıkarır.
+
+## 4. Duvarları boyayın — nötr renkte
+
+Bir dairede yapılabilecek en yüksek getirili tek işlem genellikle boyadır. Renk seçiminde kendi zevkinizi değil, en geniş alıcı kitlesini düşünün: kırık beyaz ve açık gri tonları her mobilyaya uyar.
+
+## 5. Temizlik, özellikle mutfak ve banyo
+
+Alıcıların bu iki alana verdiği tepki, tüm evi değerlendirme biçimlerini etkiler. Derinlemesine temizlik, boyadan sonraki en yüksek getirili adımdır.
+
+## 6. Fotoğraf çekimi için gün ışığını bekleyin
+
+Perdeleri açın, tüm lambaları yakın, çekimi günün en aydınlık saatinde yapın. İnternette ilk elemeyi fotoğraf yapar; kötü fotoğraf, iyi bir daireyi hiç gösterilmeden eler.
+
+## 7. Fiyatı bölge verisiyle belirleyin
+
+Komşunun anlattığı rakam veya "şu kadar bekliyorum" duygusu değil; son üç ayda o bölgede gerçekten satılmış benzer dairelerin verisi. Yüksek başlayıp indirmek, ilanın "uzun süredir satılık" görünmesine yol açar ve pazarlık gücünüzü kalıcı olarak azaltır.
+
+## 8. Gezme saatlerini belirleyin
+
+Alıcının rahat gezebildiği, evde kalabalık olmayan saatler seçin. Ev sahibinin sürekli konuştuğu gezmeler, alıcının evi kendi hayatına yerleştirmesini zorlaştırır.
+
+---
+
+Evinizi satışa çıkarmadan önce bu listeyi birlikte geçmek isterseniz bana ulaşın.`,
   },
 ];

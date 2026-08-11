@@ -100,6 +100,8 @@ model Region {
   name        String
   city        String
   district    String
+  /// ANADOLU | AVRUPA — rehberler bu ayrımla gruplanır
+  side        String  @default("ANADOLU")
   /// Kısa tanıtım (kartlarda görünür)
   description String
   /// Emirhan'ın bölge yorumu — markdown

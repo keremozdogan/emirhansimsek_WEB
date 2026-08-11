@@ -12,6 +12,7 @@ import {
   StatusPill,
 } from "@/components/admin/ui";
 import { FormMessage } from "@/components/ui/form-fields";
+import type { CitySide } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { parseJsonArray } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ const EMPTY = {
   slug: "",
   city: "İstanbul",
   district: "",
+  side: "ANADOLU" as CitySide,
   description: "",
   expertNote: "",
   coverUrl: null,
@@ -78,6 +80,7 @@ export default async function AdminRegionsPage({
                     slug: editing.slug,
                     city: editing.city,
                     district: editing.district,
+                    side: editing.side as CitySide,
                     description: editing.description,
                     expertNote: editing.expertNote,
                     coverUrl: editing.coverUrl,

@@ -47,6 +47,76 @@ export const PROPERTY_CATEGORY_LABELS: Record<PropertyCategory, string> = {
   BUILDING: "Bina",
 };
 
+/**
+ * İstanbul'un iki yakası.
+ *
+ * Bölge rehberleri bu ayrımla gruplanır. Yaka, ilçeden türetilebilecek bir
+ * bilgi olmasına rağmen ayrı alan olarak tutuluyor: türetmek 39 ilçelik sabit
+ * bir eşleme tablosunu koda gömmek demekti ve panelden yeni bölge eklendiğinde
+ * o tablo unutulursa bölge sessizce yanlış yakada görünürdü.
+ */
+export const CITY_SIDES = ["ANADOLU", "AVRUPA"] as const;
+export type CitySide = (typeof CITY_SIDES)[number];
+
+export const CITY_SIDE_LABELS: Record<CitySide, string> = {
+  ANADOLU: "Anadolu Yakası",
+  AVRUPA: "Avrupa Yakası",
+};
+
+/**
+ * Hizmet verilen ilçeler — İstanbul'un 39 ilçesinin tamamı, yakalara ayrılmış.
+ *
+ * Bunlar bölge REHBERİ değildir; yalnızca kapsam listesidir. Rehberler
+ * (`Region` kaydı) Emirhan'ın kendi saha yorumunu içerdiği için ancak o
+ * yorumu yazdığı ilçeler için açılır. İkisini karıştırmamak önemli: kapsam
+ * "buralarda iş yapıyorum", rehber ise "burayı iyi biliyorum" demektir.
+ */
+export const SERVED_DISTRICTS: Record<CitySide, readonly string[]> = {
+  ANADOLU: [
+    "Adalar",
+    "Ataşehir",
+    "Beykoz",
+    "Çekmeköy",
+    "Kadıköy",
+    "Kartal",
+    "Maltepe",
+    "Pendik",
+    "Sancaktepe",
+    "Sultanbeyli",
+    "Şile",
+    "Tuzla",
+    "Ümraniye",
+    "Üsküdar",
+  ],
+  AVRUPA: [
+    "Arnavutköy",
+    "Avcılar",
+    "Bağcılar",
+    "Bahçelievler",
+    "Bakırköy",
+    "Başakşehir",
+    "Bayrampaşa",
+    "Beşiktaş",
+    "Beylikdüzü",
+    "Beyoğlu",
+    "Büyükçekmece",
+    "Çatalca",
+    "Esenler",
+    "Esenyurt",
+    "Eyüpsultan",
+    "Fatih",
+    "Gaziosmanpaşa",
+    "Güngören",
+    "Kâğıthane",
+    "Küçükçekmece",
+    "Sarıyer",
+    "Silivri",
+    "Sultangazi",
+    "Şişli",
+    "Zeytinburnu",
+  ],
+};
+
 export const FEATURE_GROUPS = [
   "INTERIOR",
   "EXTERIOR",

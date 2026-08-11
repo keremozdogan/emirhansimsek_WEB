@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { Reveal } from "@/components/animation/reveal";
+import { CITY_SIDES, CITY_SIDE_LABELS } from "@/lib/constants";
 import { formatNumber, parseJsonArray } from "@/lib/utils";
 
 export type RegionCardData = {
@@ -11,12 +12,47 @@ export type RegionCardData = {
   name: string;
   district: string;
   city: string;
+  side: string;
   description: string;
   coverUrl: string | null;
   avgPricePerSqm: number | null;
   highlights: string;
   _count?: { properties: number };
 };
+
+/**
+ * Rehberleri yakalara ayırıp her yaka için bir başlık altında listeler.
+ *
+ * Boş yaka başlığı basılmaz: Avrupa yakasında henüz rehber yoksa o başlık hiç
+ * görünmez — "Avrupa Yakası" yazıp altını boş bırakmak, hizmet verilmiyormuş
+ * izlenimi yaratırdı. Kapsam bilgisini `ServedDistricts` taşıyor.
+ */
+export function RegionGridBySide({ regions }: { regions: RegionCardData[] }) {
+  const groups = CITY_SIDES.map((side) => ({
+    side,
+    items: regions.filter((region) => region.side === side),
+  })).filter((group) => group.items.length > 0);
+
+  return (
+    <div className="flex flex-col gap-14">
+      {groups.map((group) => (
+        <div key={group.side}>
+          <div className="flex items-baseline justify-between gap-4 border-b border-ink-700 pb-3">
+            <h2 className="font-display text-2xl text-cream-100">
+              {CITY_SIDE_LABELS[group.side]}
+            </h2>
+            <span className="text-xs uppercase tracking-[0.18em] text-cream-400">
+              {group.items.length} rehber
+            </span>
+          </div>
+          <div className="mt-8">
+            <RegionGrid regions={group.items} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function RegionGrid({ regions }: { regions: RegionCardData[] }) {
   return (

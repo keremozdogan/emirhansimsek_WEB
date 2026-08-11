@@ -13,8 +13,10 @@ import {
   Field,
   FormMessage,
   Input,
+  Select,
   Textarea,
 } from "@/components/ui/form-fields";
+import { CITY_SIDES, CITY_SIDE_LABELS, type CitySide } from "@/lib/constants";
 
 export type RegionFormValues = {
   id?: string;
@@ -22,6 +24,7 @@ export type RegionFormValues = {
   slug: string;
   city: string;
   district: string;
+  side: CitySide;
   description: string;
   expertNote: string;
   coverUrl: string | null;
@@ -42,7 +45,7 @@ export function RegionForm({ values }: { values: RegionFormValues }) {
       {values.id ? <input type="hidden" name="id" value={values.id} /> : null}
       <FormMessage ok={false} message={state.message} />
 
-      <div className="grid gap-5 sm:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Field label="Bölge adı" required error={state.errors?.name}>
           <Input name="name" defaultValue={values.name} required />
         </Field>
@@ -51,6 +54,20 @@ export function RegionForm({ values }: { values: RegionFormValues }) {
         </Field>
         <Field label="İlçe" required error={state.errors?.district}>
           <Input name="district" defaultValue={values.district} required />
+        </Field>
+        <Field
+          label="Yaka"
+          required
+          error={state.errors?.side}
+          hint="Rehberler bu ayrımla gruplanır."
+        >
+          <Select name="side" defaultValue={values.side}>
+            {CITY_SIDES.map((side) => (
+              <option key={side} value={side}>
+                {CITY_SIDE_LABELS[side]}
+              </option>
+            ))}
+          </Select>
         </Field>
       </div>
 

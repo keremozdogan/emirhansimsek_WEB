@@ -195,17 +195,25 @@ export default async function HomePage() {
       <Section className="bg-ink-950">
         <Container>
           <SectionHeading
-            eyebrow="Uzmanlık Bölgeleri"
+            eyebrow="Hizmet Bölgeleri"
             title={
               <>
-                Dört bölge. <span className="text-cream-500">Sokak sokak.</span>
+                İki yaka.{" "}
+                <span className="text-cream-500">Sokak sokak.</span>
               </>
             }
-            description="Bölge sayımı bilinçli olarak sınırlı tutuyorum. Bir mahalleyi gerçekten bilmeden, o mahallede doğru fiyat söylemek mümkün değil."
+            description="İstanbul'un her iki yakasında çalışıyorum. Aşağıdakiler, bir mahalleyi sokak seviyesinde tanıdığım için saha yorumumu da yazabildiğim bölgeler."
           />
 
           <div className="mt-14">
             <RegionGrid regions={regions} />
+          </div>
+
+          <div className="mt-10">
+            <ButtonLink href="/bolgeler" variant="outline">
+              İstanbul genelinde çalıştığım ilçeler
+              <ArrowRight className="size-4" />
+            </ButtonLink>
           </div>
         </Container>
       </Section>

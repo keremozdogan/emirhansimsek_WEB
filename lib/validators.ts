@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import {
+  CITY_SIDES,
   FEATURE_GROUPS,
   LEAD_STATUSES,
   LEAD_TYPES,
@@ -189,6 +190,7 @@ export const regionSchema = z.object({
   slug: optionalText,
   city: z.string().trim().min(2, "İl gerekli"),
   district: z.string().trim().min(2, "İlçe gerekli"),
+  side: z.enum(CITY_SIDES).default("ANADOLU"),
   description: z.string().trim().min(10, "Kısa tanıtım yazın"),
   expertNote: z.string().default(""),
   coverUrl: optionalText,
