@@ -27,7 +27,13 @@ export function CompareBar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-x-0 bottom-16 z-40 px-4 lg:bottom-6"
+          /*
+            Sağ boşluk mobilde daha geniş: sohbet asistanının yüzen düğmesi
+            (alttan 88px, sağdan 16px, 56px çapında) bu çubuğun bulunduğu
+            şeride giriyor ve sağ ucundaki "Karşılaştır" düğmesinin üstüne
+            biniyordu. Masaüstünde çubuk ortalanıp dar kaldığı için sorun yok.
+          */
+          className="fixed inset-x-0 bottom-16 z-40 pl-4 pr-[5.5rem] lg:bottom-6 lg:pr-4"
         >
           <div className="surface-glass mx-auto flex max-w-2xl items-center justify-between gap-4 rounded-full border border-ink-600 py-2.5 pl-6 pr-2.5">
             <p className="flex items-center gap-2.5 text-sm text-cream-200">

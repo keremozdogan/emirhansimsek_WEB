@@ -41,21 +41,33 @@ export default async function AboutPage() {
       <Section className="pt-32 sm:pt-40 lg:pt-44">
         <Container>
           <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+            {/*
+              Portre kaynağı 330x440. Daha önce 45vw genişlikte gösteriliyordu;
+              1440px'lik bir ekranda bu 648 CSS pikseli, Retina'da 1296 fiziksel
+              pikseli demekti — yani görselin yaklaşık DÖRT KATI. Bulanıklığın
+              sebebi buydu.
+
+              Kutu artık kaynağın doğal genişliğini aşmıyor. Yüksek çözünürlüklü
+              orijinal geldiğinde bu sınır kaldırılabilir; o güne kadar küçük ve
+              net göstermek, büyük ve bulanık göstermekten iyidir.
+            */}
             <Reveal>
-              <div className="relative aspect-4/5 overflow-hidden rounded-card border border-ink-700">
-                {profile.portraitUrl ? (
-                  <Image
-                    src={profile.portraitUrl}
-                    alt={profile.fullName}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="size-full bg-ink-800" />
-                )}
-                <div className="scrim-bottom absolute inset-0" />
+              <div className="mx-auto w-full max-w-[330px] lg:mx-0">
+                <div className="relative aspect-4/5 overflow-hidden rounded-card border border-ink-700">
+                  {profile.portraitUrl ? (
+                    <Image
+                      src={profile.portraitUrl}
+                      alt={profile.fullName}
+                      fill
+                      priority
+                      sizes="330px"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="size-full bg-ink-800" />
+                  )}
+                  <div className="scrim-bottom absolute inset-0" />
+                </div>
               </div>
             </Reveal>
 

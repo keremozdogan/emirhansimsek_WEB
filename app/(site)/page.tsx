@@ -129,14 +129,15 @@ export default async function HomePage() {
       <Section>
         <Container>
           <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+            {/* Portre 330x440; kutu doğal genişliği aşmıyor (bkz. /hakkimda) */}
             <Reveal>
-              <div className="relative aspect-4/5 overflow-hidden rounded-card border border-ink-700">
+              <div className="relative mx-auto aspect-4/5 w-full max-w-[330px] overflow-hidden rounded-card border border-ink-700 lg:mx-0">
                 {profile.portraitUrl ? (
                   <Image
                     src={profile.portraitUrl}
                     alt={profile.fullName}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    sizes="330px"
                     className="object-cover"
                   />
                 ) : (

@@ -1,6 +1,26 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Geliştirme sunucusuna yerel ağdaki cihazlardan (telefon, tablet) erişim.
+   *
+   * Next 16 varsayılan olarak `/_next/*` altındaki geliştirme kaynaklarını
+   * yalnızca localhost'a veriyor; başka bir kaynaktan gelen istek engelleniyor.
+   * Telefondan `http://192.168.1.100:3009` açıldığında sayfanın HTML'i geliyor
+   * ama CSS ve HMR engellendiği için site stilsiz, bozuk görünüyor.
+   *
+   * Adres kişiden kişiye değiştiği için koda gömülmedi: her geliştirici kendi
+   * yerel IP'sini .env dosyasına yazar. Sunucu başlarken "Network:" satırında
+   * hangi adresi ilan ettiğini söylüyor; oradaki IP buraya yazılacak olan.
+   *
+   *   DEV_NETWORK_ORIGINS="192.168.1.100"
+   *
+   * Yalnızca `next dev` için geçerli; yayın derlemesini etkilemez.
+   */
+  allowedDevOrigins: (process.env.DEV_NETWORK_ORIGINS ?? "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
   images: {
     formats: ["image/avif", "image/webp"],
     // Tüm görseller yerel: /public/uploads altında tutuluyor.
