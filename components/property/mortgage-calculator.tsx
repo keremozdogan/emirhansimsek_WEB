@@ -6,6 +6,9 @@ import { Calculator } from "lucide-react";
 import { MORTGAGE_DEFAULTS } from "@/lib/constants";
 import { calculateMortgage, formatPrice } from "@/lib/utils";
 
+/** Serbest vade girişinin üst sınırı — 30 yıl, konut kredisinde görülen tavan */
+const MAX_TERM_MONTHS = 360;
+
 /**
  * Konut kredisi taksit hesaplayıcı.
  *
@@ -28,6 +31,11 @@ export function MortgageCalculator({
   const initialRate = rate?.monthlyPercent ?? MORTGAGE_DEFAULTS.monthlyRatePercent;
   const rateUpdatedAt = rate?.updatedAt ?? MORTGAGE_DEFAULTS.rateUpdatedAt;
 
+  /**
+   * Peşinat oran olarak tutuluyor, tutar olarak değil: konut fiyatı değiştiğinde
+   * (ayrı hesaplama sayfasında fiyat serbest giriliyor) peşinat kendiliğinden
+   * ölçekleniyor, kullanıcı iki alanı birden düzeltmek zorunda kalmıyor.
+   */
   const [downPaymentRatio, setDownPaymentRatio] = useState(
     MORTGAGE_DEFAULTS.downPaymentRatio,
   );
@@ -36,6 +44,31 @@ export function MortgageCalculator({
 
   const downPayment = Math.round(price * downPaymentRatio);
   const principal = price - downPayment;
+
+  /**
+   * Peşinat alanına yazılanlar. `null` iken alan hesaplanan tutarı gösterir;
+   * ayrı tutulmasının sebebi kullanıcının alanı tamamen silebilmesi — her tuşta
+   * değer 0'a düşüp kaydırıcı başa sarmamalı.
+   */
+  const [downPaymentDraft, setDownPaymentDraft] = useState<string | null>(null);
+
+  function applyDownPayment(value: string) {
+    setDownPaymentDraft(value);
+    if (price <= 0) return;
+    // Fiyatın üstünde peşinat anlamsız; kredi tutarı eksiye düşerdi
+    const amount = Math.min(Number(value.replace(/\D/g, "")) || 0, price);
+    setDownPaymentRatio(amount / price);
+  }
+
+  /** Vade alanı da aynı sebeple taslak tutuyor — bkz. downPaymentDraft */
+  const [termDraft, setTermDraft] = useState<string | null>(null);
+
+  function applyTerm(value: string) {
+    setTermDraft(value);
+    // 1 aydan kısa ya da 30 yıldan uzun konut kredisi yok
+    const months = Number(value.replace(/\D/g, "")) || 0;
+    if (months > 0) setTermMonths(Math.min(months, MAX_TERM_MONTHS));
+  }
 
   const result = useMemo(
     () => calculateMortgage(principal, monthlyRate, termMonths),
@@ -61,29 +94,61 @@ export function MortgageCalculator({
       <div className="mt-7 flex flex-col gap-6">
         <Field
           label="Peşinat"
-          value={`${formatPrice(downPayment)} (%${Math.round(downPaymentRatio * 100)})`}
+          value={`%${formatRatio(downPaymentRatio)}`}
         >
+          {/*
+            Tutar doğrudan yazılabiliyor: elindeki nakit belli olan alıcı
+            "%35" diye düşünmüyor, "800.000 TL'm var" diye düşünüyor.
+            Kaydırıcı da duruyor — kabaca oynayıp görmek isteyen için.
+          */}
+          <div className="flex items-baseline gap-2 border-b border-ink-600 pb-1.5 focus-within:border-brand-500">
+            <input
+              inputMode="numeric"
+              value={downPaymentDraft ?? String(downPayment)}
+              onChange={(event) => applyDownPayment(event.target.value)}
+              onBlur={() => setDownPaymentDraft(null)}
+              className="w-full bg-transparent text-lg text-cream-50 outline-none"
+              aria-label="Peşinat tutarı"
+            />
+            <span className="shrink-0 text-sm text-cream-500">TL</span>
+          </div>
           <input
             type="range"
-            min={10}
-            max={80}
-            step={5}
+            min={0}
+            max={100}
+            step={1}
             value={Math.round(downPaymentRatio * 100)}
-            onChange={(event) =>
-              setDownPaymentRatio(Number(event.target.value) / 100)
-            }
-            className="range-input"
+            onChange={(event) => {
+              setDownPaymentDraft(null);
+              setDownPaymentRatio(Number(event.target.value) / 100);
+            }}
+            className="range-input mt-4"
             aria-label="Peşinat oranı"
           />
         </Field>
 
         <Field label="Vade" value={`${termMonths} ay`}>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-baseline gap-2 border-b border-ink-600 pb-1.5 focus-within:border-brand-500">
+            <input
+              inputMode="numeric"
+              value={termDraft ?? String(termMonths)}
+              onChange={(event) => applyTerm(event.target.value)}
+              onBlur={() => setTermDraft(null)}
+              className="w-full bg-transparent text-lg text-cream-50 outline-none"
+              aria-label="Vade (ay)"
+            />
+            <span className="shrink-0 text-sm text-cream-500">ay</span>
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
             {MORTGAGE_DEFAULTS.termOptions.map((option) => (
               <button
                 key={option}
                 type="button"
-                onClick={() => setTermMonths(option)}
+                onClick={() => {
+                  setTermDraft(null);
+                  setTermMonths(option);
+                }}
                 className={`rounded-full px-3 py-1.5 text-xs transition-colors ${
                   option === termMonths
                     ? "bg-brand-500 text-white"
@@ -94,6 +159,18 @@ export function MortgageCalculator({
               </button>
             ))}
           </div>
+
+          {/*
+            Serbest giriş açıkken beklentiyi yönetmek gerekiyor: 37 ay yazıp
+            hesaplayan biri bankada aynı vadeyi bulamayınca hesabı yanlış
+            sanabilir. Yaygın vadelerin düğmelerde olduğunu söylüyoruz.
+          */}
+          <p className="mt-2.5 text-[11px] leading-relaxed text-cream-500">
+            Bankalar genellikle yukarıdaki yuvarlak vadelerle çalışır; aradaki
+            bir süreyi merak ediyorsanız serbestçe yazabilirsiniz. Üst sınır{" "}
+            {MAX_TERM_MONTHS} ay olarak alınmıştır, bankaların uyguladığı azami
+            vade konut tipine ve kredi tutarına göre daha kısa olabilir.
+          </p>
         </Field>
 
         <Field label="Aylık faiz oranı" value={`%${monthlyRate.toFixed(2)}`}>
@@ -159,6 +236,11 @@ export function MortgageCalculator({
       </p>
     </div>
   );
+}
+
+/** Serbest tutar girişi küsuratlı oran üretiyor: "%24,7" gibi tek hane yeter */
+function formatRatio(ratio: number) {
+  return (ratio * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 }
 
 function Field({
