@@ -147,6 +147,17 @@ export const LEAD_TYPE_LABELS: Record<LeadType, string> = {
   PROPERTY_INQUIRY: "İlan Sorusu",
 };
 
+/**
+ * Form gönderildikten sonra ziyaretçinin WhatsApp'ında hazır bekleyen açılış
+ * cümlesi. Ziyaretçinin ağzından yazılıyor — mesajı o gönderiyor.
+ */
+export const LEAD_WHATSAPP_OPENINGS: Record<LeadType, string> = {
+  CONTACT: "Merhaba, siteden mesaj gönderdim.",
+  VALUATION: "Merhaba, siteden değerleme talebi gönderdim.",
+  APPOINTMENT: "Merhaba, siteden randevu talebi gönderdim.",
+  PROPERTY_INQUIRY: "Merhaba, siteden bir ilan hakkında soru gönderdim.",
+};
+
 export const LEAD_STATUSES = ["NEW", "CONTACTED", "CLOSED"] as const;
 export type LeadStatus = (typeof LEAD_STATUSES)[number];
 

@@ -17,6 +17,14 @@ export type FormState = {
    * kaybolmasın diye değerler geri döndürülüp forma yeniden yerleştirilir.
    */
   values?: Record<string, string>;
+  /**
+   * Gönderim başarılıysa açılacak `wa.me` bağlantısı — mesaj metni hazır
+   * doldurulmuş hâlde gelir, ziyaretçinin yalnızca "Gönder"e basması kalır.
+   *
+   * Bu bir bildirim kanalı DEĞİL: mesajı ziyaretçi kendi WhatsApp hesabından
+   * yolluyor, dolayısıyla hiçbir API anahtarı ya da kurulum gerektirmiyor.
+   */
+  whatsappUrl?: string;
 };
 
 export const EMPTY_FORM_STATE: FormState = { ok: false };

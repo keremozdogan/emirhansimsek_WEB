@@ -6,6 +6,7 @@ import { Home, Ruler, User } from "lucide-react";
 import { submitValuation } from "@/app/actions/leads";
 import { EMPTY_FORM_STATE } from "@/lib/form-state";
 import { SubmitButton } from "@/components/forms/lead-form";
+import { LeadSuccess } from "@/components/forms/lead-success";
 import {
   Field,
   FormMessage,
@@ -34,7 +35,9 @@ export function ValuationForm() {
   const [state, formAction] = useActionState(submitValuation, EMPTY_FORM_STATE);
 
   if (state.ok) {
-    return <FormMessage ok message={state.message} />;
+    return (
+      <LeadSuccess message={state.message} whatsappUrl={state.whatsappUrl} />
+    );
   }
 
   // Doğrulama hatasında React alanları sıfırladığı için önceki değerler geri konur
@@ -196,6 +199,7 @@ export function ValuationForm() {
     </form>
   );
 }
+
 
 function Legend({
   Icon,
