@@ -1,4 +1,34 @@
+import { networkInterfaces } from "node:os";
+
 import type { NextConfig } from "next";
+
+/**
+ * Makinenin yerel ağ adresleri.
+ *
+ * Telefondan test ederken kullanılan IP sabit değil: farklı Wi-Fi'ya
+ * bağlanınca ya da modem yeniden başlayınca değişiyor. Elle yazılan bir adres
+ * bir sonraki gün tutmuyor ve site telefonda yine stilsiz açılıyor. Adresi
+ * elle takip etmek yerine çalışma anında tespit ediyoruz.
+ */
+function localNetworkOrigins(): string[] {
+  const found = new Set<string>();
+
+  for (const addresses of Object.values(networkInterfaces())) {
+    for (const address of addresses ?? []) {
+      if (address.family === "IPv4" && !address.internal) {
+        found.add(address.address);
+      }
+    }
+  }
+
+  // Elle eklemek gerekirse (ör. sabit bir makine adı) .env'den genişletilebilir
+  for (const extra of (process.env.DEV_NETWORK_ORIGINS ?? "").split(",")) {
+    const trimmed = extra.trim();
+    if (trimmed) found.add(trimmed);
+  }
+
+  return [...found];
+}
 
 const nextConfig: NextConfig = {
   /**
@@ -6,21 +36,15 @@ const nextConfig: NextConfig = {
    *
    * Next 16 varsayılan olarak `/_next/*` altındaki geliştirme kaynaklarını
    * yalnızca localhost'a veriyor; başka bir kaynaktan gelen istek engelleniyor.
-   * Telefondan `http://192.168.1.100:3009` açıldığında sayfanın HTML'i geliyor
-   * ama CSS ve HMR engellendiği için site stilsiz, bozuk görünüyor.
+   * Telefondan yerel IP ile açıldığında sayfanın HTML'i geliyor ama CSS ve HMR
+   * engellendiği için site stilsiz, bozuk görünüyor.
    *
-   * Adres kişiden kişiye değiştiği için koda gömülmedi: her geliştirici kendi
-   * yerel IP'sini .env dosyasına yazar. Sunucu başlarken "Network:" satırında
-   * hangi adresi ilan ettiğini söylüyor; oradaki IP buraya yazılacak olan.
-   *
-   *   DEV_NETWORK_ORIGINS="192.168.1.100"
+   * Adresler her açılışta makineden okunuyor (bkz. localNetworkOrigins), yani
+   * ağ değişince kimsenin bir şey güncellemesi gerekmiyor.
    *
    * Yalnızca `next dev` için geçerli; yayın derlemesini etkilemez.
    */
-  allowedDevOrigins: (process.env.DEV_NETWORK_ORIGINS ?? "")
-    .split(",")
-    .map((origin) => origin.trim())
-    .filter(Boolean),
+  allowedDevOrigins: localNetworkOrigins(),
   images: {
     formats: ["image/avif", "image/webp"],
     // Tüm görseller yerel: /public/uploads altında tutuluyor.
