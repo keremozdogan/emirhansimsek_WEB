@@ -61,6 +61,7 @@ export function PropertyCard({
               alt={cover.alt || property.title}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              quality={82}
               priority={priority}
               placeholder={cover.blurDataUrl ? "blur" : undefined}
               blurDataURL={cover.blurDataUrl ?? undefined}

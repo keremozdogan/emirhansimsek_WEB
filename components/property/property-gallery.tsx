@@ -65,6 +65,13 @@ export function PropertyGallery({ images }: { images: GalleryImage[] }) {
               alt={image.alt || image.roomName || ""}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              /*
+                Varsayılan 75 yerine 82: ilan fotoğrafları hero ile aynı
+                kalitede sunulsun. next.config.ts içindeki images.qualities
+                listesi bu iki değeri taşıyor; listede olmayan bir sayı
+                sessizce en yakınına zorlanır.
+              */
+              quality={82}
               placeholder={image.blurDataUrl ? "blur" : undefined}
               blurDataURL={image.blurDataUrl ?? undefined}
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -137,6 +144,7 @@ export function PropertyGallery({ images }: { images: GalleryImage[] }) {
                   alt={active.alt || active.roomName || ""}
                   fill
                   sizes="100vw"
+                  quality={82}
                   className="object-contain"
                   priority
                 />

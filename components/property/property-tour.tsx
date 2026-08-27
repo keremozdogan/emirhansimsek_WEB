@@ -168,6 +168,7 @@ function DesktopTour({
                 fill
                 priority={index < 2}
                 sizes="100vw"
+                quality={82}
                 placeholder={image.blurDataUrl ? "blur" : undefined}
                 blurDataURL={image.blurDataUrl ?? undefined}
                 className="object-cover"
@@ -296,6 +297,7 @@ function MobileTour({
               fill
               priority={index === 0}
               sizes="100vw"
+              quality={82}
               placeholder={image.blurDataUrl ? "blur" : undefined}
               blurDataURL={image.blurDataUrl ?? undefined}
               className="object-cover"
