@@ -190,7 +190,16 @@ export const REGIONS = [
       "Portföyümün ağırlık merkezi. Osmangazi Mahallesi ve Atayolu Caddesi hattında yeni tamamlanan projeler, konut ve ticari mülkte birlikte hareket eden bir pazar oluşturuyor.",
     /** Emirhan kendi bölge yorumunu panelden yazacak */
     expertNote: "",
-    coverUrl: "/uploads/ilan/P20587627/26.webp",
+    /**
+     * Bölge kartı kapağı, P20587627 ilanının manzara karesi.
+     *
+     * Önceden aynı ilanın 26. karesiydi; o çekim bölgenin yüksekten görünümüydü
+     * ve bölge kartına uyuyordu. İlan 48 MP yeni fotoğraflarla yenilenince 26
+     * numara bir yatak odasına denk geldi — bölge kartında daire içi göstermek
+     * yanlış olurdu. Yeni sette bölgeyi anlatan tek kare 07 (daireden görünen
+     * cadde ve yerleşim), kapak ona alındı.
+     */
+    coverUrl: "/uploads/ilan/P20587627/04.webp",
     avgPricePerSqm: null,
     avgRent: null,
     highlights: [
@@ -211,7 +220,15 @@ export const REGIONS = [
     description:
       "Ofisimizin de bulunduğu ilçe. Mimar Sinan Mahallesi çevresinde vadi ve şehir manzaralı, düşük yoğunluklu yapılaşma öne çıkıyor.",
     expertNote: "",
-    coverUrl: "/uploads/ilan/P28481717/44.webp",
+    /**
+     * Bölge kartı kapağı, P28481717 ilanının manzara karesi.
+     *
+     * Önceden aynı ilanın 44. karesiydi; ilan 47 fotoğraftan 25'e indirilince
+     * o dosya artık yok ve kart kırık görsel gösterecekti. Yeni sette bölgeyi
+     * en iyi anlatan kare bu: Çekmeköy'ün vadisi, çevre yerleşimi ve arkada
+     * şehir silüeti birlikte görünüyor.
+     */
+    coverUrl: "/uploads/ilan/P28481717/15.webp",
     avgPricePerSqm: null,
     avgRent: null,
     highlights: [
@@ -279,101 +296,137 @@ Isıtma doğalgaz kombi, tapu durumu temiz ve **krediye uygun**.`,
       { label: "Ayrı Çamaşır Odası", group: "INTERIOR" },
       { label: "Krediye Uygun", group: "INTERIOR" },
     ],
+    /**
+     * Tur sırası, dosya sırası DEĞİLDİR: dosyalar kaynak çekim sırasında durur
+     * (01.webp = IMG_6926), buradaki dizilim gezinti akışını ve kart kapağını
+     * belirler (bkz. scripts/sync-content.mts → buildImages).
+     *
+     * Çekimden 58 kare geldi, yayına 20'si alındı.
+     *
+     * Elemede İKİ TUR gerekti ve ikincisi şunu öğretti: kareleri küçük ızgara
+     * görüntülerinden değerlendirmek yetmiyor. İlk turda ızgaradan bakıp
+     * yazılan altyazıların beşi yanlıştı — aynadan "cam bölme", ayaklı
+     * gardıroptan "gömme dolap", çamaşır makinesinin durduğu nişten "depo",
+     * buzdolabı-ocak-fırınlı bir mutfaktan "çay ocağı" çıkmıştı. Aynı sebeple
+     * dört tekrar da gözden kaçmıştı. İkinci turda her kare tek tek, tam
+     * boyutta açılıp altyazısıyla karşılaştırıldı.
+     *
+     * Kural: bir kareye oda adı ve altyazı yazmadan önce O KAREYİ tek başına,
+     * büyük boyda aç. Izgara, tekrarı görmeye yarar; içeriği okumaya yaramaz.
+     */
     tour: [
       {
-        index: 3,
+        index: 14,
+        roomName: "Teras",
+        caption:
+          "Üst kattaki teras dairenin cephesi boyunca uzanıyor; sağdaki kapı doğrudan oturma alanına açılıyor.",
+      },
+      {
+        index: 19,
         roomName: "Bina",
-        caption:
-          "2021 yapımı bina, sakin bir sokakta. Çekmeköy Mimar Sinan Mahallesi'nde, vadiye bakan yamaçta konumlanıyor.",
+        caption: "Binanın cadde cephesi.",
       },
       {
-        index: 5,
+        index: 20,
+        roomName: "Sokak",
+        caption:
+          "Binanın bulunduğu sokak; karşı tarafta ağaçlıklı alan bulunuyor.",
+      },
+      {
+        index: 18,
+        roomName: "Bina Girişi",
+        caption: "Bina girişi ve asansör; ortak alanlar mermer kaplı.",
+      },
+      {
+        index: 17,
         roomName: "Daire Girişi",
-        caption:
-          "Bina içi merdiven ve daire kapısı. Katta sınırlı sayıda daire bulunuyor.",
-      },
-      {
-        index: 13,
-        roomName: "Salon",
-        caption:
-          "Ana oturma alanı. Gün ışığı öğleden sonra boydan boya içeri giriyor; tavan bordürleri ve gizli aydınlatma mevcut.",
-      },
-      {
-        index: 12,
-        roomName: "Salon",
-        caption:
-          "Salonun diğer açısı. TV duvarı ve oturma grubu yerleşimi olduğu gibi teslim ediliyor.",
+        caption: "Daire kapısı sahanlıkta; asansör ve merdiven yan yana.",
       },
       {
         index: 8,
-        roomName: "Mutfak",
+        roomName: "Giriş Holü",
         caption:
-          "Alt kat mutfağı, yemek alanıyla birleşik. Ankastre set ve dolaplar takılı durumda.",
+          "Giriş holü. Koridor odalara açılıyor, sağdaki ahşap merdiven üst kata çıkıyor.",
       },
       {
-        index: 6,
-        roomName: "Yemek Alanı",
+        index: 4,
+        roomName: "Salon",
         caption:
-          "Mutfağa bitişik yemek alanı. Pencereden vadi görünüyor — sabah kahvaltısının yapıldığı köşe.",
+          "Salon; pencere vadi manzarasına bakıyor. Kartonpiyer ve avize takılı.",
+      },
+      {
+        index: 5,
+        roomName: "Salon",
+        caption:
+          "Salonun televizyon duvarı tarafı; kartonpiyer içindeki gizli aydınlatma bandı yanıyor.",
+      },
+      {
+        index: 1,
+        roomName: "Mutfak",
+        caption:
+          "Mutfak ve yemek alanı bir arada. Balkon kapısı ile pencere gün ışığını içeri alıyor.",
+      },
+      {
+        index: 2,
+        roomName: "Mutfak",
+        caption:
+          "Ankastre fırın, ocak, davlumbaz ve bulaşık makinesi takılı; dolaplar duvar boyunca devam ediyor.",
+      },
+      {
+        index: 3,
+        roomName: "Balkon",
+        caption: "Daireden çıkılan balkon; önü açık, manzaraya bakıyor.",
+      },
+      {
+        index: 9,
+        roomName: "Ebeveyn Yatak Odası",
+        caption:
+          "Ebeveyn yatak odası; başucu duvarı kaplamalı, tavanda gizli aydınlatma var.",
       },
       {
         index: 10,
-        roomName: "Manzara",
-        caption:
-          "Daireden vadi ve karşı yaka görünümü. Önü açık; yapılaşma bu cepheyi kapatmıyor.",
-      },
-      {
-        index: 21,
-        roomName: "İç Merdiven",
-        caption:
-          "Katlar arası ahşap merdiven. Dubleksin iki yaşam alanını birbirine bağlıyor.",
-      },
-      {
-        index: 26,
         roomName: "Ebeveyn Yatak Odası",
         caption:
-          "Üst kattaki ebeveyn odası. Aynalı gardıroplar ve makyaj ünitesi odanın içinde yer alıyor.",
+          "Aynı odanın gardırop ve makyaj masası tarafı; kapı koridora açılıyor.",
       },
       {
-        index: 29,
-        roomName: "Giyinme Odası",
-        caption:
-          "Ebeveyn odasına bağlı giyinme alanı. Boydan boya dolap düzeni mevcut.",
+        index: 7,
+        roomName: "Yatak Odası",
+        caption: "Aynalı gardıroplu oda; kapısı koridora açılıyor.",
       },
       {
-        index: 32,
-        roomName: "Üst Kat Oturma Alanı",
-        caption:
-          "Üst kattaki ikinci oturma alanı. Aileler için ayrı bir yaşam alanı ya da çalışma köşesi olarak kullanılabiliyor.",
+        index: 11,
+        roomName: "Çocuk Odası",
+        caption: "Çocuk odası olarak kullanılan oda.",
       },
       {
-        index: 24,
-        roomName: "İkinci Mutfak",
-        caption:
-          "Üst katta ilave mutfak. Dubleks kullanımda üst katı bağımsız hale getiriyor.",
-      },
-      {
-        index: 37,
+        index: 6,
         roomName: "Banyo",
         caption:
-          "Duşakabinli banyo. Dairede iki banyo bulunuyor, ikisi de kullanıma hazır.",
+          "Banyo; duşakabin, asma klozet ve lavabo dolabı takılı, havluluk ısıtmalı.",
       },
       {
-        index: 35,
-        roomName: "Çocuk Odası",
-        caption: "Çocuk odası, üst katta ve arka cepheye bakıyor.",
-      },
-      {
-        index: 41,
-        roomName: "Çatı Terası",
+        index: 12,
+        roomName: "Üst Kat Oturma",
         caption:
-          "Çatı terası — bu dairenin en ayırt edici bölümü. Yazın kullanım alanını belirgin şekilde genişletiyor.",
+          "Üst kattaki ikinci oturma alanı; çatı eğimi ve pencereler mekânı ferah tutuyor.",
       },
       {
-        index: 44,
-        roomName: "Terastan Manzara",
+        index: 13,
+        roomName: "Üst Kat Oturma",
+        caption: "Aynı alanın yemek köşesi; terasa açılan kapı sağda kalıyor.",
+      },
+      {
+        index: 16,
+        roomName: "Üst Kat Mutfak",
         caption:
-          "Terastan vadi ve şehir silueti. Akşam saatlerinde en çok vakit geçirilen yer burası.",
+          "Üst kattaki mutfak; buzdolabı, ocak, fırın ve eviye takılı. Üst kat, alt kata inmeden kullanılabiliyor.",
+      },
+      {
+        index: 15,
+        roomName: "Manzara",
+        caption:
+          "Terastan görünen manzara: vadi, park ve çevredeki yerleşim.",
       },
     ],
   },
@@ -428,95 +481,118 @@ Isıtma merkezi sistem, pay ölçerli — kullandığınız kadar ödersiniz. **
       { label: "Cadde Cepheli", group: "ENVIRONMENT" },
       { label: "Asansör", group: "EXTERIOR" },
     ],
+    /**
+     * Tur sırası, dosya sırası DEĞİLDİR: dosyalar kaynak çekim sırasında durur
+     * (01.webp = IMG_8120), buradaki dizilim ise gezinti akışını ve kart
+     * kapağını belirler (bkz. scripts/sync-content.mts → buildImages).
+     *
+     * Çekimden 26 kare geldi, yayına 15'i alındı. Elenenler iki gruptaydı:
+     * aynı odanın 3-4 açısı (galeriyi tekrara boğuyordu) ve odak tutmamış
+     * kareler. Ölçüm için Sobel gradyanının en üst %1'i kullanıldı — boş beyaz
+     * odalarda doku düşük olduğu için Laplace varyansı yanıltıyor, kenar
+     * keskinliği ise kapı/pencere doğramasından güvenilir okunuyor. Ortancanın
+     * %80'inin altındaki kareler elendi.
+     *
+     * Yatak odaları numaralandırılmadı ve ebeveyn/çocuk ayrımı yapılmadı:
+     * fotoğraflardan hangi odanın hangisi olduğu kesin ayırt edilemiyor.
+     * Aynı sebeple banyo sayısı da iddia edilmiyor — gelen iki banyo karesi
+     * aynı mekânın iki açısıydı, ikisinden biri alındı.
+     */
     tour: [
       {
-        index: 1,
-        roomName: "Bina",
-        caption:
-          "2025'te tamamlanan bina. Atayolu Caddesi'ne cepheli, çevre yapılaşması yeni.",
-      },
-      {
-        index: 2,
-        roomName: "Cadde",
-        caption:
-          "Bina önündeki cadde. Ulaşım ve günlük ihtiyaçlar yürüme mesafesinde.",
-      },
-      {
-        index: 3,
-        roomName: "Giriş Holü",
-        caption:
-          "Daire girişi. Uzun hol odaları birbirinden ayırıyor; oda kapıları karşı karşıya gelmiyor.",
-      },
-      {
-        index: 14,
+        index: 11,
         roomName: "Salon",
         caption:
-          "Salon iki pencereli ve gizli aydınlatmalı. Gün boyu doğal ışık alıyor, balkon çıkışı buradan veriliyor.",
+          "Salon çift balkon kapısıyla iki yönden ışık alıyor. Tavanda gizli aydınlatma bandı hazır.",
       },
       {
-        index: 16,
+        index: 13,
         roomName: "Salon",
         caption:
-          "Salonun diğer açısı. Boş teslim edildiği için yerleşimi tamamen kendinize göre kurabilirsiniz.",
+          "Köşe cam bölümü salonu genişletiyor; oturma ve yemek alanı ayrımına elverişli.",
+      },
+      {
+        index: 12,
+        roomName: "Salon",
+        caption:
+          "Salonun diğer açısı. Boş teslim edildiği için yerleşimi kendinize göre kurabilirsiniz.",
       },
       {
         index: 6,
         roomName: "Mutfak",
         caption:
-          "Mutfak dolapları takılı, ankastre nişleri hazır. Tezgah boyunca doğal ışık geliyor.",
+          "Mutfak pencereli ve gün ışığı alıyor. Dolaplar takılı, tezgah hazır.",
       },
       {
         index: 8,
         roomName: "Mutfak",
+        caption: "Tezgah ve alt-üst dolap düzeni. Eviye bağlantıları yerinde.",
+      },
+      {
+        index: 7,
+        roomName: "Mutfak",
         caption:
-          "Tezgah ve alt-üst dolap düzeni. Buzdolabı ve bulaşık makinesi yerleri ayrılmış.",
+          "Ankastre nişleri ve davlumbaz bacası hazır bekliyor; cihazlar takılarak kullanıma geçilir.",
+      },
+      {
+        index: 14,
+        roomName: "Koridor",
+        caption:
+          "Odaları birbirine bağlayan koridor. Kapılar takılı, aydınlatma spotları yerinde.",
+      },
+      {
+        index: 1,
+        roomName: "Giriş Holü",
+        caption:
+          "Daire girişi. Uzun hol yaşam alanını yatak odalarından ayırıyor; camlı bölme henüz koruyucu filmiyle duruyor.",
+      },
+      {
+        index: 2,
+        roomName: "Yatak Odası",
+        caption:
+          "Pencereli yatak odası, laminat parke döşeli. Cephe yeşile bakıyor.",
+      },
+      {
+        index: 15,
+        roomName: "Yatak Odası",
+        caption:
+          "İkinci yatak odası, geniş açıdan. Pencere karşı yapılaşmaya bakıyor.",
+      },
+      {
+        index: 3,
+        roomName: "Yatak Odası",
+        caption: "Üçüncü oda; kapısı hole açılıyor. Zemin laminat parke.",
+      },
+      {
+        index: 5,
+        roomName: "Banyo",
+        caption:
+          "Banyo kullanıma hazır: duşakabin, asma klozet, lavabo ve ayna takılı.",
       },
       {
         index: 9,
         roomName: "Balkon",
         caption:
-          "Balkondan çevre görünümü. Önü açık, karşı bina cepheyi kapatmıyor.",
+          "Balkon korkulukları takılı. Önü açık, karşı bina cephesi kapatmıyor.",
       },
       {
+        index: 4,
+        roomName: "Manzara",
+        caption:
+          "Daireden görünen manzara: cadde, ağaçlıklı şerit ve arkasındaki yerleşim.",
+      },
+      {
+        /**
+         * Önce "Kiler" yazılmıştı — yanlıştı. Karede havalandırma ızgarası,
+         * şap bırakılmış zemin ve dışa açılan kapı var; kapalı bir depo değil,
+         * servis balkonu. Fotoğraftan oda adı çıkarırken tahmin yürütmenin
+         * bedeli bu: yanlış etiket, ilanı gezen kişiye olmayan bir hacim
+         * vaat ediyor.
+         */
         index: 10,
-        roomName: "Ebeveyn Yatak Odası",
+        roomName: "Servis Balkonu",
         caption:
-          "Ana yatak odası, laminat parke döşeli ve pencereli. Çift kişilik yatak ve gardırop rahat sığıyor.",
-      },
-      {
-        index: 11,
-        roomName: "Yatak Odası",
-        caption: "İkinci yatak odası. Sokak sesinden uzak, sakin cephede.",
-      },
-      {
-        index: 18,
-        roomName: "Çocuk Odası",
-        caption:
-          "Üçüncü oda. Çocuk odası veya çalışma odası olarak kullanılabilir.",
-      },
-      {
-        index: 13,
-        roomName: "Banyo",
-        caption:
-          "Banyo kullanıma hazır: duşakabin, lavabo ve klozet takılı, seramikleri yeni.",
-      },
-      {
-        index: 24,
-        roomName: "İkinci Banyo",
-        caption:
-          "Dairedeki ikinci banyo. Sabah yoğunluğunu bölmesi açısından pratik bir ayrıntı.",
-      },
-      {
-        index: 20,
-        roomName: "Koridor",
-        caption:
-          "Odaları birbirine bağlayan koridor. Gömme dolap nişleri hol boyunca devam ediyor.",
-      },
-      {
-        index: 26,
-        roomName: "Çevre",
-        caption:
-          "Bölgenin yüksekten görünümü. Cadde bağlantısı ve çevredeki yeni yapılaşma.",
+          "Holden çıkılan servis balkonu. Çamaşır makinesi bağlantısı ve havalandırma için ayrılmış alan.",
       },
     ],
   },
