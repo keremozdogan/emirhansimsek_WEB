@@ -31,12 +31,12 @@ export function getMortgageRate(): MortgageRate {
   const parsed = Number(raw?.replace(",", "."));
 
   // Geçersiz ya da saçma bir değer koda sızmasın: 0 ile 20 arası kabul
-  const monthlyPercent =
-    Number.isFinite(parsed) && parsed > 0 && parsed < 20
-      ? parsed
-      : MORTGAGE_DEFAULTS.monthlyRatePercent;
+  const isValid = Number.isFinite(parsed) && parsed > 0 && parsed < 20;
+  const monthlyPercent = isValid
+    ? parsed
+    : MORTGAGE_DEFAULTS.monthlyRatePercent;
 
-  if (raw && monthlyPercent === MORTGAGE_DEFAULTS.monthlyRatePercent) {
+  if (raw && !isValid) {
     console.warn(
       `[kredi] MORTGAGE_MONTHLY_RATE okunamadı ("${raw}"), koddaki varsayılan kullanılıyor.`,
     );
