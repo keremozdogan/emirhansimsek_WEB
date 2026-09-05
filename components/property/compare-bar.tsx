@@ -55,7 +55,7 @@ export function CompareBar() {
               </button>
               <Link
                 href="/karsilastir"
-                className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-400"
+                className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-400"
               >
                 Karşılaştır
               </Link>

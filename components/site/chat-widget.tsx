@@ -169,7 +169,7 @@ export function ChatWidget({ whatsapp }: { whatsapp: string }) {
 
         Panel açıkken tamamen gizleniyor: daha önce çarpıya dönüşüyordu ve
         panelin kendi kapatma düğmesiyle birlikte ekranda iki kapatma birden
-        oluyordu. Büyük kırmızı çarpı hem gereksiz hem de dikkat çekiciliğiyle
+        oluyordu. Büyük dolu renkli çarpı hem gereksiz hem de dikkat çekiciliğiyle
         panelin içeriğinin önüne geçiyordu.
       */}
       <AnimatePresence>
@@ -183,7 +183,7 @@ export function ChatWidget({ whatsapp }: { whatsapp: string }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 1.2, duration: 0.4 }}
-            className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom))] right-4 z-50 flex size-14 items-center justify-center rounded-full border border-ink-600 bg-brand-500 text-white shadow-lg shadow-black/40 transition-colors hover:bg-brand-600 lg:bottom-6 lg:right-6"
+            className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom))] right-4 z-50 flex size-14 items-center justify-center rounded-full border border-brand-600 bg-brand-500 text-ink-950 shadow-lg shadow-brand-700/30 transition-colors hover:bg-brand-400 lg:bottom-6 lg:right-6"
           >
             <MessageSquare className="size-5" />
           </motion.button>
@@ -308,7 +308,7 @@ export function ChatWidget({ whatsapp }: { whatsapp: string }) {
                 type="submit"
                 disabled={pending || input.trim().length === 0}
                 aria-label="Gönder"
-                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:bg-ink-600 disabled:text-cream-500"
+                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-500 text-ink-950 transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:bg-ink-600 disabled:text-cream-500"
               >
                 <Send className="size-4" />
               </button>
@@ -346,7 +346,7 @@ function Bubble({
         className={cn(
           "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
           isUser
-            ? "bg-brand-500 text-white"
+            ? "bg-brand-500 text-ink-950"
             : "border border-ink-700 bg-ink-850 text-cream-200",
         )}
       >

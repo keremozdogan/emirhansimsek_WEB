@@ -81,7 +81,7 @@ export function PropertyCard({
           <div className="scrim-bottom absolute inset-0 opacity-80" />
 
           <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-            <Badge tone={property.listingType === "RENT" ? "navy" : "brand"}>
+            <Badge tone={property.listingType === "RENT" ? "outline" : "brand"}>
               {LISTING_TYPE_LABELS[property.listingType as ListingType] ??
                 property.listingType}
             </Badge>

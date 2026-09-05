@@ -151,7 +151,7 @@ export function MortgageCalculator({
                 }}
                 className={`rounded-full px-3 py-1.5 text-xs transition-colors ${
                   option === termMonths
-                    ? "bg-brand-500 text-white"
+                    ? "bg-brand-500 text-ink-950"
                     : "border border-ink-600 text-cream-400 hover:border-cream-400"
                 }`}
               >

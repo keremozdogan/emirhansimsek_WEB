@@ -82,7 +82,7 @@ export default async function AdminPropertiesPage({
               href={href}
               className={`rounded-full px-4 py-2 text-sm transition-colors ${
                 activeTab === tab.key
-                  ? "bg-brand-500 text-white"
+                  ? "bg-brand-500 text-ink-950"
                   : "border border-ink-600 text-cream-400 hover:border-cream-400"
               }`}
             >
@@ -200,7 +200,7 @@ export default async function AdminPropertiesPage({
                   href={`/admin/ilanlar/${property.id}`}
                   aria-label="Düzenle"
                   title="Düzenle"
-                  className="flex size-9 items-center justify-center rounded-full bg-brand-500 text-white transition-colors hover:bg-brand-400"
+                  className="flex size-9 items-center justify-center rounded-full bg-brand-500 text-ink-950 transition-colors hover:bg-brand-400"
                 >
                   <Pencil className="size-4" />
                 </Link>

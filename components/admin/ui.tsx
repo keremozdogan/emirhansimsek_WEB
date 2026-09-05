@@ -28,7 +28,7 @@ export function AdminPageHeader({
       {action ? (
         <Link
           href={action.href}
-          className="inline-flex h-11 shrink-0 items-center gap-2 self-start rounded-full bg-brand-500 px-6 text-sm font-medium text-white transition-colors hover:bg-brand-400 sm:self-auto"
+          className="inline-flex h-11 shrink-0 items-center gap-2 self-start rounded-full bg-brand-500 px-6 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-400 sm:self-auto"
         >
           <Plus className="size-4" />
           {action.label}
@@ -75,7 +75,7 @@ export function EmptyState({
       {action ? (
         <Link
           href={action.href}
-          className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-brand-500 px-6 text-sm font-medium text-white transition-colors hover:bg-brand-400"
+          className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-brand-500 px-6 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-400"
         >
           <Plus className="size-4" />
           {action.label}
@@ -125,8 +125,10 @@ export function StatusPill({
   const tones = {
     green: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
     amber: "bg-gold-400/15 text-gold-400 border-gold-400/30",
-    red: "bg-brand-500/15 text-brand-400 border-brand-500/30",
-    blue: "bg-navy-500/25 text-blue-300 border-navy-500/40",
+    // Hata tonu brand'den koparıldı: brand artık altın, kırmızı yalnızca
+    // durum rengi olarak `danger` rampasında yaşıyor.
+    red: "bg-danger-500/15 text-danger-400 border-danger-500/30",
+    blue: "bg-cream-100/8 text-cream-200 border-cream-100/20",
     gray: "bg-white/5 text-cream-400 border-ink-600",
   };
 

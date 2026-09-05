@@ -59,7 +59,7 @@ export function AdminNav({
             <Icon className="size-4" />
             {label}
             {href === "/admin/talepler" && newLeadCount > 0 ? (
-              <span className="ml-auto flex size-5 items-center justify-center rounded-full bg-brand-500 text-[10px] font-semibold text-white">
+              <span className="ml-auto flex size-5 items-center justify-center rounded-full bg-brand-500 text-[10px] font-semibold text-ink-950">
                 {newLeadCount}
               </span>
             ) : null}

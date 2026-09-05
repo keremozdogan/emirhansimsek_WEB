@@ -136,7 +136,7 @@ export default async function AdminTestimonialsPage({
                 <Link
                   href={`/admin/referanslar?id=${testimonial.id}`}
                   aria-label="Düzenle"
-                  className="flex size-9 items-center justify-center rounded-full bg-brand-500 text-white transition-colors hover:bg-brand-400"
+                  className="flex size-9 items-center justify-center rounded-full bg-brand-500 text-ink-950 transition-colors hover:bg-brand-400"
                 >
                   <Pencil className="size-4" />
                 </Link>

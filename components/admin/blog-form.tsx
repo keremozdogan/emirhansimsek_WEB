@@ -71,7 +71,7 @@ export function BlogForm({ values }: { values: BlogFormValues }) {
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium uppercase tracking-[0.14em] text-cream-400">
-            İçerik <span className="text-brand-500">*</span>
+            İçerik <span className="text-danger-400">*</span>
           </span>
           <div className="flex items-center gap-3">
             <span className="text-xs text-cream-500">
@@ -119,7 +119,7 @@ export function BlogForm({ values }: { values: BlogFormValues }) {
         ) : null}
 
         {state.errors?.contentMarkdown ? (
-          <span className="text-xs text-brand-400">
+          <span className="text-xs text-danger-400">
             {state.errors.contentMarkdown}
           </span>
         ) : null}
@@ -164,7 +164,7 @@ function TabButton({
       onClick={onClick}
       className={cn(
         "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs transition-colors",
-        active ? "bg-brand-500 text-white" : "text-cream-400 hover:text-cream-50",
+        active ? "bg-brand-500 text-ink-950" : "text-cream-400 hover:text-cream-50",
       )}
     >
       {children}

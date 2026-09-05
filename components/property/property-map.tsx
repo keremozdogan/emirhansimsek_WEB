@@ -16,13 +16,13 @@ import "leaflet/dist/leaflet.css";
  * `next/dynamic` ile `ssr: false` olarak yüklenmelidir (Leaflet `window` ister).
  */
 
-/** RE/MAX kırmızısında sade bir konum işareti — varsayılan PNG ikonuna gerek kalmıyor */
+/** Marka altınında sade bir konum işareti — varsayılan PNG ikonuna gerek kalmıyor */
 const markerIcon = L.divIcon({
   className: "",
   html: `<span style="
     display:block;width:22px;height:22px;border-radius:9999px;
-    background:#dc1c2e;border:3px solid #f7f6f4;
-    box-shadow:0 0 0 6px rgba(220,28,46,.25);
+    background:#c9a45c;border:3px solid #08080a;
+    box-shadow:0 0 0 6px rgba(201,164,92,.22);
   "></span>`,
   iconSize: [22, 22],
   iconAnchor: [11, 11],

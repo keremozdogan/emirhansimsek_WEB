@@ -133,7 +133,7 @@ export function PropertyFilters({ options }: { options: FilterOptions }) {
             <SlidersHorizontal className="size-4" />
             Filtreler
             {activeCount > 0 ? (
-              <span className="flex size-5 items-center justify-center rounded-full bg-brand-500 text-[10px] font-semibold text-white">
+              <span className="flex size-5 items-center justify-center rounded-full bg-brand-500 text-[10px] font-semibold text-ink-950">
                 {activeCount}
               </span>
             ) : null}
@@ -257,7 +257,7 @@ function TabButton({
       onClick={onClick}
       className={cn(
         "rounded-full px-5 py-2 text-sm transition-colors",
-        active ? "bg-brand-500 text-white" : "text-cream-400 hover:text-cream-50",
+        active ? "bg-brand-500 text-ink-950" : "text-cream-400 hover:text-cream-50",
       )}
     >
       {children}

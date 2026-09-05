@@ -173,7 +173,7 @@ export function ImageManager({
       </div>
 
       {error ? (
-        <p className="rounded-xl border border-brand-500/40 bg-brand-500/10 px-4 py-3 text-sm text-brand-200">
+        <p className="rounded-xl border border-danger-500/40 bg-danger-500/10 px-4 py-3 text-sm text-danger-200">
           {error}
         </p>
       ) : null}
@@ -206,7 +206,7 @@ export function ImageManager({
                       className="object-cover"
                     />
                     {index === 0 ? (
-                      <span className="absolute left-2 top-2 rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-semibold text-white">
+                      <span className="absolute left-2 top-2 rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-semibold text-ink-950">
                         KAPAK
                       </span>
                     ) : null}

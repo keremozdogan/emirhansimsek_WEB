@@ -67,7 +67,7 @@ export function MortgagePlanner({
               }}
               className={`rounded-full px-3.5 py-1.5 text-xs transition-colors ${
                 preset === price
-                  ? "bg-brand-500 text-white"
+                  ? "bg-brand-500 text-ink-950"
                   : "border border-ink-600 text-cream-400 hover:border-cream-400"
               }`}
             >

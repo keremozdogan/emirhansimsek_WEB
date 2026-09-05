@@ -17,7 +17,7 @@ export default function NotFound() {
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Link
             href="/portfoy"
-            className="inline-flex h-12 items-center rounded-full bg-brand-500 px-7 text-sm font-medium text-white transition-colors hover:bg-brand-400"
+            className="inline-flex h-12 items-center rounded-full bg-brand-500 px-7 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-400"
           >
             Portföye Git
           </Link>

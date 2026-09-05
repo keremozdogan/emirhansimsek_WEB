@@ -9,8 +9,11 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
+  // `btn-gold` globals.css'te: düz dolgu yerine eğik metalik degrade.
+  // Gölge de altına çevrildi — siyah gölge altın düğmenin altında kirli
+  // bir hale bırakıyordu.
   primary:
-    "bg-brand-500 text-white hover:bg-brand-400 shadow-[0_8px_30px_-12px] shadow-brand-500/70",
+    "btn-gold shadow-[0_10px_34px_-14px] shadow-brand-500/60 hover:shadow-brand-400/70",
   outline:
     "border border-ink-500 text-cream-50 hover:border-cream-400 hover:bg-white/5",
   ghost: "text-cream-200 hover:text-cream-50 hover:bg-white/5",

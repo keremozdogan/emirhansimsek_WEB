@@ -72,7 +72,7 @@ export default async function AdminLeadsPage({
             }
             className={`rounded-full px-4 py-2 text-sm transition-colors ${
               (status ?? "") === tab.key
-                ? "bg-brand-500 text-white"
+                ? "bg-brand-500 text-ink-950"
                 : "border border-ink-600 text-cream-400 hover:border-cream-400"
             }`}
           >

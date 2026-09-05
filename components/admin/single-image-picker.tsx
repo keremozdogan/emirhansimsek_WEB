@@ -105,7 +105,7 @@ export function SingleImagePicker({
       {hint && !error ? (
         <span className="text-xs text-cream-500">{hint}</span>
       ) : null}
-      {error ? <span className="text-xs text-brand-400">{error}</span> : null}
+      {error ? <span className="text-xs text-danger-400">{error}</span> : null}
     </div>
   );
 }

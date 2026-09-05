@@ -27,14 +27,14 @@ export function Field({
     <label className={cn("flex flex-col gap-2", className)}>
       <span className="text-xs font-medium uppercase tracking-[0.14em] text-cream-400">
         {label}
-        {required ? <span className="ml-1 text-brand-500">*</span> : null}
+        {required ? <span className="ml-1 text-danger-400">*</span> : null}
       </span>
       {children}
       {hint && !error ? (
         <span className="text-xs text-cream-500">{hint}</span>
       ) : null}
       {error ? (
-        <span className="flex items-center gap-1.5 text-xs text-brand-400">
+        <span className="flex items-center gap-1.5 text-xs text-danger-400">
           <AlertCircle className="size-3.5 shrink-0" />
           {error}
         </span>
@@ -91,7 +91,7 @@ export function Checkbox({
         <span className="text-xs leading-relaxed text-cream-400">{label}</span>
       </label>
       {error ? (
-        <span className="flex items-center gap-1.5 text-xs text-brand-400">
+        <span className="flex items-center gap-1.5 text-xs text-danger-400">
           <AlertCircle className="size-3.5 shrink-0" />
           {error}
         </span>
@@ -147,7 +147,7 @@ export function FormMessage({
         "flex items-start gap-3 rounded-xl border px-4 py-3 text-sm",
         ok
           ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-200"
-          : "border-brand-500/40 bg-brand-500/10 text-brand-200",
+          : "border-danger-500/40 bg-danger-500/10 text-danger-200",
       )}
     >
       {ok ? (

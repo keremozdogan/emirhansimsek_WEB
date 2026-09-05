@@ -40,14 +40,17 @@ export function Eyebrow({
   return <span className={cn("eyebrow", className)}>{children}</span>;
 }
 
-type BadgeTone = "brand" | "neutral" | "success" | "gold" | "navy";
+type BadgeTone = "brand" | "neutral" | "success" | "gold" | "outline";
 
 const tones: Record<BadgeTone, string> = {
-  brand: "bg-brand-500 text-white",
+  brand: "bg-brand-500 text-ink-950",
   neutral: "bg-white/10 text-cream-200 backdrop-blur-sm",
   success: "bg-emerald-500/90 text-white",
   gold: "bg-gold-400 text-ink-900",
-  navy: "bg-navy-500 text-white",
+  // Dolu altının karşıtı: aynı metal, çerçeveli. Lacivert rozet siyah-altın
+  // paletinde yabancı duruyordu; kiralık/satılık ayrımı artık dolgu ile
+  // konturun farkından okunuyor, ikinci bir renk eklemeden.
+  outline: "border border-brand-500/40 bg-ink-950/60 text-brand-200 backdrop-blur-sm",
 };
 
 export function Badge({

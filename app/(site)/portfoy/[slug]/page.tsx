@@ -174,7 +174,7 @@ export default async function PropertyDetailPage({
           <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-2">
-                <Badge tone={isRent ? "navy" : "brand"}>
+                <Badge tone={isRent ? "outline" : "brand"}>
                   {LISTING_TYPE_LABELS[property.listingType as ListingType]}
                 </Badge>
                 <Badge tone="neutral">
