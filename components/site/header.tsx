@@ -28,8 +28,25 @@ export function Header({
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    /*
+      rAF ile kısıtlanıyor: kaydırma olayı saniyede onlarca kez tetikleniyor ve
+      her birinde setState çağırmak gereksiz render demek. Bir sonraki boyama
+      karesine kadar tek okuma yapılıyor.
+
+      Eşik 24 → 40 piksele çekildi; 24'te başlık daha ilk minik kaydırmada
+      yerinden oynuyordu.
+    */
+    let ticking = false;
+    const oku = () => {
+      ticking = false;
+      setScrolled(window.scrollY > 40);
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(oku);
+    };
+    oku();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -50,7 +67,7 @@ export function Header({
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
           scrolled
-            ? "surface-glass border-b border-ink-700/80 py-3"
+            ? "kaydirildi surface-glass border-b border-ink-700/80 py-3"
             : "border-b border-transparent py-5",
         )}
       >
@@ -62,7 +79,7 @@ export function Header({
               "Emirhan / Şimşek" iki satıra bölünüyordu. İsim asla bölünmemeli;
               daralan alanda kısalması gereken ünvandır.
             */}
-            <span className="shrink-0 whitespace-nowrap font-display text-lg tracking-tight sm:text-xl">
+            <span className="baslik-marka shrink-0 whitespace-nowrap font-display text-lg tracking-tight sm:text-xl">
               {first}{" "}
               <span className="text-brand-500">{rest.join(" ")}</span>
             </span>

@@ -61,7 +61,23 @@ export function HeroMedia({
         <source media="(min-width: 768px)" srcSet={wide.srcSet} sizes="100vw" />
       ) : null}
       <source srcSet={baseSrcSet} sizes="100vw" />
-      <img {...rest} alt={alt} className="size-full object-cover" />
+      {/*
+        LCP nitelikleri AÇIKÇA yazılıyor.
+
+        `getImageProps` bu üçünü döndürmesine rağmen `<picture>` içinde düz bir
+        `<img>`e yayıldığında çıktıda görünmüyorlardı: sayfanın en büyük öğesi
+        olan hero, tarayıcıya "öncelikli" diye bildirilmiyordu. Sonradan gelen
+        `rest` bir değer taşıyorsa bunlar onunla ezilmesin diye yayılımdan
+        SONRA yazıldı.
+      */}
+      <img
+        {...rest}
+        alt={alt}
+        className="size-full object-cover"
+        fetchPriority="high"
+        loading="eager"
+        decoding="async"
+      />
     </picture>
   );
 }

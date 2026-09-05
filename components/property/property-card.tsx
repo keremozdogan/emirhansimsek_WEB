@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { VtLink } from "@/components/animation/vt-link";
 import { Bed, Clock, MapPin, Maximize } from "lucide-react";
 
 import { FavoriteButton } from "@/components/property/favorite-button";
@@ -49,12 +49,12 @@ export function PropertyCard({
   return (
     <article
       className={cn(
-        "group relative overflow-hidden rounded-card border border-ink-700 bg-ink-850 transition-colors duration-500 hover:border-ink-500",
+        "kart group relative overflow-hidden rounded-card border border-ink-700 bg-ink-850 transition-colors duration-500 hover:border-ink-500",
         className,
       )}
     >
-      <Link href={`/portfoy/${property.slug}`} className="block">
-        <div className="relative aspect-4/3 overflow-hidden bg-ink-800">
+      <VtLink href={`/portfoy/${property.slug}`} className="block">
+        <div className="gorsel-kutu relative aspect-4/3 overflow-hidden bg-ink-800">
           {cover ? (
             <Image
               src={cover.url}
@@ -66,9 +66,15 @@ export function PropertyCard({
               placeholder={cover.blurDataUrl ? "blur" : undefined}
               blurDataURL={cover.blurDataUrl ?? undefined}
               className={cn(
-                "object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07]",
+                "vt object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07]",
                 isClosed && "grayscale-[0.45]",
               )}
+              /*
+                Detay sayfasındaki aynı isimli görselle eşleşir ve kart açılırken
+                oraya doğru morph eder. `id` cuid olduğu için ad her zaman geçerli
+                bir <custom-ident>.
+              */
+              style={{ "--vt-name": `ilan-${property.id}` } as React.CSSProperties}
             />
           ) : null}
 
@@ -90,7 +96,7 @@ export function PropertyCard({
           </div>
 
           <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-            <p className="font-display text-2xl leading-none text-cream-50 drop-shadow-lg">
+            <p className="kart-fiyat font-display text-2xl leading-none text-cream-50 drop-shadow-lg">
               {formatPrice(property.price, property.currency)}
               {property.listingType === "RENT" ? (
                 <span className="ml-1 font-sans text-xs font-normal text-cream-200">
@@ -144,7 +150,7 @@ export function PropertyCard({
             ) : null}
           </div>
         </div>
-      </Link>
+      </VtLink>
 
       <div className="absolute right-4 top-4">
         <FavoriteButton propertyId={property.id} title={property.title} />

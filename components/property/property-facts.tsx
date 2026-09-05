@@ -1,3 +1,4 @@
+import { RevealGroupCss } from "@/components/animation/reveal-group";
 import { FEATURE_GROUP_LABELS, type FeatureGroup } from "@/lib/constants";
 import { formatArea, formatPrice } from "@/lib/utils";
 
@@ -89,9 +90,13 @@ export function PropertyFeatureList({
   }, {});
 
   return (
-    <div className="grid gap-8 sm:grid-cols-2">
+    /*
+      Özellik grupları kaydırdıkça sırayla açılıyor. Sarmalayıcı istemci
+      bileşeni; bu dosya sunucuda kalmaya devam ediyor.
+    */
+    <RevealGroupCss className="grid gap-8 sm:grid-cols-2">
       {Object.entries(grouped).map(([group, labels]) => (
-        <div key={group}>
+        <div key={group} className="reveal">
           <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-cream-500">
             {FEATURE_GROUP_LABELS[group as FeatureGroup] ?? group}
           </h3>
@@ -107,6 +112,6 @@ export function PropertyFeatureList({
           </ul>
         </div>
       ))}
-    </div>
+    </RevealGroupCss>
   );
 }

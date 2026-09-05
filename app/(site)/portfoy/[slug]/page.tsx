@@ -156,6 +156,8 @@ export default async function PropertyDetailPage({
         images={tourImages}
         videoUrl={property.videoUrl}
         title={property.title}
+        /* Karttaki görselle aynı ad — ikisi arasında morph eder */
+        vtName={`ilan-${property.id}`}
       />
 
       {/* Başlık ve fiyat */}

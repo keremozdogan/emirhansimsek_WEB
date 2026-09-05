@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Animasyon ve mikro etkileşim katmanı — mevcut stilleri ezmez, üzerine ekler */
+@import "../styles/animations.css";
 
 /* ==========================================================================
    Lenis — KATMANSIZ (unlayered) OLMAK ZORUNDA

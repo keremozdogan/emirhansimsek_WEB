@@ -39,10 +39,20 @@ export function PropertyTour({
   images,
   videoUrl,
   title,
+  vtName,
 }: {
   images: TourImage[];
   videoUrl?: string | null;
   title: string;
+  /**
+   * Kart görselinden buraya morph eden görünüm geçişinin adı.
+   *
+   * Yalnızca İLK kareye veriliyor: `view-transition-name` sayfada benzersiz
+   * olmak zorunda, aynı adı birden çok öğeye vermek geçişi tamamen iptal
+   * ettirir. Masaüstü ve mobil varyantlardan sadece biri render edildiği için
+   * ikisine de yazmak güvenli.
+   */
+  vtName?: string | null;
 }) {
   const [isDesktop, setIsDesktop] = useState(false);
   const reduced = usePrefersReducedMotion();
@@ -60,9 +70,9 @@ export function PropertyTour({
   return (
     <section aria-label={`${title} — ev turu`}>
       {isDesktop && !reduced ? (
-        <DesktopTour images={images} videoUrl={videoUrl} />
+        <DesktopTour images={images} videoUrl={videoUrl} vtName={vtName} />
       ) : (
-        <MobileTour images={images} videoUrl={videoUrl} />
+        <MobileTour images={images} videoUrl={videoUrl} vtName={vtName} />
       )}
     </section>
   );
@@ -75,9 +85,11 @@ export function PropertyTour({
 function DesktopTour({
   images,
   videoUrl,
+  vtName,
 }: {
   images: TourImage[];
   videoUrl?: string | null;
+  vtName?: string | null;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
@@ -166,12 +178,31 @@ function DesktopTour({
                 src={image.url}
                 alt={image.alt}
                 fill
+                /*
+                  Tur SIRALI bir deneyim: kullanıcı her kareyi mutlaka görecek
+                  ve slaytların hepsi zaten üst üste, görünüm alanının içinde
+                  duruyor. Tembel yükleme burada bir şey kazandırmıyor ama
+                  kaybettiriyor: kare sırası geldiğinde henüz inmemiş olan
+                  fotoğraf yerine 16 pikselli blur placeholder görünüyordu —
+                  "bulanık açılmıyor" şikayeti buydu.
+
+                  İlk iki kare öncelikli, gerisi eager. `fetchPriority="low"`
+                  DENENDİ VE KALDIRILDI: tarayıcı son kareleri o kadar geriye
+                  atıyordu ki 15 slayttan 4'ü hiç inmiyordu — kullanıcı tam da
+                  o karelerde bulanık ekran görüyordu.
+                */
                 priority={index < 2}
+                loading={index < 2 ? undefined : "eager"}
                 sizes="100vw"
                 quality={82}
                 placeholder={image.blurDataUrl ? "blur" : undefined}
                 blurDataURL={image.blurDataUrl ?? undefined}
-                className="object-cover"
+                className={index === 0 && vtName ? "vt object-cover" : "object-cover"}
+                style={
+                  index === 0 && vtName
+                    ? ({ "--vt-name": vtName } as React.CSSProperties)
+                    : undefined
+                }
               />
             )}
           </div>
@@ -269,9 +300,11 @@ function DesktopTour({
 function MobileTour({
   images,
   videoUrl,
+  vtName,
 }: {
   images: TourImage[];
   videoUrl?: string | null;
+  vtName?: string | null;
 }) {
   return (
     <div className="bg-ink-950">
@@ -295,12 +328,22 @@ function MobileTour({
               src={image.url}
               alt={image.alt}
               fill
+              /*
+                Mobil şerit yatay kaydırılan bir liste: kullanıcı sonuna kadar
+                gitmeyebilir, ekranda aynı anda bir kare var. Burada tembel
+                yükleme doğru davranış — masaüstü turunun aksine.
+              */
               priority={index === 0}
               sizes="100vw"
               quality={82}
               placeholder={image.blurDataUrl ? "blur" : undefined}
               blurDataURL={image.blurDataUrl ?? undefined}
-              className="object-cover"
+              className={index === 0 && vtName ? "vt object-cover" : "object-cover"}
+              style={
+                index === 0 && vtName
+                  ? ({ "--vt-name": vtName } as React.CSSProperties)
+                  : undefined
+              }
             />
           )}
 

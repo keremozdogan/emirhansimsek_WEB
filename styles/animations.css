@@ -1,0 +1,252 @@
+/* ===========================================================================
+   ANİMASYON VE MİKRO ETKİLEŞİM KATMANI
+   ---------------------------------------------------------------------------
+   Saf CSS + IntersectionObserver. Kütüphane yok.
+
+   İLKE: yalnızca `transform`, `opacity` ve `filter` anime edilir. Genişlik,
+   yükseklik, konum ve box-shadow doğrudan anime edilmez — ilki yerleşimi (layout)
+   yeniden hesaplattırır, sonuncusu her karede yeniden boyama yaptırır. Gölge
+   gerektiğinde ayrı bir katmanın opaklığıyla açılır (bkz. `.kart::after`).
+
+   BU DOSYA HİÇBİR MEVCUT STİLİ EZMEZ. Sitede zaten olanlar (ken-burns, shimmer,
+   surface-glass, Framer Motion tabanlı Reveal) olduğu gibi bırakıldı; buradaki
+   sınıflar yalnızca eksik olanı ekler.
+   =========================================================================== */
+
+:root {
+  /*
+    `--ease-out` ile globals.css'teki `--ease-cinematic` aynı eğri. İkisi de
+    duruyor: mevcut bileşenler ikincisini kullanıyor, bu katman kendi adıyla
+    çalışsın diye ayrı tanımlandı. Değiştirilecekse ikisi birlikte.
+  */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --dur-fast: 180ms; /* mikro etkileşim */
+  --dur-mid: 320ms; /* hover, durum değişimi */
+  --dur-slow: 560ms; /* giriş animasyonu */
+}
+
+/* ---------------------------------------------------------------------------
+   1. Kaydırmayla giriş
+   `.reveal` başlangıç durumu, `.is-in` IntersectionObserver ile eklenir.
+   Sıralı açılım için öğeye `style="--i: 2"` verilir (bkz. useReveal).
+   --------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: transform, opacity;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Animasyon bittikten sonra katmanı GPU'da tutmanın anlamı yok */
+.reveal.is-in {
+  will-change: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   2. İlan kartı hover
+   Görselin kendi `scale` geçişi property-card.tsx içinde zaten tanımlı ve
+   ayarlanmış; buraya taşınmadı, üzerine yazılmadı.
+   --------------------------------------------------------------------------- */
+.kart {
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .kart:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/*
+  Gölge ayrı katmanda: `box-shadow` anime etmek her karede yeniden boyama
+  demek. Kartla aynı köşe yarıçapını miras alıyor ve tıklamayı engellemiyor.
+*/
+.kart::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: 0 18px 44px -14px rgb(0 0 0 / 0.6);
+  opacity: 0;
+  transition: opacity var(--dur-mid) var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .kart:hover::after {
+    opacity: 1;
+  }
+}
+
+/*
+  Fiyat bandı: YALNIZCA transform.
+
+  İstenen `opacity: 0 → 1` UYGULANMADI. Fiyat kartta her zaman görünen bir
+  bilgi; hover'a bağlansaydı dokunmatik cihazlarda hiç görünmezdi — telefonda
+  hover diye bir şey yok. Emlak kartında fiyatı gizlemek bir mikro etkileşim
+  değil, bilgi kaybı olurdu.
+*/
+.kart-fiyat {
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .kart:hover .kart-fiyat {
+    transform: translateY(-3px);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   3. Görsel yükleme — iskelet + geçiş
+   `.gorsel` başlangıçta saydam, yüklendiğinde `.yuklendi` ile açılır.
+   Altındaki iskelet parıltısı yalnızca görsel gelene kadar görünür.
+   --------------------------------------------------------------------------- */
+.gorsel-kutu {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-ink-800, #141417);
+  background-image: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.045) 40%,
+    transparent 60%
+  );
+  background-size: 220% 100%;
+  animation: gorsel-parilti 1.8s var(--ease-soft) infinite;
+}
+
+/* Görsel geldiğinde iskelet durur — boşuna kare harcamasın */
+.gorsel-kutu:has(.gorsel.yuklendi) {
+  animation: none;
+  background-image: none;
+}
+
+.gorsel {
+  opacity: 0;
+  transition: opacity 500ms var(--ease-soft);
+}
+
+.gorsel.yuklendi {
+  opacity: 1;
+}
+
+@keyframes gorsel-parilti {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -80% 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   4. Header — kaydırma durumu
+   Camlı zemin ve daralan yükseklik header.tsx içinde ZATEN var (`surface-glass`
+   + `py-3`). Burada yalnızca eksik olan ince dokunuş: marka bloğu hafifçe
+   küçülür, böylece menü kaydırıldığında yerini içeriğe bırakır.
+
+   NOT: istenen `rgb(255 255 255 / .82)` beyaz zemin uygulanmadı — site koyu
+   temalı, beyaz bir başlık çubuğu okunabilirliği bozardı. Mevcut koyu cam
+   (`surface-glass`, blur 16px) aynı işi paletle uyumlu yapıyor.
+   --------------------------------------------------------------------------- */
+.baslik-marka {
+  transition: transform var(--dur-mid) var(--ease-out);
+  transform-origin: left center;
+}
+
+.kaydirildi .baslik-marka {
+  transform: scale(0.94);
+}
+
+/* ---------------------------------------------------------------------------
+   5. Hareket azaltma tercihi
+   globals.css'te genel bir kural zaten var; burası bu katmanın kendi
+   başlangıç durumlarını da nötrler — aksi halde `.reveal` öğeleri saydam
+   kalırdı ve içerik hiç görünmezdi.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .kart,
+  .kart::after,
+  .kart-fiyat,
+  .baslik-marka {
+    transition: none;
+  }
+
+  .kart:hover,
+  .kart:hover .kart-fiyat,
+  .kaydirildi .baslik-marka {
+    transform: none;
+  }
+
+  .gorsel-kutu {
+    animation: none;
+    background-image: none;
+  }
+
+  .gorsel {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   6. Görünüm geçişleri (View Transitions API)
+   Kart görseli → ilan detay görseli morph'u.
+
+   İsim öğeye `--vt-name` özel değişkeniyle veriliyor; böylece aynı sınıf her
+   ilanda farklı bir geçiş adı taşıyabiliyor. `view-transition-name` bir
+   <custom-ident> bekliyor ve var() yerine koyma hesaplanmış değer aşamasında
+   olduğu için bu geçerli.
+
+   DESTEKLEMEYEN TARAYICI: `view-transition-name` bilinmeyen bir özellik olarak
+   yok sayılır, tetikleyici de `document.startViewTransition` yoksa hiç devreye
+   girmez (bkz. components/animation/view-transitions.tsx). Hata çıkmaz, gezinme
+   normal çalışır.
+   --------------------------------------------------------------------------- */
+.vt {
+  view-transition-name: var(--vt-name);
+}
+
+/*
+  Morph süresi ve eğrisi. Bu katmanın kendi token'larıyla aynı dilde kalsın
+  diye --dur-mid/--ease-out kullanılıyor.
+*/
+::view-transition-group(*) {
+  animation-duration: var(--dur-mid);
+  animation-timing-function: var(--ease-out);
+}
+
+/*
+  Kök geçişi kapatıldı: varsayılan tam sayfa crossfade, morph eden görselin
+  üstüne binip hareketi bulanıklaştırıyor. Yalnızca adlandırılmış öğeler
+  animasyonlansın.
+*/
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vt {
+    view-transition-name: none;
+  }
+}
