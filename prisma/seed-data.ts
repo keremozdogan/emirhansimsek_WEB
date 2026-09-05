@@ -199,7 +199,7 @@ export const REGIONS = [
      * yanlış olurdu. Yeni sette bölgeyi anlatan tek kare 07 (daireden görünen
      * cadde ve yerleşim), kapak ona alındı.
      */
-    coverUrl: "/uploads/ilan/P20587627/04.webp",
+    coverUrl: "/uploads/ilan/P20587627/04-fc99de45.webp",
     avgPricePerSqm: null,
     avgRent: null,
     highlights: [
@@ -223,12 +223,16 @@ export const REGIONS = [
     /**
      * Bölge kartı kapağı, P28481717 ilanının manzara karesi.
      *
+     * DİKKAT: burası bir İLAN fotoğrafına elle bağlı. İlan yeniden içe
+     * aktarılınca dosya adı (içerik damgası) değişir ve bu satır kırık görsele
+     * düşer. `npm run db:sync` sonrası kırık bağlantı taraması yapılmalı.
+     *
      * Önceden aynı ilanın 44. karesiydi; ilan 47 fotoğraftan 25'e indirilince
      * o dosya artık yok ve kart kırık görsel gösterecekti. Yeni sette bölgeyi
      * en iyi anlatan kare bu: Çekmeköy'ün vadisi, çevre yerleşimi ve arkada
      * şehir silüeti birlikte görünüyor.
      */
-    coverUrl: "/uploads/ilan/P28481717/15.webp",
+    coverUrl: "/uploads/ilan/P28481717/15-93d8e0db.webp",
     avgPricePerSqm: null,
     avgRent: null,
     highlights: [
@@ -313,24 +317,36 @@ Isıtma doğalgaz kombi, tapu durumu temiz ve **krediye uygun**.`,
      *
      * Kural: bir kareye oda adı ve altyazı yazmadan önce O KAREYİ tek başına,
      * büyük boyda aç. Izgara, tekrarı görmeye yarar; içeriği okumaya yaramaz.
+     *
+     * ÜÇÜNCÜ TUR (altyazı denetimi): tam boyutta bakmak da yetmedi; altyazıdaki
+     * her İDDİA tek tek kareyle karşılaştırılınca üç hata daha çıktı — terasa
+     * açılan kapı "sağda" denmişti, ortadaydı; "asma klozet" denmişti, yere
+     * oturan klozetti; kapak karesinde kapının nereye açıldığı görülmediği
+     * hâlde "oturma alanına" yazılmıştı. Yön (sağ/sol), sayı (çift/iki) ve
+     * ürün tipi (asma/yere oturan) gibi ayrıntılar en kolay uydurulan
+     * şeylerdir: karede görünmüyorsa YAZMAYIN.     *
+     * SIRALAMA KURALI — DIŞARIDAN İÇERİYE:
+     *   sokak → bina → bina girişi/asansör → daire kapısı → hol → salon →
+     *   mutfak → yatak odaları → banyolar → servis → balkon/teras → manzara
+     *
+     * Gezen kişi eve nasıl yaklaşıyorsa tur da öyle ilerliyor; konumu görmeden
+     * iç mekâna atlamak, ilanı gezenin kafasında yer duygusu bırakmıyor.
+     * Dış mekân kareleri (balkon, teras, manzara) sona bırakılıyor: bunlar
+     * evden ÇIKILAN yerler, girilen değil.
+     *
+     * Bu kural tüm ilanlarda geçerli. İlk kayıt aynı zamanda kart kapağıdır.
      */
     tour: [
-      {
-        index: 14,
-        roomName: "Teras",
-        caption:
-          "Üst kattaki teras dairenin cephesi boyunca uzanıyor; sağdaki kapı doğrudan oturma alanına açılıyor.",
-      },
-      {
-        index: 19,
-        roomName: "Bina",
-        caption: "Binanın cadde cephesi.",
-      },
       {
         index: 20,
         roomName: "Sokak",
         caption:
           "Binanın bulunduğu sokak; karşı tarafta ağaçlıklı alan bulunuyor.",
+      },
+      {
+        index: 19,
+        roomName: "Bina",
+        caption: "Binanın cadde cephesi.",
       },
       {
         index: 18,
@@ -403,7 +419,7 @@ Isıtma doğalgaz kombi, tapu durumu temiz ve **krediye uygun**.`,
         index: 6,
         roomName: "Banyo",
         caption:
-          "Banyo; duşakabin, asma klozet ve lavabo dolabı takılı, havluluk ısıtmalı.",
+          "Banyo; duşakabin, klozet ve lavabo dolabı takılı, havluluk ısıtmalı.",
       },
       {
         index: 12,
@@ -414,13 +430,20 @@ Isıtma doğalgaz kombi, tapu durumu temiz ve **krediye uygun**.`,
       {
         index: 13,
         roomName: "Üst Kat Oturma",
-        caption: "Aynı alanın yemek köşesi; terasa açılan kapı sağda kalıyor.",
+        caption:
+          "Aynı alanın yemek köşesi solda kalıyor; ortadaki ahşap doğramalı kapı terasa çıkıyor.",
       },
       {
         index: 16,
         roomName: "Üst Kat Mutfak",
         caption:
           "Üst kattaki mutfak; buzdolabı, ocak, fırın ve eviye takılı. Üst kat, alt kata inmeden kullanılabiliyor.",
+      },
+      {
+        index: 14,
+        roomName: "Teras",
+        caption:
+          "Üst kattaki teras dairenin cephesi boyunca uzanıyor; sağdaki cepheden üst kata giriliyor.",
       },
       {
         index: 15,
@@ -496,9 +519,31 @@ Isıtma merkezi sistem, pay ölçerli — kullandığınız kadar ödersiniz. **
      * Yatak odaları numaralandırılmadı ve ebeveyn/çocuk ayrımı yapılmadı:
      * fotoğraflardan hangi odanın hangisi olduğu kesin ayırt edilemiyor.
      * Aynı sebeple banyo sayısı da iddia edilmiyor — gelen iki banyo karesi
-     * aynı mekânın iki açısıydı, ikisinden biri alındı.
+     * aynı mekânın iki açısıydı, ikisinden biri alındı.     *
+     * SIRALAMA KURALI — DIŞARIDAN İÇERİYE:
+     *   sokak → bina → bina girişi/asansör → daire kapısı → hol → salon →
+     *   mutfak → yatak odaları → banyolar → servis → balkon/teras → manzara
+     *
+     * Gezen kişi eve nasıl yaklaşıyorsa tur da öyle ilerliyor; konumu görmeden
+     * iç mekâna atlamak, ilanı gezenin kafasında yer duygusu bırakmıyor.
+     * Dış mekân kareleri (balkon, teras, manzara) sona bırakılıyor: bunlar
+     * evden ÇIKILAN yerler, girilen değil.
+     *
+     * Bu kural tüm ilanlarda geçerli. İlk kayıt aynı zamanda kart kapağıdır.
      */
     tour: [
+      {
+        index: 1,
+        roomName: "Giriş Holü",
+        caption:
+          "Daire girişi. Uzun hol yaşam alanını yatak odalarından ayırıyor; camlı bölme henüz koruyucu filmiyle duruyor.",
+      },
+      {
+        index: 14,
+        roomName: "Koridor",
+        caption:
+          "Odaları birbirine bağlayan koridor. Kapılar takılı, aydınlatma spotları yerinde.",
+      },
       {
         index: 11,
         roomName: "Salon",
@@ -509,7 +554,7 @@ Isıtma merkezi sistem, pay ölçerli — kullandığınız kadar ödersiniz. **
         index: 13,
         roomName: "Salon",
         caption:
-          "Köşe cam bölümü salonu genişletiyor; oturma ve yemek alanı ayrımına elverişli.",
+          "Salonun balkon kapısı açık hâli; sağdaki camlı kapı hole çıkıyor.",
       },
       {
         index: 12,
@@ -535,18 +580,6 @@ Isıtma merkezi sistem, pay ölçerli — kullandığınız kadar ödersiniz. **
           "Ankastre nişleri ve davlumbaz bacası hazır bekliyor; cihazlar takılarak kullanıma geçilir.",
       },
       {
-        index: 14,
-        roomName: "Koridor",
-        caption:
-          "Odaları birbirine bağlayan koridor. Kapılar takılı, aydınlatma spotları yerinde.",
-      },
-      {
-        index: 1,
-        roomName: "Giriş Holü",
-        caption:
-          "Daire girişi. Uzun hol yaşam alanını yatak odalarından ayırıyor; camlı bölme henüz koruyucu filmiyle duruyor.",
-      },
-      {
         index: 2,
         roomName: "Yatak Odası",
         caption:
@@ -570,6 +603,23 @@ Isıtma merkezi sistem, pay ölçerli — kullandığınız kadar ödersiniz. **
           "Banyo kullanıma hazır: duşakabin, asma klozet, lavabo ve ayna takılı.",
       },
       {
+        /**
+         * Bu kare ÜÇ KEZ yanlış etiketlendi ve her seferinde sebep aynıydı:
+         * kareye bakmadan, "burası ne olabilir" diye tahmin yürütmek.
+         *   1) "Kiler"          — havalandırma ızgarası görülmemişti
+         *   2) "Servis Balkonu" — balkon sanılmıştı; oysa korkuluk yok,
+         *                        dışarı açılmıyor, kapalı bir niş
+         *   3) "zemin seramik"  — zemin ham şap
+         * Doğrusu: holden açılan, havalandırmalı, zemini bitirilmemiş bir
+         * servis nişi. Yanlış etiket ilanı gezen kişiye olmayan bir hacim
+         * vaat ediyor — emlakta bu, satışta geri dönen bir sözdür.
+         */
+        index: 10,
+        roomName: "Servis Nişi",
+        caption:
+          "Holden açılan servis nişi; havalandırma ızgarası takılı, zemin şap hâlinde bırakılmış.",
+      },
+      {
         index: 9,
         roomName: "Balkon",
         caption:
@@ -580,19 +630,6 @@ Isıtma merkezi sistem, pay ölçerli — kullandığınız kadar ödersiniz. **
         roomName: "Manzara",
         caption:
           "Daireden görünen manzara: cadde, ağaçlıklı şerit ve arkasındaki yerleşim.",
-      },
-      {
-        /**
-         * Önce "Kiler" yazılmıştı — yanlıştı. Karede havalandırma ızgarası,
-         * şap bırakılmış zemin ve dışa açılan kapı var; kapalı bir depo değil,
-         * servis balkonu. Fotoğraftan oda adı çıkarırken tahmin yürütmenin
-         * bedeli bu: yanlış etiket, ilanı gezen kişiye olmayan bir hacim
-         * vaat ediyor.
-         */
-        index: 10,
-        roomName: "Servis Balkonu",
-        caption:
-          "Holden çıkılan servis balkonu. Çamaşır makinesi bağlantısı ve havalandırma için ayrılmış alan.",
       },
     ],
   },
@@ -645,88 +682,120 @@ Daire hiç kullanılmamış durumda; uzun vadeli oturmak isteyen kiracılar içi
       { label: "Açık Manzara", group: "ENVIRONMENT" },
       { label: "Asansör", group: "EXTERIOR" },
     ],
+    /**
+     * Tur sırası, dosya sırası DEĞİLDİR: dosyalar kaynak çekim sırasında durur
+     * (01.webp = IMG_0961), buradaki dizilim gezinti akışını ve kart kapağını
+     * belirler (bkz. scripts/sync-content.mts → buildImages).
+     *
+     * Çekimden 24 kare geldi, yayına 15'i alındı. Elenenler aynı odanın
+     * tekrarlanan açılarıydı: salonun dört karesinden üçü, mutfağın üçünden
+     * ikisi, yatak odalarının sekiz karesinden üçü tutuldu.
+     *
+     * BİNA DIŞ CEPHESİ ARTIK YOK. Önceki 1024 piksellik sette iki dış cephe
+     * karesi vardı ve turun kapağıydı; yeni 48 MP çekimde dış cephe
+     * fotoğraflanmamış. Düşük çözünürlüklü iki kareyi keskin 15 karenin
+     * arasında bırakmak yerine çıkarıldı — yeniden çekilirse eklenmeli.
+     *
+     * "İkinci Banyo" iddiası fotoğraf yorumuna DEĞİL ilan kaydına dayanıyor:
+     * `bathrooms: 2` ve açıklamada "iki banyo" yazıyor (RE/MAX verisi).
+     * Fotoğraftan banyo sayısı çıkarmak güvenilir değil.     *
+     * SIRALAMA KURALI — DIŞARIDAN İÇERİYE:
+     *   sokak → bina → bina girişi/asansör → daire kapısı → hol → salon →
+     *   mutfak → yatak odaları → banyolar → servis → balkon/teras → manzara
+     *
+     * Gezen kişi eve nasıl yaklaşıyorsa tur da öyle ilerliyor; konumu görmeden
+     * iç mekâna atlamak, ilanı gezenin kafasında yer duygusu bırakmıyor.
+     * Dış mekân kareleri (balkon, teras, manzara) sona bırakılıyor: bunlar
+     * evden ÇIKILAN yerler, girilen değil.
+     *
+     * Bu kural tüm ilanlarda geçerli. İlk kayıt aynı zamanda kart kapağıdır.
+     */
     tour: [
       {
-        index: 2,
-        roomName: "Bina",
-        caption:
-          "2024 yapımı bina. Sancaktepe Osmangazi Mahallesi'nde, yeni gelişen bir hatta konumlanıyor.",
-      },
-      {
-        index: 3,
+        index: 1,
         roomName: "Giriş Holü",
         caption:
-          "Daire girişi ve hol. Odalara dağılım holden veriliyor, geçişler birbirini kesmiyor.",
-      },
-      {
-        index: 15,
-        roomName: "Salon",
-        caption:
-          "Salon çift pencereli, gizli aydınlatmalı ve balkon çıkışlı. 6. katta olduğu için önü açık.",
-      },
-      {
-        index: 17,
-        roomName: "Salon",
-        caption:
-          "Salonun diğer açısı. Yerden ısıtma sayesinde duvar dipleri radyatörsüz — mobilya yerleşimi serbest.",
-      },
-      {
-        index: 8,
-        roomName: "Mutfak",
-        caption:
-          "Mutfak dolapları takılı ve balkona açılıyor. Tezgah boyunca gün ışığı alıyor.",
-      },
-      {
-        index: 11,
-        roomName: "Mutfak",
-        caption:
-          "Ankastre nişleri hazır, beyaz eşya yerleri ayrılmış durumda.",
-      },
-      {
-        index: 10,
-        roomName: "Balkon",
-        caption:
-          "Balkondan çevre görünümü. Yüksek kat olduğu için karşıda cepheyi kapatan yapı yok.",
+          "Daire girişi. Sağdaki aynalı gömme dolaplar hol boyunca devam ediyor, koridor odalara dağılıyor.",
       },
       {
         index: 13,
-        roomName: "Manzara",
+        roomName: "Koridor",
         caption:
-          "6. kattan geniş açı manzara. Bu kat, ilanın fiyatını belirleyen ana unsurlardan biri.",
+          "Odaları bağlayan koridor. Kapılar takılı, aydınlatma spotları yerinde.",
+      },
+      {
+        index: 9,
+        roomName: "Salon",
+        caption:
+          "Salon iki Fransız balkona açılıyor; tavandaki gizli aydınlatma bandı çevreyi dolaşıyor.",
+      },
+      {
+        index: 10,
+        roomName: "Salon",
+        caption:
+          "Salonun hole açılan kapısı ve pencere hattı. Boş teslim edildiği için yerleşim size kalıyor.",
+      },
+      {
+        index: 11,
+        roomName: "Salon",
+        caption: "Salonun diğer köşesi; camlı kapı koridora çıkıyor.",
+      },
+      {
+        index: 4,
+        roomName: "Mutfak",
+        caption:
+          "Mutfak balkona açılıyor ve manzara alıyor. Dolaplar takılı, eviye ve tezgah hazır.",
       },
       {
         index: 5,
-        roomName: "Ebeveyn Yatak Odası",
+        roomName: "Mutfak",
         caption:
-          "Ana yatak odası, pencereli ve laminat parke döşeli. Sokak gürültüsü bu katta hissedilmiyor.",
+          "Ankastre nişleri ve beyaz eşya yerleri ayrılmış; cihazlar takılarak kullanıma geçiliyor.",
       },
       {
-        index: 19,
+        index: 2,
         roomName: "Yatak Odası",
-        caption: "İkinci oda. Gömme dolap nişi ve doğal havalandırması mevcut.",
+        caption:
+          "Fransız balkonlu oda. 6. kat olduğu için önü açık, karşı bina cepheyi kapatmıyor.",
       },
       {
-        index: 22,
-        roomName: "Çocuk Odası",
+        index: 14,
+        roomName: "Yatak Odası",
+        caption: "Pencereli ikinci oda; laminat parke döşeli.",
+      },
+      {
+        index: 12,
+        roomName: "Yatak Odası",
+        caption: "Üçüncü oda. Çalışma odası olarak da kullanılabilir.",
+      },
+      {
+        index: 3,
+        roomName: "Banyo",
         caption:
-          "Üçüncü oda; çocuk odası ya da çalışma odası olarak kullanılabilir.",
+          "Banyo kullanıma hazır: duşakabin, asma klozet, lavabo dolabı ve ayna takılı.",
+      },
+      {
+        index: 15,
+        roomName: "İkinci Banyo",
+        caption:
+          "Dairedeki ikinci banyonun duş bölümü; tepe duş ve el duşu monte edilmiş.",
+      },
+      {
+        index: 8,
+        roomName: "Servis Alanı",
+        caption:
+          "Holden açılan servis nişi; havalandırma ızgarası ve tesisat çıkışı hazır.",
+      },
+      {
+        index: 6,
+        roomName: "Balkon",
+        caption: "Mutfaktan çıkılan balkon. Korkuluklar takılı, önü açık.",
       },
       {
         index: 7,
-        roomName: "Banyo",
+        roomName: "Manzara",
         caption:
-          "Banyo kullanıma hazır. Duşakabin, lavabo ve klozet takılı, seramikleri sıfır.",
-      },
-      {
-        index: 24,
-        roomName: "İkinci Banyo",
-        caption:
-          "İkinci banyo, duşlu. 3+1 kiralık dairelerde iki banyo bulmak bölgede ayırt edici bir özellik.",
-      },
-      {
-        index: 21,
-        roomName: "Koridor",
-        caption: "Odaları bağlayan koridor ve gömme dolap alanları.",
+          "6. kattan geniş açı manzara. Bu kat, ilanın fiyatını belirleyen unsurlardan biri.",
       },
     ],
   },
@@ -783,7 +852,7 @@ Dükkânın en güçlü yanı **cam cephesi**: cadde boyunca uzanan boydan boya 
         index: 1,
         roomName: "Vitrin",
         caption:
-          "Boydan boya cam cephe. Bu genişlikte kesintisiz vitrin, bölgede sınırlı sayıda ticari alanda bulunuyor.",
+          "Boydan boya, kesintisiz cam cephe. Vitrin boyunca bölme yok.",
       },
       {
         index: 14,

@@ -65,10 +65,33 @@ const SLOTS = [
     matches: (rel: string) => rel.startsWith("bolge/"),
   },
   {
-    name: "İlan galerisi (tam genişlik)",
-    source: "components/property/property-gallery.tsx",
-    cssWidth: 1280,
+    /**
+     * İlan fotoğrafları BİLİNÇLİ olarak 2048 pikselde sabitlendi.
+     *
+     * Galeri tam genişlikte açılıyor ve retina ekranda ham hesap 2560 piksel
+     * ister; ama 2800'lük kaynak kare başına 870 KB'a, 20 karelik bir tur da
+     * 17 MB'a çıkıyordu. 2048'de kare 457 KB — %100 kırpmada iki varyant
+     * arasında görünür fark yok (ayna çerçevesi, kumaş dokusu, doğrama aynı).
+     *
+     * Bu yüzden eşik 2048: burada bir uyarı çıkıyorsa kaynak GERÇEKTEN küçük
+     * demektir, kasıtlı sınır değil.
+     */
+    name: "İlan galerisi",
+    source: "components/property/property-gallery.tsx — kaynak 2048'e sabit",
+    cssWidth: 1024,
     matches: (rel: string) => rel.startsWith("ilan/"),
+  },
+  {
+    name: "Profil portresi",
+    source: "app/(site)/hakkimda/page.tsx — sizes=\"330px\"",
+    cssWidth: 330,
+    matches: (rel: string) => rel.startsWith("profil/"),
+  },
+  {
+    name: "Rehber kapağı",
+    source: "app/(site)/blog/[slug]/page.tsx — sizes=\"100vw\"",
+    cssWidth: 1024,
+    matches: (rel: string) => rel.startsWith("blog/"),
   },
 ] as const;
 

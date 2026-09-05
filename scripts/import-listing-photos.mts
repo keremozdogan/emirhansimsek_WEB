@@ -49,13 +49,25 @@
  * zaman GPS koordinatı taşır; bir konutun tam konumunu görselin içinde
  * yayınlamak istemiyoruz. `.withMetadata()` eklemeyin.
  *
- * DOSYA ADLARI KAYNAK SIRASINDADIR, sunum sırası DEĞİLDİR. Turun sırasını ve
+ * DOSYA ADLARI İÇERİK DAMGALIDIR: `01-a3f9c2d1.webp`. Baştaki sayı çekim
+ * sırasını, sondaki sekiz harf dosyanın içeriğinin özetini taşır.
+ *
+ * Bu şart, tercih değil. Daha önce dosyalar düz `01.webp`, `02.webp` diye
+ * numaralanıyordu; bir ilanın fotoğrafları elenip yeniden içe aktarılınca aynı
+ * ad BAŞKA bir fotoğrafı göstermeye başladı. URL değişmediği için tarayıcılar
+ * ve Next görsel önbelleği eski kareyi vermeye devam etti: siteyi daha önce
+ * açmış biri, "Manzara" altyazısının altında eski numaralandırmadaki çocuk
+ * odasını gördü. İçerik değişince ad da değişirse böyle bir çakışma imkânsız
+ * hâle geliyor.
+ *
+ * Sıralama notu: dosya adındaki sayı KAYNAK SIRASIDIR, sunum sırası DEĞİLDİR. Turun sırasını ve
  * kart kapağını `prisma/seed-data.ts` içindeki `tour` dizisi belirler
  * (bkz. scripts/sync-content.mts → buildImages). Böylece hangi dosyanın hangi
  * çekimden geldiği izlenebilir kalıyor.
  */
 
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import sharp from "sharp";
@@ -116,12 +128,12 @@ type Photo = {
 };
 
 const entries: Photo[] = [];
+const yazilan = new Set<string>();
 let totalBytes = 0;
 
 for (const [index, file] of files.entries()) {
-  const name = String(index + 1).padStart(2, "0");
+  const sira = String(index + 1).padStart(2, "0");
   const source = path.join(srcDir, file);
-  const target = path.join(outDir, `${name}.webp`);
 
   // `.rotate()` argümansız çağrılınca EXIF yönelimini uygular; telefon
   // fotoğraflarının yan yatmasını bu önlüyor.
@@ -137,7 +149,11 @@ for (const [index, file] of files.entries()) {
     .sharpen({ sigma: sharpenSigma })
     .webp({ quality })
     .toBuffer();
-  await writeFile(target, buffer);
+  // İçerik damgası: aynı görsel her koşuda aynı adı, değişen görsel yeni adı alır
+  const damga = createHash("sha256").update(buffer).digest("hex").slice(0, 8);
+  const name = `${sira}-${damga}`;
+  await writeFile(path.join(outDir, `${name}.webp`), buffer);
+  yazilan.add(`${name}.webp`);
   totalBytes += buffer.length;
 
   const out = await sharp(buffer).metadata();
@@ -155,6 +171,15 @@ for (const [index, file] of files.entries()) {
       `${meta.width}x${meta.height} → ${out.width}x${out.height}  ` +
       `${(buffer.length / 1024).toFixed(0)} KB`,
   );
+}
+
+// Artık kullanılmayan kareleri sil. İçerik damgalı adlar sayesinde her koşuda
+// tüm dosyalar yeniden yazılmaz; değişmeyen görsel aynı adı alır ve dokunulmaz.
+const mevcut = await readdir(outDir);
+const artik = mevcut.filter((f) => f.endsWith(".webp") && !yazilan.has(f));
+for (const f of artik) await rm(path.join(outDir, f));
+if (artik.length > 0) {
+  console.log(`\n${artik.length} eski dosya silindi: ${artik.join(", ")}`);
 }
 
 const photos = JSON.parse(await readFile(photosPath, "utf8")) as Record<
